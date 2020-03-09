@@ -3,15 +3,16 @@ from django.db import models
 # Create your models here.
 
 # Artist
-# class Artist(models.Model):
-#     artistid = models.IntegerField(primary_key=True)
-#     name = models.CharField(max_length=120, blank=True, null=True)
+class Artist(models.Model):
+    artistid = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=120, blank=True, null=True)
 
-#     class Meta:
-#         db_table = 'artist'
+    class Meta:
+        # managed = False
+        db_table = 'artist'
 
-#     # def __str__(self):
-#     #     return self.name
+    # def __str__(self):
+    #     return self.name
 
 # Album
 # Employee
