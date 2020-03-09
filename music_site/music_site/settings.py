@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
+sys.path.insert(1, '../')
+import credentials
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,11 +80,11 @@ WSGI_APPLICATION = 'music_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proyecto1dbuvg',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': credentials.DATABASE['NAME'],
+        'USER': credentials.DATABASE['USER'],
+        'PASSWORD': credentials.DATABASE['PASSWORD'],
+        'HOST': credentials.DATABASE['HOST'],
+        'PORT': credentials.DATABASE['PORT'],
     }
 }
 
