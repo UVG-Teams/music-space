@@ -16,7 +16,7 @@ class Employee(models.Model):
     phone = models.CharField(max_length=24)
     fax = models.CharField(max_length=24)
     email = models.CharField(max_length=60)
-    reportsto = models.ForeignKey("Employee", models.DO_NOTHING, db_column="employeeid")
+    reportsto = models.ForeignKey("employees.Employee", models.DO_NOTHING, db_column="reportsto")
 
     class Meta:
         db_table = 'employee'

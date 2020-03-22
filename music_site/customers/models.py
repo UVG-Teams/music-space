@@ -14,7 +14,7 @@ class Customer(models.Model):
     phone = models.CharField(max_length=24)
     fax = models.CharField(max_length=24)
     email = models.CharField(max_length=60, blank=False, null=False)
-    supportrepid = models.ForeignKey("Employee", models.DO_NOTHING, db_column="employeeid") # FOREIGN KEY (SupportRepId) REFERENCES Employee (EmployeeId) ON DELETE NO ACTION ON UPDATE NO ACTION
+    supportrepid = models.ForeignKey("employees.Employee", models.DO_NOTHING, db_column="employeeid") # FOREIGN KEY (SupportRepId) REFERENCES Employee (EmployeeId) ON DELETE NO ACTION ON UPDATE NO ACTION
 
     class Meta:
         db_table = 'customer'
