@@ -5,3 +5,9 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse("Hello World, You are at music streaming index.")
+
+def admin(request):
+    return HttpResponse("Hello World, You are at music streaming admin.")
+
+def reports(request):
+    return HttpResponse("Hello World, You are at music streaming reports.")
