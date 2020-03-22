@@ -1,12 +1,21 @@
-from django.urls import path
+from django.urls import path, include
 
 from . import views
-# from albums import views as albums_views
 
 urlpatterns = [
     path('', views.index, name='index'),
 
-    # path('albums/', 
-    #     albums_views, 
-    #     name = "albums"),
+    path('albums/', include('albums.urls')),
+
+    path('artists/', include('artists.urls')),
+
+    path('genres/', include('genres.urls')),
+
+    path('playlists/', include('playlists.urls')),
+
+    path('tracks/', include('tracks.urls')),
+
+    path('reports/', views.reports, name='reports'),
+
+    path('musicStreaming/admin/', views.admin, name='admin'),
 ]
