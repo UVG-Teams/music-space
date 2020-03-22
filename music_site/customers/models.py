@@ -7,7 +7,7 @@ class Customer(models.Model):
     lastname = models.CharField(max_length=20, blank=False, null=False)
     company = models.CharField(max_length=80)
     address = models.CharField(max_length=70)
-    city = models.CharField(max_lenght=40)
+    city = models.CharField(max_length=40)
     state = models.CharField(max_length=40)
     country = models.CharField(max_length=40)
     postalcode = models.CharField(max_length=10)
