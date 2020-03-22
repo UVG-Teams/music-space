@@ -3,6 +3,7 @@ import psycopg2
 import os
 import credentials
 
+print("\n"*100)
 input('Please disconnect server in DBeaver and then press enter... ')
 print("Django Version ", django.get_version())
 
@@ -18,11 +19,34 @@ cursor = conn.cursor()
 cursor.execute("DROP DATABASE IF EXISTS {dbname}".format(dbname=dbname))
 cursor.execute("CREATE DATABASE {dbname}".format(dbname=dbname))
 print('Reset database completed!')
-print('Loading data...')
+
+print('Loading data structure...')
 # db = psycopg2.connect(host=host, dbname=dbname, user=user, password=password, port=port)
 # db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 # cursor = db.cursor()
 # sqlfile = open('./music_site/database.sql', 'r', encoding='UTF-8')
 # cursor.execute(sqlfile.read())
-os.system("python ./music_site/load_migrations.py")
-print("Data loaded successfully!")
+print("~ " * 75)
+os.system("python manage.py makemigrations")
+print("~ " * 75)
+os.system("python manage.py migrate")
+print("~ " * 75)
+dbDump = input("Enter the name of the dump file with extension: \n\t- ")
+try:
+  file = open(dbDump, "r")
+  print("Restoring data...")
+  print("\t{db} < {dump}".format(
+    db = dbname,
+    dump = dbDump
+  ))
+  os.system("psql -h {host} -U {user} {db} < {dump}".format(
+    host = host,
+    user = user,
+    db = dbname,
+    dump = dbDump
+  ))
+  print("~ " * 75)
+  print(" - Migrations Done!")
+  print("Data loaded successfully!")
+except IOError:
+  print("There is no file named {dump}!".format(dump = dbDump))
