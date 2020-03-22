@@ -39,7 +39,7 @@
     CREATE DATABASE connect;
     ```
 
-* Crear archivo /credentials.py
+* Crear archivo /music_site/credentials.py
     ```python
         DATABASE = {
             'NAME': 'proyecto1dbuvg',
