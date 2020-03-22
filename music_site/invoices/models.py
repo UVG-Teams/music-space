@@ -3,7 +3,7 @@ from django.db import models
 #Invoice
 class Invoice(models.Model):
     invoiceid = models.IntegerField(primary_key=True, blank=False, null=False)
-    invoicedate = models.DateTimeField(blank=false, null=False)
+    invoicedate = models.DateTimeField(blank=False, null=False)
     billingaddress = models.CharField(max_length=70)
     billingcity = models.CharField(max_length=40)
     billingstate = models.CharField(max_length=40)

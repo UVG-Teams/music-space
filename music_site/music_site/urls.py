@@ -20,16 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('music_streaming/', include('music_streaming.urls')),
-    
-    path('albums/', include('albums.urls')),
-    path('artists/', include('artists.urls')),
-    path('customers/', include('customers.urls')),
-    path('employees/', include('employees.urls')),
-    path('genres/', include('genres.urls')),
-    path('invoiceLines/', include('invoiceLines.urls')),
-    path('invoices/', include('invoices.urls')),
-    path('mediaTypes/', include('mediaTypes.urls')),
-    path('playlists/', include('playlists.urls')),
-    path('playlistTracks/', include('playlistTracks.urls')),
-    path('tracks/', include('tracks.urls')),
 ]
