@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+#Album
+class Album(models.Model):
+    albumid = models.IntegerField(primary_key=True, blank=False, null=False)
+    title = models.CharField(max_lenght=30, blank=False, null=False)
+    artistid = models.ForeignKey("Artist", models.DO_NOTHING, db_column="artistid") #artistid = models.IntegerField(blank=False, null=False)
+
+    class Meta:
+        db_table = 'album'
