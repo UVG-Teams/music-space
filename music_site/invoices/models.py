@@ -10,7 +10,7 @@ class Invoice(models.Model):
     billingcountry = models.CharField(max_length=40)
     billingpostalcode = models.CharField(max_length=10)
     total = models.DecimalField(max_digits=10, decimal_places=2)
-    customerid = models.ForeignKey("Customer", models.DO_NOTHING, db_column="customerid") #customerid = models.IntegerField(blank=False, null=False)
+    customerid = models.ForeignKey("customers.Customer", models.DO_NOTHING, db_column="customerid") #customerid = models.IntegerField(blank=False, null=False)
 
     class Meta:
         db_table = 'invoice'
