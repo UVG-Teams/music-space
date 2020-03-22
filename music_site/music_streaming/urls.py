@@ -15,8 +15,6 @@ urlpatterns = [
     path('musicStreaming/admin/', views.admin, name='admin'),
 
     path('reports/', views.reports, name='reports'),
-
-    # path('logout/', views.logout_view, name='logout'),
     
     path('albums/', include('albums.urls')),
 

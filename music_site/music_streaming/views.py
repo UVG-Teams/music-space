@@ -8,25 +8,16 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return redirect('accounts/login/')
 
-# def login_view(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(request, username=username, password=password)
-#     if user is not None:
-#         login(request, user)
-#         return redirect("home/{user_id}".format(user_id=user.id))
-#     return redirect("/")
-
 @login_required
 def home(request):
-    return HttpResponse("Hello World, You are at music streaming home")
+    user = request.user
+    return render(request, 'home.html', {'user': user})
 
+@login_required
 def admin(request):
-    return HttpResponse("Hello World, You are at music streaming admin.")
+    user = request.user
+    return render(request, 'admin.html', {'user': user})
 
+@login_required
 def reports(request):
-    return HttpResponse("Hello World, You are at music streaming reports.")
-
-# def logout_view(request):
-#     logout(request)
-#     return redirect('')
+    return render(request, 'reports.html')
