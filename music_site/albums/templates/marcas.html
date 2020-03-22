@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>DM -Admin- Lista Marcas</title>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static "style_marcas_admin.css" %}">
+	</head>
+	<body>
+		<div class="top">
+			<div><img class="logo" src="{% static "logo.jpg" %}"></div>
+			<div class="cajaTitulo"><h1 class="titulo">Lista de Marcas</h1></div>
+			<button class="botonAdmin">ADMIN</button>
+			<button class="botonHome">HOME</button>
+
+		</div>
+		<div class="middle">
+			<div class="lista">
+				<ul>
+				{% for marca in marcas %}
+					<li>
+						<a href="{% url 'mi_marca' marca_pk=marca.id %}" style="color: grey; font-size: 30px">{{marca}}</a>
+					</li>
+				{% empty %}
+					<p>No hay marcas</p>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="bottom">
+			
+		</div>
+	</body>
+</html>
