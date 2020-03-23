@@ -1,0 +1,93 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.site{
+    height: 100%;
+}
+
+.nav_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: black;
+}
+
+.user {
+    color: white;
+    font-size: 30px;
+    margin-right: 3%;
+    margin-top: 1%
+}
+
+.fas {
+    color: white;
+    font-size: 30px;
+}
+
+.logo {
+    width: 170px;
+    height: 80px;
+    margin-left: 2%;
+}
+
+.side_bar{
+    display: flex;
+    flex-direction: column;
+    background: black;
+    width: 15%;
+    height: 100%;
+    align-items: center;
+    color: white;
+
+}
+
+.line {
+    width: 80%;
+}
+
+.bar_title {
+    margin-top: 25%;
+    margin-bottom: 0px;
+    font-size: 25px;
+}
+
+.options {
+    margin-top: 7%;
+    font-size: 25px;
+    color: white;
+}
+
+.site_content {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    width: 100%;
+}
+
+.usuarios_title {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 3%;
+}
+
+.usuarios_content {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #d3d3d3;
+}
