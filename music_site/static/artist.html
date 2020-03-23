@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>artist</title>
+    <link href="style_ searches.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="all">
+        <div class="canciones">
+            <div class="header">
+                <img src="logo.jpeg" class="logo">
+                <h1>Artistas</h1>
+                <input type="text" placeholder="buscar">
+                <button>Buscar</button>
+            </div>
+            <div class="scroll busqueda">
+                {% for artist in artists %}
+                    <div class="info">
+                        <img src="music.png" class="imagen">
+                        <p>{{artist.name}}</p>
+                        <div>
+                            <button class="boton">Editar</button>
+                            <button class="boton">Eliminar</button>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No hay artistas</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="canciones">
+            <h1>Nuevo artista</h1>
+            <div class="formulario">
+                <p>Nombre:</p>
+                <input type="text" class="texto" placeholder="">
+                <br>
+                <br>
+                <br>
+                <button class="enviar">ADD ARTIST</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
