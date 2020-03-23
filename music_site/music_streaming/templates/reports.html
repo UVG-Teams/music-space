@@ -1,1 +1,235 @@
-<h1>Hello World, You are at music streaming reports</h1>
+<html>
+<head>
+    <title>Reportes</title>
+    {% load static %}
+    <link href="{% static 'css/style_reports.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+     <!---encabezado-->
+     <div class='header'>
+        <div class='conteiner'>
+            <img src="{% static 'logo.jpeg' %}" class="logo">
+        </div>
+        <div class='conteiner'>
+            <input type="text" class="buscar" placeholder="BUSCAR">
+            <button class='botonHome'>Buscar</button>
+        </div>
+        <div class='conteiner'>
+            <button class="boton">Home</button>
+            <label class="usuario">{{user.username}}</label>
+        </div>
+    </div>
+    <br>
+    <!--centro-->
+    <div class="centro">
+        <!--1-->
+        <div class="grafica">
+            <h3>Género con más artistas</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>GENERO</th>
+                    <th>CANTIDAD ARTISTAS</th>
+                  </tr>
+                  {% for genero in generosMasArtistas %}
+                      <tr>
+                          <td>{{genero.genre}}</td>
+                          <td>{{genero.cantidadartistas}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--2-->
+        <div class="grafica">
+            <h3>Género con más canciones</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>GENERO</th>
+                    <th>CANTIDAD CANCIONES</th>
+                  </tr>
+                  {% for genero in generosMasCanciones %}
+                      <tr>
+                          <td>{{genero.name}}</td>
+                          <td>{{genero.cantidad}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--3-->
+        <div class="grafica">
+            <h3>Artistas con más albumes individuales</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>ARTISTA</th>
+                    <th>CANTIDAD ALBUMES</th>
+                  </tr>
+                  {% for artista in artistasMasAlbumes %}
+                      <tr>
+                          <td>{{artista.name}}</td>
+                          <td>{{artista.cantidad}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--4-->
+        <div class="grafica">
+            <h3>Canciones de mayor duración</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>CANCION</th>
+                    <th>DURACION</th>
+                  </tr>
+                  {% for cancion in cancionesMasDuracion %}
+                      <tr>
+                          <td>{{cancion.name}}</td>
+                          <td>{{cancion.duracion}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--5-->
+        <div class="grafica">
+            <h3>Usuarios que han registrado más canciones</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>USER</th>
+                    <th>CANTIDAD CANCIONES</th>
+                  </tr>
+                  {% for usuario in usuariosMasCanciones %}
+                      <tr>
+                          <td>{{usuario}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--6-->
+        <div class="grafica">
+            <h3>Promedio duración de canciones por genero</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>GENERO</th>
+                    <th>PROMEDIO DURACION DE CANCIONES</th>
+                  </tr>
+                  {% for genero in promedioCancionPorGenero %}
+                      <tr>
+                          <td>{{genero.name}}</td>
+                          <td>{{genero.tiempo}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--7-->
+        <div class="grafica">
+            <h3>Total duración playlists</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>PLAYLIST</th>
+                    <th>DURACION</th>
+                  </tr>
+                  {% for playlist in totalDuracionPlaylists %}
+                      <tr>
+                          <td>{{playlist}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--8-->
+        <div class="grafica">
+            <h3>Artistas con más canciones</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>ARTISTA</th>
+                    <th>CANTIDAD CANCIONES</th>
+                  </tr>
+                  {% for artista in artistasMasCanciones %}
+                      <tr>
+                          <td>{{artista.name}}</td>
+                          <td>{{artista.cantidad}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--9-->
+        <div class="grafica">
+            <h3>Cantidad de artistas diferentes por playlist</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>PLAYLIST</th>
+                    <th>CANTIDAD ARTISTAS</th>
+                  </tr>
+                  {% for playlist in cantidadArtistasPlaylists %}
+                      <tr>
+                          <td>{{playlist}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!--10-->
+        <div class="grafica">
+            <h3>Artistas con más diversidad de géneros musicales</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                  <tr>
+                    <th>ARTISTA</th>
+                    <th>CANTIDAD GENEROS</th>
+                  </tr>
+                  {% for artista in artistasDiversidadGenero %}
+                      <tr>
+                          <td>{{artista}}</td>
+                      </div>
+                  {% empty %}
+                      <tr>No hay</tr>
+                  {% endfor %}
+                </table>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+</body>
+</html>
