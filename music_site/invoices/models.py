@@ -6,9 +6,9 @@ class Invoice(models.Model):
     invoicedate = models.DateTimeField(blank=False, null=False)
     billingaddress = models.CharField(max_length=70)
     billingcity = models.CharField(max_length=40)
-    billingstate = models.CharField(max_length=40)
+    billingstate = models.CharField(max_length=40, blank=True, null=True)
     billingcountry = models.CharField(max_length=40)
-    billingpostalcode = models.CharField(max_length=10)
+    billingpostalcode = models.CharField(max_length=10, blank=True, null=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     customerid = models.ForeignKey("customers.Customer", models.DO_NOTHING, db_column="customerid") #customerid = models.IntegerField(blank=False, null=False)
 

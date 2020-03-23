@@ -7,7 +7,9 @@ __pycache__/
 credentials.py
 
 # Database
-database.sql
+*.sql
+*.tar
+!databaseInitDump.sql
 
 # C extensions
 *.so

@@ -4,7 +4,7 @@ from django.db import models
 class Track(models.Model):
     trackid = models.IntegerField(primary_key=True, blank=False, null=False)
     name = models.CharField(max_length=200, blank=False, null=False)
-    composer = models.CharField(max_length=220)
+    composer = models.CharField(max_length=220, blank=True, null=True)
     milliseconds = models.IntegerField(blank=False, null=False)
     bytes = models.IntegerField()
     unitprice = models.DecimalField(max_digits=10, decimal_places=2)
