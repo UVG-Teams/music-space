@@ -7,3 +7,9 @@ class Genre(models.Model):
 
     class Meta:
         db_table = 'genre'
+
+    def __str__(self):
+        return "{id} - {name}".format(
+            id = self.genreid,
+            name = self.name
+        )

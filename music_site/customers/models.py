@@ -19,3 +19,10 @@ class Customer(models.Model):
 
     class Meta:
         db_table = 'customer'
+
+    def __str__(self):
+        return "{id} - {firstname} {lastname}".format(
+            id = self.customerid,
+            firstname = self.firstname,
+            lastname = self.lastname
+        )

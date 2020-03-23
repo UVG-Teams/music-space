@@ -14,3 +14,8 @@ class Invoice(models.Model):
 
     class Meta:
         db_table = 'invoice'
+
+    def __str__(self):
+        return "{id}".format(
+            id = self.invoiceid,
+        )

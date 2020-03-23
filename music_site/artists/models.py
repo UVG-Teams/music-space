@@ -8,5 +8,8 @@ class Artist(models.Model):
     class Meta:
         db_table = 'artist'
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return "{id} - {name}".format(
+            id = self.artistid,
+            name = self.name
+        )

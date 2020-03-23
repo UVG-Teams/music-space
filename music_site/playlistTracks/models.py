@@ -7,3 +7,9 @@ class PlaylistTrack(models.Model):
 
     class Meta:
         db_table = 'playlisttrack'
+
+    def __str__(self):
+        return "{id} - {trackid}".format(
+            id = self.playlistid,
+            trackid = self.trackid
+        )
