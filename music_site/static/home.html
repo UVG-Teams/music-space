@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link href="style_home.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!---encabezado-->
+    <div class='header'>
+        <div class='conteiner'>
+            <img src="logo.jpeg" class="logo">
+        </div>
+        <div class='conteiner'>
+            <input type="text" class="buscar" placeholder="BUSCAR">
+            <button class='botonHome'>Buscar</button>
+        </div>
+        <div class='conteiner'>
+            <button class="boton">Reportes</button>
+            <label class="usuario">{{user.username}}</label>
+        </div>
+    </div>
+    <br>
+    <!--centro-->
+    <div class="centro">
+        <h1>Generos</h1>
+        <div class="musica">
+            {% for genre in genres %}
+                <div class="tema">
+                    <img src="" class="imagen">
+                    <p>{{genre.name}}</p>
+                </div>
+            {% empty %}
+                <p>No hay generos</p>
+            {% endfor %}
+        </div>
+        <h1>Artistas</h1>
+        <div class="musica">
+            {% for artist in artists %}
+                <div class="tema">
+                    <img src="" class="imagen">
+                    <p>{{artist.name}}</p>
+                </div>
+            {% empty %}
+                <p>No hay artistas</p>
+            {% endfor %}
+        </div>
+        <h1>Canciones</h1>
+        <div class="musica">
+            {% for track in tracks %}
+                <div class="cancion">
+                    <img src="" class="imagen">
+                    <p>{{track.name}}</p>
+                    <p>{{track.composer}}</p>
+                </div>
+            {% empty %}
+                <p>No hay canciones</p>
+            {% endfor %}
+        </div>
+        <h1>Albumes</h1>
+        <div class="musica">
+            {% for album in albums %}
+                <div class="tema">
+                    <img src="" class="imagen">
+                    <p>{{album.title}}</p>
+                </div>
+            {% empty %}
+                <p>No hay albumes</p>
+            {% endfor %}
+        </div>
+        <h1>Playlists</h1>
+        <div class="musica">
+            {% for playlist in playlists %}
+                <div class="tema">
+                    <img src="" class="imagen">
+                    <p>{{playlist.name}}</p>
+                </div>
+            {% empty %}
+                <p>No hay playlists</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
