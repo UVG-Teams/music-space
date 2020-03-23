@@ -9,6 +9,7 @@ from artists.models import Artist
 from tracks.models import Track
 from albums.models import Album
 from playlists.models import Playlist
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -39,11 +40,65 @@ def home(request):
 @login_required
 def admin(request):
     user = request.user
+    users = User.objects.all()
     return render(
         request,
         'admin.html', 
         {
-            'user': user
+            'user': user,
+            'users': users
+        }
+    )
+
+@login_required
+def admin_artists(request):
+    user = request.user
+    artists = Artist.objects.all()
+    return render(
+        request,
+        'admin_artistas.html', 
+        {
+            'user': user,
+            'artists': artists
+        }
+    )
+
+@login_required
+def admin_albums(request):
+    user = request.user
+    albums = Album.objects.all()
+    return render(
+        request,
+        'admin_albums.html', 
+        {
+            'user': user,
+            'albums': albums
+        }
+    )
+
+@login_required
+def admin_tracks(request):
+    user = request.user
+    tracks = Track.objects.all()
+    return render(
+        request,
+        'admin_canciones.html', 
+        {
+            'user': user,
+            'tracks': tracks
+        }
+    )
+
+@login_required
+def admin_playlists(request):
+    user = request.user
+    playlists = Playlist.objects.all()
+    return render(
+        request,
+        'admin_canciones.html', 
+        {
+            'user': user,
+            'playlists': playlists
         }
     )
 

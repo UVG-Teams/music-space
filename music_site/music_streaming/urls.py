@@ -13,6 +13,10 @@ urlpatterns = [
     path('home/', views.home, name='home'),
 
     path('musicStreaming/admin/', views.admin, name='admin'),
+    path('musicStreaming/admin/artists', views.admin_artists, name='admin_artists'),
+    path('musicStreaming/admin/albums', views.admin_albums, name='admin_albums'),
+    path('musicStreaming/admin/tracks', views.admin_tracks, name='admin_tracks'),
+    path('musicStreaming/admin/playlists', views.admin_playlists, name='admin_playlists'),
 
     path('reports/', views.reports, name='reports'),
     

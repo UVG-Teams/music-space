@@ -1,7 +1,7 @@
 <html>
     <head>
         {% load static %}
-        <link rel="stylesheet" href="{% static 'css/style_admin.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style_admin_canciones.css' %}">
         <script src="https://kit.fontawesome.com/49bec8d9b6.js" crossorigin="anonymous"></script>
         <title></title>
     </head>
@@ -29,27 +29,29 @@
                 <div class="content">
                     <div class="usuarios">
                         <div class="usuarios_title">
-                            Usuarios
+                            Canciones
                         </div>
                         <div class="usuarios_content">
                             <table>
                                 <thead>
                                     <th> Num </th>
-                                    <th> Nombre </th>
-                                    <th> Email </th>
-                                    <th> Superuser </th>
-                                    <th> Staff </th>
-                                    <th> Active </th>
+                                    <th> Name </th>
+                                    <th> Album </th>
+                                    <th> Genre </th>
+                                    <!-- <th> Composer </th> -->
+                                    <th> Price </th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
-                                    {% for usuario in users %}
+                                    {% for track in tracks %}
                                         <tr>
-                                            <td>{{ usuario.id }}</td>
-                                            <td>{{ usuario.username }}</td>
-                                            <td>{{ usuario.email }}</td>
-                                            <td><input type="checkbox"></td>
-                                            <td><input type="checkbox"></td>
-                                            <td><input type="checkbox"></td>
+                                            <td>{{ track.trackid }}</td>
+                                            <td>{{ track.name }}</td>
+                                            <td>{{ track.albumid }}</td>
+                                            <td>{{ track.genreid }}</td>
+                                            <!-- <td>{{ track.composer }}</td> -->
+                                            <td>{{ track.unitprice }}</td>
+                                            <td><button type="button" class="btnDelete">Delete</button></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>
