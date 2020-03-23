@@ -19,9 +19,13 @@
     $ deactivate
     ```
 * [Instalar Django](https://docs.djangoproject.com/en/3.0/topics/install/)
-* [Instalar psycopg2](https://www.psycopg.org/)
-    * Comprobar instalación
     ```shell
+    $ python -m pip install Django
+    ```
+* [Instalar psycopg2](https://www.psycopg.org/)
+    * Instalar y comprobar instalación
+    ```shell
+    $ pip install psycopg2
     $ python -c "import psycopg2" --verbose
     ```
 * Instalar ipython 
@@ -33,7 +37,7 @@
 
 * Conexión
     ```shell
-    $ psql -h localhost(host) -U postgres(user) -W
+    $ psql -h localhost -U postgres -W
     ```
     ```sql
     CREATE DATABASE connect;
@@ -67,6 +71,7 @@
 
 * Crear app
     ```shell
+    $ django-admin startproject my_site
     $ python manage.py startapp myapp
     ```
 * Abrir shell
