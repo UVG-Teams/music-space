@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>track</title>
+    <link href="style_ searches.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="all">
+        <div class="canciones">
+            <div class="header">
+                <img src="logo.jpeg" class="logo">
+                <h1>Canciones</h1>
+                <input type="text" placeholder="buscar">
+                <button>Buscar</button>
+            </div>
+            <div class="scroll busqueda">
+                {% for track in tracks %}
+                    <div class="info">
+                        <img src="music.png" class="imagen">
+                        <div>
+                            <p>{{track.name}}</p>
+                            <p>{{track.composer}}</p>
+                        </div>
+                        <div>
+                            <button class="boton">Editar</button>
+                            <button class="boton">Eliminar</button>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No hay canciones</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="canciones">
+            <h1>Nueva Cancion</h1>
+            <div class="scroll formulario">
+                <p>Nombre:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Album:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Media Type:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Genero:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Compositor:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Milliseconds:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Bytes:</p>
+                <input type="text" class="texto" placeholder="">
+                <p>Unit Price:</p>
+                <input type="text" class="texto" placeholder="">
+                <br>
+                <br>
+                <br>
+                <button class="enviar">ADD TRACK</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
