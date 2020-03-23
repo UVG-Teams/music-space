@@ -14,3 +14,9 @@ class Track(models.Model):
 
     class Meta:
         db_table = 'track'
+
+    def __str__(self):
+        return "{id} - {name}".format(
+            id = self.trackid,
+            name = self.name
+        )

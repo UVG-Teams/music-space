@@ -7,3 +7,9 @@ class MediaType(models.Model):
 
     class Meta:
         db_table = 'mediatype'
+
+    def __str__(self):
+        return "{id} - {name}".format(
+            id = self.mediatypeid,
+            name = self.name
+        )

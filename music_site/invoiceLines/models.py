@@ -10,3 +10,8 @@ class InvoiceLine(models.Model):
 
     class Meta:
         db_table = 'invoiceline'
+
+    def __str__(self):
+        return "{id}".format(
+            id = self.invoicelineid
+        )

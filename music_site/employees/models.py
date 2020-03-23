@@ -20,3 +20,10 @@ class Employee(models.Model):
 
     class Meta:
         db_table = 'employee'
+
+    def __str__(self):
+        return "{id} - {firstname} {lastname}".format(
+            id = self.employeeid,
+            firstname = self.firstname,
+            lastname = self.lastname
+        )

@@ -7,3 +7,9 @@ class Playlist(models.Model):
 
     class Meta:
         db_table = 'playlist'
+
+    def __str__(self):
+        return "{id} - {name}".format(
+            id = self.playlistid,
+            name = self.name
+        )

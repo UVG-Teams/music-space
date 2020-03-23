@@ -8,3 +8,9 @@ class Album(models.Model):
 
     class Meta:
         db_table = 'album'
+
+    def __str__(self):
+        return "{id} - {title}".format(
+            id = self.albumid,
+            title = self.title
+        )
