@@ -1,16 +1,16 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style_artistas.css">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_admin_artistas.css' %}">
         <script src="https://kit.fontawesome.com/49bec8d9b6.js" crossorigin="anonymous"></script>
         <title></title>
     </head>
     <body>
         <div class="site">
             <div class="nav_bar">
-                <img src="logobdclaro.png" class="logo">
+                <img src="{% static 'logobdclaro.png' %}" class="logo">
                 <div class="user">
-                    Usuario
+                    {{ user.username }}
                     <i class="fas fa-angle-down"></i>
                 </div>
             </div>
@@ -19,10 +19,11 @@
                 <div class="side_bar">
                     <p class="bar_title">Gestionar</p>
                     <hr class="line">
-                    <a href="index.html" class="options">Usuarios</a>
-                    <a href="admin_artistas.html" class="options">Artistas</a>
-                    <a href="admin_album.html" class="options">Albums</a>
-                    <a href="admin_canciones.html" class="options">Canciones</a>
+                    <a href="{% url 'admin' %}" class="options">Usuarios</a>
+                    <a href="{% url 'admin_artists' %}" class="options">Artistas</a>
+                    <a href="{% url 'admin_albums' %}" class="options">Albums</a>
+                    <a href="{% url 'admin_tracks' %}" class="options">Canciones</a>
+                    <a href="{% url 'admin_playlists' %}" class="options">Playlists</a>
                 </div>
                 <!-- ---- -->
                 <div class="content">
@@ -39,18 +40,16 @@
                                     <th></th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mr. Rain</td>
-                                        <td><button type="button" class="btnEdit">Edit</button></td>
-                                        <td><button type="button" class="btnDelete">Delete</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Fedez</td>
-                                        <td><button type="button" class="btnEdit">Edit</button></td>
-                                        <td><button type="button" class="btnDelete">Delete</button></td>
-                                    </tr>
+                                    {% for artist in artists %}
+                                        <tr>
+                                            <td>{{ artist.artistid }}</td>
+                                            <td>{{ artist.name }}</td>
+                                            <td><button type="button" class="btnEdit">Edit</button></td>
+                                            <td><button type="button" class="btnDelete">Delete</button></td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>No hay</tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

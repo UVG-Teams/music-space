@@ -1,16 +1,16 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_admin_playlists.css' %}">
         <script src="https://kit.fontawesome.com/49bec8d9b6.js" crossorigin="anonymous"></script>
         <title></title>
     </head>
     <body>
         <div class="site">
             <div class="nav_bar">
-                <img src="logobdclaro.png" class="logo">
+                <img src="{% static 'logobdclaro.png' %}" class="logo">
                 <div class="user">
-                    Usuario
+                    {{ user.username }}
                     <i class="fas fa-angle-down"></i>
                 </div>
             </div>
@@ -19,34 +19,35 @@
                 <div class="side_bar">
                     <p class="bar_title">Gestionar</p>
                     <hr class="line">
-                    <a href="index.html" class="options">Usuarios</a>
-                    <a href="admin_artistas.html" class="options">Artistas</a>
-                    <a href="admin_album.html" class="options">Albums</a>
-                    <a href="admin_canciones.html" class="options">Canciones</a>
+                    <a href="{% url 'admin' %}" class="options">Usuarios</a>
+                    <a href="{% url 'admin_artists' %}" class="options">Artistas</a>
+                    <a href="{% url 'admin_albums' %}" class="options">Albums</a>
+                    <a href="{% url 'admin_tracks' %}" class="options">Canciones</a>
+                    <a href="{% url 'admin_playlists' %}" class="options">Playlists</a>
                 </div>
                 <!-- ---- -->
                 <div class="content">
                     <div class="usuarios">
                         <div class="usuarios_title">
-                            Usuarios
+                            Playlists
                         </div>
                         <div class="usuarios_content">
                             <table>
                                 <thead>
                                     <th> Num </th>
-                                    <th> Nombre </th>
-                                    <th> Superuser </th>
-                                    <th> Staff </th>
-                                    <th> Active </th>
+                                    <th> Name </th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Luca</td>
-                                        <td><input type="checkbox"></td>
-                                        <td><input type="checkbox"></td>
-                                        <td><input type="checkbox"></td>
-                                    </tr>
+                                    {% for playlist in playlists %}
+                                        <tr>
+                                            <td>{{ playlist.playlistid }}</td>
+                                            <td>{{ playlist.name }}</td>
+                                            <td><button type="button" class="btnDelete">Delete</button></td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>No hay</tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
