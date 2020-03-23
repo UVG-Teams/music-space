@@ -21,17 +21,13 @@ cursor.execute("CREATE DATABASE {dbname}".format(dbname=dbname))
 print('Reset database completed!')
 
 print('Loading data structure...')
-# db = psycopg2.connect(host=host, dbname=dbname, user=user, password=password, port=port)
-# db.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
-# cursor = db.cursor()
-# sqlfile = open('./music_site/database.sql', 'r', encoding='UTF-8')
-# cursor.execute(sqlfile.read())
 print("~ " * 75)
 os.system("python manage.py makemigrations")
 print("~ " * 75)
 os.system("python manage.py migrate")
 print("~ " * 75)
-dbDump = input("Enter the name of the dump file with extension: \n\t- ")
+# dbDump = input("Enter the name of the dump file with extension: \n\t- ")
+dbDump = "databaseInitDump.sql"
 try:
   file = open(dbDump, "r")
   print("Restoring data...")
@@ -39,7 +35,7 @@ try:
     db = dbname,
     dump = dbDump
   ))
-  os.system("psql -h {host} -U {user} {db} < {dump}".format(
+  os.system("psql -h {host} -U {user} -v --disable-triggers --set ON_ERROR_STOP=on {db} < {dump}".format(
     host = host,
     user = user,
     db = dbname,
