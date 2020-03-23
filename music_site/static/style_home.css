@@ -3,7 +3,7 @@
     display: grid;
     grid-column-gap: 10px;
     grid-template-columns: 20% 50% auto;
-   /*background-color: aqua;*/
+    /*background-color: aqua;*/
 }
 
 .conteiner{
@@ -46,8 +46,6 @@
     border-top: black 1px solid;
     overflow-y:hidden; 
     overflow-x:scroll;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Tamaño del scroll */
