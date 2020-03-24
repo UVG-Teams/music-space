@@ -1,0 +1,64 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_admin_playlists.css' %}">
+        <script src="https://kit.fontawesome.com/49bec8d9b6.js" crossorigin="anonymous"></script>
+        <title></title>
+    </head>
+    <body>
+        <div class="site">
+            <div class="nav_bar">
+                <img src="{% static 'logobdclaro.png' %}" class="logo">
+                <div class="user">
+                    {{ user.username }}
+                    <i class="fas fa-angle-down"></i>
+                </div>
+            </div>
+            <!-- ---- -->
+            <div class="site_content">
+                <div class="side_bar">
+                    <p class="bar_title">Gestionar</p>
+                    <hr class="line">
+                    {% if user.is_superuser %}
+                        <a href="{% url 'admin' %}" class="options">Usuarios</a>
+                    {% endif %}
+                    <a href="{% url 'artists:index' %}" class="options">Artistas</a>
+                    <a href="{% url 'albums:index' %}" class="options">Albums</a>
+                    <a href="{% url 'tracks:index' %}" class="options">Canciones</a>
+                    <a href="{% url 'playlists:index' %}" class="options">Playlists</a>
+                </div>
+                <!-- ---- -->
+                <div class="content">
+                    <div class="usuarios">
+                        <div class="usuarios_title">
+                            Playlists
+                        </div>
+                        <div class="usuarios_content">
+                            <table>
+                                <thead>
+                                    <th> Num </th>
+                                    <th> Name </th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    {% for playlist in playlists %}
+                                        <tr>
+                                            <td>{{ playlist.playlistid }}</td>
+                                            <td>{{ playlist.name }}</td>
+                                            <td><button type="button" class="btnDelete">Delete</button></td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>No hay</tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="artistas"></div>
+                    <div class="albums"></div>
+                    <div class="canciones"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
