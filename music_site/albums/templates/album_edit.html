@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Edit Artist</title>
+    <link href="{% static 'css/style_editAlbum.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div class="all">
+            <div class="head">
+                <h1>Edit Album</h1>
+            </div>
+            <!-- --------------------------------- -->
+            <form method="post" action="{% url '' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <p>Name:</p>
+                        <input type="text" class="texto" name="name">
+                    </div>
+                    <div class="inputs2">
+                        <p>Artist:</p>
+                        <input type="text" class="texto" name="artist">
+                    </div>
+                    <div class="button">
+                        <button class="enviar">Edit Album</button>
+                        <button class="cancel">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
