@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from tracks.models import Track
+from genres.models import Genre
+from albums.models import Album
 from userTracks.models import UserTrack
 
 # Create your views here.
@@ -86,8 +88,8 @@ def update_object(request, id):
         genre = Genre.objects.get_or_create(name = genreName)
         track = Track.objects.filter(pk = id).update(
             name = name,
-            albumid = album.id,
-            genreid = genre.id,
+            albumid = album[0],
+            genreid = genre[0],
             composer = composer,
             milliseconds = milliseconds,
             unitprice = unitprice,

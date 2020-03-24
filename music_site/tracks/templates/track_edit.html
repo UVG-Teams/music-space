@@ -21,15 +21,19 @@
                     </div>
                     <div class="inputs2">
                         <p>Album:</p>
-                        <input type="text" class="texto" name="album" value="{{ track.albumid }}">
+                        <input type="text" class="texto" name="albumTitle" value="{{ track.albumid }}">
                     </div>
                     <div class="inputs3">
                         <p>Genre:</p>
-                        <input type="text" class="texto" name="genre" value="{{ track.genreid }}">
+                        <input type="text" class="texto" name="genreName" value="{{ track.genreid }}">
                     </div>
                     <div class="inputs4">
-                        <p>Price:</p>
-                        <input type="text" class="texto" name="artist" value="{{ track.unitprice }}>
+                        <p>Composer:</p>
+                        <input type="text" class="texto" name="composer" value="{{ track.composer }}">
+                    </div>
+                    <div class="inputs5">
+                        <p>Milliseconds:</p>
+                        <input type="text" class="texto" name="milliseconds" value="{{ track.milliseconds }}">
                     </div>
                     <div class="button">
                         <button class="enviar">Edit Track</button>

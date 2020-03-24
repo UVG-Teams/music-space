@@ -4,6 +4,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
 from albums.models import Album
+from artists.models import Artist
 from userAlbums.models import UserAlbum
 
 # Create your views here.
@@ -73,7 +74,7 @@ def update_object(request, id):
         title = request.POST.get('title')
         artistName = request.POST.get('artistName')
         artist = Artist.objects.get_or_create(name = artistName)
-        album = Album.objects.filter(pk = id).update(title = title, artistid = artist.id)
+        album = Album.objects.filter(pk = id).update(title = title, artistid = artist[0])
     except Album.DoesNotExist:
         raise Http404("Album does not exist")
     return redirect('albums:index')
