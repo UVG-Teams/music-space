@@ -64,10 +64,8 @@ def update(request, id):
 @login_required
 def update_object(request, id):
     try:
-        artist = Artist.objects.get(pk = id)
         name = request.POST.get('name')
-        artist.name = name
-        artist.save()
+        artist = Artist.objects.filter(pk = id).update(name = name)
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
     return redirect('artists:index')
