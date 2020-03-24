@@ -11,8 +11,17 @@
             <img src="{% static 'logo.jpeg' %}" class="logo">
         </div>
         <div class='conteiner'>
-            <input type="text" class="buscar" placeholder="BUSCAR">
-            <button class='botonHome'>Buscar</button>
+            <form method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                    </div>
+                    <div class="button">
+                        <button class="botonHome">Buscar</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class='conteiner'>
             <a href="{% url 'reports' %}">REPORTES</a>

@@ -1,0 +1,53 @@
+<html>
+<head>
+    {% load static %}
+    <title>Home</title>
+    <link href="{% static 'css/style_home.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!---encabezado-->
+    <div class='header'>
+        <div class='conteiner'>
+            <img src="{% static 'logo.jpeg' %}" class="logo">
+        </div>
+        <div class='conteiner'>
+            <form method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                    </div>
+                    <div class="button">
+                        <button class="botonHome">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='conteiner'>
+            <a href="{% url 'home' %}">HOME</a>
+            <a href="{% url 'reports' %}">REPORTES</a>
+            <label class="usuario">{{user.username}}</label>
+        </div>
+    </div>
+    <br>
+    <!--centro-->
+    <div class="centro">
+        <div class="titGenero">
+            <h1>Resultados</h1>
+        </div>
+        <table>
+            <tr>
+                <th>Tipo</th>
+                <th>Nombre</th>
+            </tr>
+            {% for result in resultSearch %}
+                <tr>
+                    <td>{{result.tipo}}</td>
+                    <td>{{result.name}}</td>
+                </tr>
+            {% empty %}
+                <tr>No hay resultados</tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
