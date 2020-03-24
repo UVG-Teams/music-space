@@ -43,6 +43,7 @@
                                     <!-- <th> Composer </th> -->
                                     <th> Price </th>
                                     <th></th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     {% for track in tracks %}
@@ -53,7 +54,9 @@
                                             <td>{{ track.genreid }}</td>
                                             <!-- <td>{{ track.composer }}</td> -->
                                             <td>{{ track.unitprice }}</td>
-                                            <td><button type="button" class="btnDelete">Delete</button></td>
+                                            <td><a href="update/{{track.id}}" class="btnEditTrack" id = '{{track.id}}'>Edit</a></td>
+                                            <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
+                                            <td><a href="{% url 'tracks:delete' track.trackid %}">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

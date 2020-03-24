@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Edit Artist</title>
+    <link href="{% static 'css/style_forms.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="conteiner">
+        <div class="all">
+            <div class="head">
+                <img src="{% static 'logobdclaro.png' %}" class="logo">
+                <h1>Edit Artist</h1>
+            </div>
+            <form method="post" action="{% url '' %}">
+                <div class="form">
+                    <p>Name:</p>
+                    <input type="text" class="texto" placeholder="">
+                    <button class="enviar">ADD ARTIST</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

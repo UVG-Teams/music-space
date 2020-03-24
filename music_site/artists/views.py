@@ -11,6 +11,10 @@ from artists.models import Artist
 def index(request):
     user = request.user
     artists = Artist.objects.all()
+
+    if request.GET.get('Next') == 'Next':
+            print('user clicked summary')
+
     return render(
         request,
         'artists.html', 
