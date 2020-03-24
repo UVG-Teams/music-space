@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Edit Track</title>
+    <link href="{% static 'css/style_editTrack.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <div class="all">
+            <div class="head">
+                <h1>Edit Track</h1>
+            </div>
+            <!-- --------------------------------- -->
+            <form method="post" action="{% url 'tracks:update_object' track.trackid %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <p>Name:</p>
+                        <input type="text" class="texto" name="name" value="{{ track.name }}">
+                    </div>
+                    <div class="inputs2">
+                        <p>Album:</p>
+                        <input type="text" class="texto" name="album" value="{{ track.albumid }}">
+                    </div>
+                    <div class="inputs3">
+                        <p>Genre:</p>
+                        <input type="text" class="texto" name="genre" value="{{ track.genreid }}">
+                    </div>
+                    <div class="inputs4">
+                        <p>Price:</p>
+                        <input type="text" class="texto" name="artist" value="{{ track.unitprice }}>
+                    </div>
+                    <div class="button">
+                        <button class="enviar">Edit Track</button>
+                        <!-- <button class="cancel">Cancel</button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

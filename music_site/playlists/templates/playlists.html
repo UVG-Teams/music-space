@@ -46,9 +46,8 @@
                                         <tr>
                                             <td>{{ playlist.playlistid }}</td>
                                             <td>{{ playlist.name }}</td>
-                                            <td><a href="update/{{album.id}}" class="btnEditAlbum" id = '{{album.id}}'>Edit</a></td>
-                                            <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
-                                            <td><a href="{% url 'playlists:delete' playlist.playlistid %}">Delete</a></td>
+                                            <td><a href="{% url 'playlists:update' playlist.playlistid %}" class="btnEditPlaylist" id = '{{playlist.id}}'>Edit</a></td>
+                                            <!-- <td><a href="{% url 'playlists:delete' playlist.playlistid %}">Delete</a></td> -->
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

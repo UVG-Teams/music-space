@@ -48,7 +48,7 @@
                                             <td>{{ album.albumid }}</td>
                                             <td>{{ album.title }}</td>
                                             <td>{{ album.artistid }}</td>
-                                            <td><a href="update/{{album.id}}" class="btnEditAlbum" id = '{{album.id}}'>Edit</a></td>
+                                            <td><a href="{% url 'albums:update' album.albumid %}" class="btnEditAlbum" id = '{{album.id}}'>Edit</a></td>
                                             <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
                                             <td><a href="{% url 'albums:delete' album.albumid %}">Delete</a></td>
                                         </tr>

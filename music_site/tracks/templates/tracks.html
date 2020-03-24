@@ -54,8 +54,7 @@
                                             <td>{{ track.genreid }}</td>
                                             <!-- <td>{{ track.composer }}</td> -->
                                             <td>{{ track.unitprice }}</td>
-                                            <td><a href="update/{{track.id}}" class="btnEditTrack" id = '{{track.id}}'>Edit</a></td>
-                                            <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
+                                            <td><a href="{% url 'tracks:update' track.trackid %}" class="btnEditTrack" id = '{{track.id}}'>Edit</a></td>
                                             <td><a href="{% url 'tracks:delete' track.trackid %}">Delete</a></td>
                                         </tr>
                                     {% empty %}
