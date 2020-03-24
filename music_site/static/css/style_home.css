@@ -38,6 +38,15 @@
     /*background-color: palevioletred;*/
 }
 
+.titGenero, .titCanciones, .titAlbumes, .titPlaylist, .titArtista{
+    display: flex;
+    justify-content: space-between;
+}
+
+.vtg {
+    margin-top: 36px;
+}
+
 .musica{
     display: flex;
     /*background-color: rgb(186, 118, 250);*/
