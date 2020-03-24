@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>artist</title>
+    <link href="{% static 'css/style_forms.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="conteiner">
+        <div class="all">
+            <div class="head">
+                <img src="{% static 'logobdclaro.png' %}" class="logo">
+                <h1>Nuevo artista</h1>
+            </div>
+            <div class="formulario">
+                <p>Nombre:</p>
+                <input type="text" class="texto" placeholder="">
+                <br>
+                <br>
+                <br>
+                <button class="enviar">ADD ARTIST</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

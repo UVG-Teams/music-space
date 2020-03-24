@@ -20,3 +20,14 @@ def index(request):
 
 def detail(request, id):
     return HttpResponse("Hello World, You are at playlist {id}.".format(id=id))
+
+@login_required
+def create(request):
+    user = request.user
+    return render(
+        request,
+        'playlist_create.html',
+        {
+            'user' : user
+        }
+    )
