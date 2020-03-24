@@ -32,3 +32,21 @@ def create(request):
             'user' : user
         }
     )
+
+@login_required
+def delete(request, id):
+    user = request.user
+    artists = Artist.objects.all()
+    try:
+        artist = Artist.objects.get(pk = id)
+        artist.delete()
+    except Artist.DoesNotExist:
+        raise Http404("Artist does not exist")
+    return render(
+        request,
+        'artists.html',
+        {
+            'user' : user,
+            'artists': artists
+        }
+    )
