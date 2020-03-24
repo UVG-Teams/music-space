@@ -6,34 +6,39 @@
     <link href="{% static 'css/style_forms.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="conteiner">
+    <div class="container">
         <div class="all">
             <div class="head">
-                <img src="{% static 'logobdclaro.png' %}" class="logo">
-                <h1>Nueva cancion</h1>
+                <h1>Create Album</h1>
             </div>
-            <div class="formulario">
-                <p>Nombre:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Album:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Media Type:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Genero:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Compositor:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Milliseconds:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Bytes:</p>
-                <input type="text" class="texto" placeholder="">
-                <p>Unit Price:</p>
-                <input type="text" class="texto" placeholder="">
-                <br>
-                <br>
-                <br>
-                <button class="enviar">ADD TRACK</button>
-            </div>
+            <form method="post" action="{% url 'tracks:create_new' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <p>Name:</p>
+                        <input type="text" class="texto" name="name" value="{{ track.name }}">
+                    </div>
+                    <div class="inputs2">
+                        <p>Album:</p>
+                        <input type="text" class="texto" name="albumTitle" value="{{ track.albumid }}">
+                    </div>
+                    <div class="inputs2">
+                        <p>Genre:</p>
+                        <input type="text" class="texto" name="genreName" value="{{ track.genreid }}">
+                    </div>
+                    <div class="inputs2">
+                        <p>Composer:</p>
+                        <input type="text" class="texto" name="composer" value="{{ track.composer }}">
+                    </div>
+                    <div class="inputs2">
+                        <p>Milliseconds:</p>
+                        <input type="text" class="texto" name="milliseconds" value="{{ track.milliseconds }}">
+                    </div>
+                    <div class="button">
+                        <button class="enviar">Create Track</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>

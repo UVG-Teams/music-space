@@ -27,12 +27,9 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
-    try:
-        name = request.POST.get('name')
-        genre = Genre.objects.get_or_create(name = name)
-        userGenre = UserGenre.objects.create(genreid = genre.id, userid = user.id)
-    except Genre.DoesNotExist:
-        raise Http404("Gemre does not exist")
+    name = request.POST.get('name')
+    genre = Genre.objects.get_or_create(name = name)
+    userGenre = UserGenre.objects.create(genreid = genre[0], userid = user[0])
     return redirect('genres:index')
 
 @login_required
