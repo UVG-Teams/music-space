@@ -39,10 +39,35 @@ def create(request):
     )
 
 @login_required
+def create_new(request):
+    user = request.user
+    try:
+        artist = Artist.objects.get_or_create()
+    except Artist.DoesNotExist:
+        raise Http404("Artist does not exist")
+    return redirect('artists:index')
+
+@login_required
 def update(request, id):
     try:
         artist = Artist.objects.get(pk = id)
-        
+    except Artist.DoesNotExist:
+        raise Http404("Artist does not exist")
+    return render(
+        request,
+        'artist_edit.html',
+        {
+            'artist' : artist
+        }
+    )
+
+@login_required
+def update_object(request, id):
+    try:
+        artist = Artist.objects.get(pk = id)
+        name = request.POST.get('name')
+        artist.name = name
+        artist.save()
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
     return redirect('artists:index')
