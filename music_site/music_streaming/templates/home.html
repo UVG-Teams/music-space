@@ -22,7 +22,10 @@
     <br>
     <!--centro-->
     <div class="centro">
-        <h1>Generos</h1>
+        <div class="titGenero">
+            <h1>Generos</h1>
+            <a href="{% url 'reports' %}" class="vtg">Ver todo</a>
+        </div>
         <div class="musica">
             {% for genre in genres %}
                 <div class="tema">
@@ -33,7 +36,10 @@
                 <p>No hay generos</p>
             {% endfor %}
         </div>
-        <h1>Artistas</h1>
+        <div class="titArtista">
+            <h1>Artistas</h1>
+            <a href="{% url 'artists:index' %}" class="vtg">Ver todo</a>
+        </div>
         <div class="musica">
             {% for artist in artists %}
                 <div class="tema">
@@ -44,7 +50,10 @@
                 <p>No hay artistas</p>
             {% endfor %}
         </div>
-        <h1>Canciones</h1>
+        <div class="titCanciones">
+            <h1>Canciones</h1>
+            <a href="{% url 'tracks:index' %}" class="vtg">Ver todo</a>
+        </div>
         <div class="musica">
             {% for track in tracks %}
                 <div class="cancion">
@@ -56,7 +65,10 @@
                 <p>No hay canciones</p>
             {% endfor %}
         </div>
-        <h1>Albumes</h1>
+        <div class="titAlbumes">
+            <h1>Albumes</h1>
+            <a href="{% url 'albums:index' %}" class="vtg">Ver todo</a>
+        </div>
         <div class="musica">
             {% for album in albums %}
                 <div class="tema">
@@ -67,7 +79,10 @@
                 <p>No hay albumes</p>
             {% endfor %}
         </div>
-        <h1>Playlists</h1>
+        <div class="titPlaylist">
+            <h1>Playlists</h1>
+            <a href="{% url 'playlists:index' %}" class="vtg">Ver todo</a>
+        </div>
         <div class="musica">
             {% for playlist in playlists %}
                 <div class="tema">
