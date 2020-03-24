@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
 from artists.models import Artist
@@ -34,19 +35,19 @@ def create(request):
     )
 
 @login_required
+def update(request, id):
+    try:
+        artist = Artist.objects.get(pk = id)
+        
+    except Artist.DoesNotExist:
+        raise Http404("Artist does not exist")
+    return redirect('artists:index')
+
+@login_required
 def delete(request, id):
-    user = request.user
-    artists = Artist.objects.all()
     try:
         artist = Artist.objects.get(pk = id)
         artist.delete()
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
-    return render(
-        request,
-        'artists.html',
-        {
-            'user' : user,
-            'artists': artists
-        }
-    )
+    return redirect('artists:index')

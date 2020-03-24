@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 
 class UserPlaylist(models.Model):
-    userid = models.ForeignKey("auth.User", models.DO_NOTHING, db_column="userid")
-    playlistid = models.ForeignKey("playlists.Playlist", models.DO_NOTHING, db_column="playlistid")
+    userid = models.ForeignKey("auth.User", on_delete=models.SET_NULL, blank=True, null=True, db_column="userid")
+    playlistid = models.ForeignKey("playlists.Playlist", on_delete=models.SET_NULL, blank=True, null=True, db_column="playlistid")
 
     class Meta:
         db_table = 'userplaylist'

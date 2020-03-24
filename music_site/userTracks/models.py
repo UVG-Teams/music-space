@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 
 class UserTrack(models.Model):
-    userid = models.ForeignKey("auth.User", models.DO_NOTHING, db_column="userid")
-    trackid = models.ForeignKey("tracks.Track", models.DO_NOTHING, db_column="trackid")
+    userid = models.ForeignKey("auth.User", on_delete=models.SET_NULL, blank=True, null=True, db_column="userid")
+    trackid = models.ForeignKey("tracks.Track", on_delete=models.SET_NULL, blank=True, null=True, db_column="trackid")
 
     class Meta:
         db_table = 'usertrack'

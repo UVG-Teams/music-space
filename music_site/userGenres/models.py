@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 
 class UserGenre(models.Model):
-    userid = models.ForeignKey("auth.User", models.DO_NOTHING, db_column="userid")
-    genreid = models.ForeignKey("genres.Genre", models.DO_NOTHING, db_column="genreid")
+    userid = models.ForeignKey("auth.User", on_delete=models.SET_NULL, blank=True, null=True, db_column="userid")
+    genreid = models.ForeignKey("genres.Genre", on_delete=models.SET_NULL, blank=True, null=True, db_column="genreid")
 
     class Meta:
         db_table = 'usergenre'
