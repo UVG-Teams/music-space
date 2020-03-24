@@ -27,3 +27,15 @@ def detail(request, id):
     except Album.DoesNotExist:
         raise Http404("Album does not exist")
     return render(request, 'albumDetail.html', {'album': album})
+
+@login_required
+def create(request):
+    user = request.user
+    return render(
+        request,
+        'album_create.html',
+        {
+            'user' : user
+        }
+    )
+    
