@@ -20,10 +20,10 @@
                     <p class="bar_title">Gestionar</p>
                     <hr class="line">
                     <a href="{% url 'admin' %}" class="options">Usuarios</a>
-                    <a href="{% url 'admin_artists' %}" class="options">Artistas</a>
-                    <a href="{% url 'admin_albums' %}" class="options">Albums</a>
-                    <a href="{% url 'admin_tracks' %}" class="options">Canciones</a>
-                    <a href="{% url 'admin_playlists' %}" class="options">Playlists</a>
+                    <a href="{% url 'artists:index' %}" class="options">Artistas</a>
+                    <a href="{% url 'albums:index' %}" class="options">Albums</a>
+                    <a href="{% url 'tracks:index' %}" class="options">Canciones</a>
+                    <a href="{% url 'playlists:index' %}" class="options">Playlists</a>
                 </div>
                 <!-- ---- -->
                 <div class="content">

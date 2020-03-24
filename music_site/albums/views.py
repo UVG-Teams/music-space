@@ -1,14 +1,26 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 from albums.models import Album
 
 # Create your views here.
 
+@login_required
 def index(request):
-    return HttpResponse("Hello World, You are at albums index.")
+    user = request.user
+    albums = Album.objects.all()
+    return render(
+        request,
+        'albums.html', 
+        {
+            'user': user,
+            'albums': albums
+        }
+    )
 
+@login_required
 def detail(request, id):
     try:
         album = Album.objects.get(pk = id)

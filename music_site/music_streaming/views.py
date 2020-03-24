@@ -50,57 +50,6 @@ def admin(request):
         }
     )
 
-@login_required
-def admin_artists(request):
-    user = request.user
-    artists = Artist.objects.all()
-    return render(
-        request,
-        'admin_artistas.html', 
-        {
-            'user': user,
-            'artists': artists
-        }
-    )
-
-@login_required
-def admin_albums(request):
-    user = request.user
-    albums = Album.objects.all()
-    return render(
-        request,
-        'admin_albums.html', 
-        {
-            'user': user,
-            'albums': albums
-        }
-    )
-
-@login_required
-def admin_tracks(request):
-    user = request.user
-    tracks = Track.objects.all()
-    return render(
-        request,
-        'admin_canciones.html', 
-        {
-            'user': user,
-            'tracks': tracks
-        }
-    )
-
-@login_required
-def admin_playlists(request):
-    user = request.user
-    playlists = Playlist.objects.all()
-    return render(
-        request,
-        'admin_canciones.html', 
-        {
-            'user': user,
-            'playlists': playlists
-        }
-    )
 
 @login_required
 def reports(request):
