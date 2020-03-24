@@ -12,20 +12,20 @@
                 <h1>Edit Album</h1>
             </div>
             <!-- --------------------------------- -->
-            <form method="post" action="{% url '' %}">
+            <form method="post" action="{% url 'albums:update_object' album.albumid %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">
                         <p>Name:</p>
-                        <input type="text" class="texto" name="name">
+                        <input type="text" class="texto" name="name" value="{{ album.title }}">
                     </div>
                     <div class="inputs2">
                         <p>Artist:</p>
-                        <input type="text" class="texto" name="artist">
+                        <input type="text" class="texto" name="artist" value="{{ album.artistid }}">
                     </div>
                     <div class="button">
                         <button class="enviar">Edit Album</button>
-                        <button class="cancel">Cancel</button>
+                        <!-- <button class="cancel">Cancel</button> -->
                     </div>
                 </div>
             </form>

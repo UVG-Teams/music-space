@@ -3,7 +3,7 @@
 <head>
     {% load static %}
     <title>Edit Artist</title>
-    <link href="{% static 'css/style_editAlbum.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style_editArtist.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="container">
@@ -12,20 +12,16 @@
                 <h1>Edit Playlist</h1>
             </div>
             <!-- --------------------------------- -->
-            <form method="post" action="{% url '' %}">
+            <form method="post" action="{% url 'playlists:update_object' playlist.playlistid %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">
                         <p>Name:</p>
                         <input type="text" class="texto" name="name">
                     </div>
-                    <div class="inputs2">
-                        <p>Artist:</p>
-                        <input type="text" class="texto" name="artist">
-                    </div>
                     <div class="button">
                         <button class="enviar">Edit Playlist</button>
-                        <button class="cancel">Cancel</button>
+                        <!-- <button class="cancel">Cancel</button> -->
                     </div>
                 </div>
             </form>
