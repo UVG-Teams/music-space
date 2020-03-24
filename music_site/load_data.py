@@ -20,14 +20,8 @@ cursor.execute("DROP DATABASE IF EXISTS {dbname}".format(dbname=dbname))
 cursor.execute("CREATE DATABASE {dbname}".format(dbname=dbname))
 print('Reset database completed!')
 
-print('Loading data structure...')
-print("~ " * 75)
-os.system("python manage.py makemigrations")
-print("~ " * 75)
-os.system("python manage.py migrate")
-print("~ " * 75)
 # dbDump = input("Enter the name of the dump file with extension: \n\t- ")
-dbDump = "databaseInitDump.sql"
+dbDump = "database.sql"
 try:
   file = open(dbDump, "r")
   print("Restoring data...")
@@ -41,6 +35,12 @@ try:
     db = dbname,
     dump = dbDump
   ))
+  print("~ " * 75)
+  print('Loading data structure...')
+  print("~ " * 75)
+  os.system("python manage.py makemigrations")
+  print("~ " * 75)
+  os.system("python manage.py migrate --fake-initial")
   print("~ " * 75)
   print(" - Migrations Done!")
   print("Data loaded successfully!")

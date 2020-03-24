@@ -54,6 +54,11 @@ INSTALLED_APPS = [
     'playlists.apps.PlaylistsConfig',
     'playlistTracks.apps.PlaylisttracksConfig',
     'tracks.apps.TracksConfig',
+    'userAlbums.apps.UseralbumsConfig',
+    'userArtists.apps.UserartistsConfig',
+    'userGenres.apps.UsergenresConfig',
+    'userPlaylists.apps.UserplaylistsConfig',
+    'userTracks.apps.UsertracksConfig',
 ]
 
 MIDDLEWARE = [
