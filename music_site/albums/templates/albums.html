@@ -40,6 +40,7 @@
                                     <th> Name </th>
                                     <th> Artist </th>
                                     <th></th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     {% for album in albums %}
@@ -47,7 +48,9 @@
                                             <td>{{ album.albumid }}</td>
                                             <td>{{ album.title }}</td>
                                             <td>{{ album.artistid }}</td>
-                                            <td><button type="button" class="btnDelete">Delete</button></td>
+                                            <td><a href="update/{{album.id}}" class="btnEditAlbum" id = '{{album.id}}'>Edit</a></td>
+                                            <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
+                                            <td><a href="{% url 'albums:delete' album.albumid %}">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>
