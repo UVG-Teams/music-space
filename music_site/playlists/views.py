@@ -36,13 +36,10 @@ def detail(request, id):
 # @login_required
 # def create_new(request):
 #     user = request.user
-#     try:
-#         name = request.POST.get('name')
-#         artist = Artist.objects.get_or_create(name = name)
-#         userArtist = UserArtist.objects.create(artistid = artist.id, userid = user.id)
-#     except Artist.DoesNotExist:
-#         raise Http404("Artist does not exist")
-#     return redirect('artists:index')
+#     name = request.POST.get('name')
+#     playlist = Playlist.objects.get_or_create(name = name)
+#     userArtist = UserArtist.objects.create(playlistid = playlist[0], userid = user[0])
+#     return redirect('playlists:index')    
 
 # @login_required
 # def update(request, id):

@@ -1,90 +1,77 @@
-body {
-    min-height: 100vh;
-    display: grid;
-    margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    justify-content: center;
-    background:gray;
-    overflow: hidden;
+html {
+    background: gray;
 }
 
-.conteiner{
-    display: grid;
-    grid-template-rows: 200px 700px;
-    margin: auto;
-    width: 900px;
-    height: 600px;
+.logo {
+    width: 200px;
+    height: 150px;
 }
 
-.all{
-    z-index: 0;
-    width: 900px;
-    height: 600px;
-    border-radius: 4%;
-    background-color: black;
-    color: rgb(247, 241, 233);
+
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
 }
 
-.head{
-    width: 300px;
-    margin-left: 300px;
-    font-size: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-.formulario{
-    margin-left: 4px;
-    height: 370px;
-    overflow-y:scroll; 
-    overflow-x:hidden;
-}
-
-.texto{
-    width: 879px;
-}
-
-.logo{
+.all {
+    background: black;
     border-radius: 10px;
-    width: 250px;
-    height: 100px;
+    width: 100%;
 }
 
-/* Tamaño del scroll */
-.formulario::-webkit-scrollbar {
-width: 8px;
-height: 8px;
+h1{
+    color: white;
+    text-align: center;
+    padding-top: 30px;
 }
 
-/* Estilos barra (thumb) de scroll */
-.formulario::-webkit-scrollbar-thumb {
-background: #ccc;
-border-radius: 4px;
+p{
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    margin-right: 10px;
 }
 
-.formulario::-webkit-scrollbar-thumb:active {
-background-color: #999999;
+.texto {
+    border-radius: 10px;
+    font-size: 15px;
 }
 
-.formulario::-webkit-scrollbar-thumb:hover {
-background: #b3b3b3;
-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+.form {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Estilos track de scroll */
-.formulario::-webkit-scrollbar-track {
-background: #e1e1e1;
-border-radius: 4px;
+.inputs, .inputs2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.formulario::-webkit-scrollbar-track:hover, 
-.formulario::-webkit-scrollbar-track:active {
-background: #d4d4d4;
+.button{
+    margin-top: 15px;
+    margin-bottom: 30px;
+    align-self: center;
+}
+
+.enviar {
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.cancel {
+    background:red;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 5px;
 }

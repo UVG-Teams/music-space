@@ -39,26 +39,23 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
-    try:
-        name = request.POST.get('name')
-        albumTitle = request.POST.get('albumTitle')
-        genreName = request.POST.get('genreName')
-        composer = request.POST.get('composer')
-        milliseconds = request.POST.get('milliseconds')
-        unitprice = 0.9
-        album = Album.objects.get_or_create(title = albumTitle)
-        genre = Genre.objects.get_or_create(name = genreName)
-        track = Track.objects.get_or_create(
-            name = name,
-            albumid = album.id,
-            genreid = genre.id,
-            composer = composer,
-            milliseconds = milliseconds,
-            unitprice = unitprice,
-        )
-        userTrack = UserTrack.objects.create(trackid = track.id, userid = user.id)
-    except Track.DoesNotExist:
-        raise Http404("Track does not exist")
+    name = request.POST.get('name')
+    albumTitle = request.POST.get('albumTitle')
+    genreName = request.POST.get('genreName')
+    composer = request.POST.get('composer')
+    milliseconds = request.POST.get('milliseconds')
+    unitprice = 0.9
+    album = Album.objects.get_or_create(title = albumTitle)
+    genre = Genre.objects.get_or_create(name = genreName)
+    track = Track.objects.get_or_create(
+        name = name,
+        albumid = album[0],
+        genreid = genre[0],
+        composer = composer,
+        milliseconds = milliseconds,
+        unitprice = unitprice,
+    )
+    userTrack = UserTrack.objects.create(trackid = track[0], userid = user[0])
     return redirect('tracks:index')
 
 @login_required
