@@ -4,6 +4,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
 from artists.models import Artist
+from userArtists.models import UserArtist
 
 # Create your views here.
 
@@ -42,7 +43,9 @@ def create(request):
 def create_new(request):
     user = request.user
     try:
-        artist = Artist.objects.get_or_create()
+        name = request.POST.get('name')
+        artist = Artist.objects.get_or_create(name = name)
+        userArtist = UserArtist.objects.create(artistid = artist.id, userid = user.id)
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
     return redirect('artists:index')

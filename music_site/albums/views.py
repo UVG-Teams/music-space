@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
 from albums.models import Album
+from userAlbums.models import UserAlbum
 
 # Create your views here.
 
@@ -39,3 +40,49 @@ def create(request):
         }
     )
     
+@login_required
+def create_new(request):
+    user = request.user
+    try:
+        title = request.POST.get('title')
+        artistName = request.POST.get('artistName')
+        artist = Artist.objects.get_or_create(name = artistName)
+        album = Album.objects.get_or_create(title = title, artistid = artist.id)
+        userAlbum = UserAlbum.objects.create(albumid = album.id, userid = user.id)
+    except Artist.DoesNotExist:
+        raise Http404("Artist does not exist")
+    return redirect('artists:index')
+
+@login_required
+def update(request, id):
+    try:
+        album = Album.objects.get(pk = id)
+    except Album.DoesNotExist:
+        raise Http404("Album does not exist")
+    return render(
+        request,
+        'album_edit.html',
+        {
+            'album' : album
+        }
+    )
+
+@login_required
+def update_object(request, id):
+    try:
+        title = request.POST.get('title')
+        artistName = request.POST.get('artistName')
+        artist = Artist.objects.get_or_create(name = artistName)
+        album = Album.objects.filter(pk = id).update(title = title, artistid = artist.id)
+    except Album.DoesNotExist:
+        raise Http404("Album does not exist")
+    return redirect('albums:index')
+
+@login_required
+def delete(request, id):
+    try:
+        album = Album.objects.get(pk = id)
+        album.delete()
+    except Album.DoesNotExist:
+        raise Http404("Album does not exist")
+    return redirect('albums:index')
