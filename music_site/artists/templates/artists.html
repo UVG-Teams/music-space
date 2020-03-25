@@ -8,7 +8,7 @@
     <body>
         <div class="site">
             <div class="nav_bar">
-                <img src="{% static 'logobdclaro.png' %}" class="logo">
+                <a href="{% url 'home' %}" class="logoref"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
                 <div class="userContainer">
                     <label class="user">{{ user.username }}</label>
                     <a href="{% url 'logout' %}" class="logout">Log Out</a>
