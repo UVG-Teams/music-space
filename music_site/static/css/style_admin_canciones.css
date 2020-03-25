@@ -14,11 +14,34 @@ html, body {
     background: black;
 }
 
-.user {
+/* .user {
     color: white;
     font-size: 30px;
     margin-right: 3%;
     margin-top: 1%
+} */
+
+.userContainer {
+    /* margin-right: 3%;
+    margin-top: 1% */
+    display: flex;
+    margin: 8px;
+    /*background-color: blueviolet;*/
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+}
+
+.user{
+    color: white;
+    font-size: 30px;
+}
+
+.logout {
+    color: white;
+    margin-left: 10px;
+    margin-right: 3%;
+    margin-top: 8px;
 }
 
 .fas {
@@ -100,4 +123,18 @@ th, td {
     border: none;
     color: white;
     font-size: 15px;
+}
+
+.createTrack{
+    margin-left: 1%;
+    background: green;
+    border-radius: 10px;
+    padding: 8px;
+    text-decoration: none;
+    color: white;
+}
+
+.trackTitle{
+    margin-top: 3%;
+    font-size: 20px;
 }

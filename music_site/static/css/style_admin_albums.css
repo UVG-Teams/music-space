@@ -14,12 +14,29 @@ html, body {
     background: black;
 }
 
-.user {
+.userContainer {
+    /* margin-right: 3%;
+    margin-top: 1% */
+    display: flex;
+    margin: 8px;
+    /*background-color: blueviolet;*/
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+}
+
+.user{
     color: white;
     font-size: 30px;
-    margin-right: 3%;
-    margin-top: 1%
 }
+
+.logout {
+    color: white;
+    margin-left: 10px;
+    margin-right: 3%;
+    margin-top: 8px;
+}
+
 
 .fas {
     color: white;
@@ -69,11 +86,24 @@ html, body {
     width: 100%;
 }
 
+
+.albumTitle{
+    margin-top: 3%;
+}
+
 .usuarios_title {
     font-family: "Lucida Console", Monaco, monospace;
     font-size: 30px;
     text-align: center;
-    margin-top: 3%;
+}
+
+.createAlbum{
+    margin-left: 1%;
+    background: green;
+    border-radius: 10px;
+    padding: 8px;
+    text-decoration: none;
+    color: white;
 }
 
 .usuarios_content {
@@ -100,4 +130,9 @@ th, td {
     border: none;
     color: white;
     font-size: 15px;
+}
+
+
+.createAlbum{
+    font-size: 20px;
 }

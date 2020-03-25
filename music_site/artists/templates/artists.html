@@ -9,9 +9,9 @@
         <div class="site">
             <div class="nav_bar">
                 <img src="{% static 'logobdclaro.png' %}" class="logo">
-                <div class="user">
-                    {{ user.username }}
-                    <i class="fas fa-angle-down"></i>
+                <div class="userContainer">
+                    <label class="user">{{ user.username }}</label>
+                    <a href="{% url 'logout' %}" class="logout">Log Out</a>
                 </div>
             </div>
             <!-- ---- -->
@@ -30,8 +30,11 @@
                 <!-- ---- -->
                 <div class="content">
                     <div class="usuarios">
-                        <div class="usuarios_title">
-                            Artistas
+                        <div class="artistTitle">
+                            <a href="{% url 'artists:create' %}" class="createArtist">New Artist</a>
+                            <div class="usuarios_title">
+                                Artistas
+                            </div>
                         </div>
                         <div class="usuarios_content">
                             <table>
@@ -45,7 +48,7 @@
                                     {% for artist in artists %}
                                         <tr>
                                             <td>{{ artist.artistid }}</td>
-                                            <td><input type="text" value="{{ artist.name }}" disabled></td>
+                                            <td>{{ artist.name }}</td>
                                             <!-- <td><button type="submit" class="btnEdit">Edit</button></td> -->
                                             <td><a href="{% url 'artists:update' artist.artistid %}" class="btnEditArtist" id = '{{artist.id}}'>Edit</a></td>
                                             <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
