@@ -48,8 +48,11 @@ def create_new(request):
     try:
         artist = Artist.objects.get(name = name)
     except Artist.DoesNotExist:
-        artist = Artist.objects.get_or_create(name = name, artistid = id)
-        userArtist = UserArtist.objects.create(artistid = artist[0], userid = user)
+        if (user.has_perm('artist.add_artist')):
+            artist = Artist.objects.get_or_create(name = name, artistid = id)
+            userArtist = UserArtist.objects.create(artistid = artist[0], userid = user)
+        else:
+            raise Http404('No tiene permiso')
     return redirect('artists:index')
 
 @login_required
@@ -68,18 +71,26 @@ def update(request, id):
 
 @login_required
 def update_object(request, id):
+    user = request.user
     try:
-        name = request.POST.get('name')
-        artist = Artist.objects.filter(pk = id).update(name = name)
+        if (user.has_perm('artist.change_artist')):
+            name = request.POST.get('name')
+            artist = Artist.objects.filter(pk = id).update(name = name)
+        else:
+            raise Http404('No tiene permiso')
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
     return redirect('artists:index')
 
 @login_required
 def delete(request, id):
+    user = request.user
     try:
-        artist = Artist.objects.get(pk = id)
-        artist.delete()
+        if (user.has_perm('artist.delete_artist')):
+            artist = Artist.objects.get(pk = id)
+            artist.delete()
+        else:
+            raise Http404('No tiene permiso')
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
     return redirect('artists:index')
