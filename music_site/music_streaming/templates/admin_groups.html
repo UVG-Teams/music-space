@@ -20,6 +20,8 @@
                     <p class="bar_title">Gestionar</p>
                     <hr class="line">
                     <a href="{% url 'admin' %}" class="options">Usuarios</a>
+                    <a href="{% url 'admin_groups' %}" class="options">Roles</a>
+                    <a href="{% url 'admin_permissions' %}" class="options">Permisos</a>
                     <a href="{% url 'artists:index' %}" class="options">Artistas</a>
                     <a href="{% url 'albums:index' %}" class="options">Albums</a>
                     <a href="{% url 'tracks:index' %}" class="options">Canciones</a>
@@ -29,27 +31,32 @@
                 <div class="content">
                     <div class="usuarios">
                         <div class="usuarios_title">
-                            Usuarios
+                            Roles
                         </div>
                         <div class="usuarios_content">
                             <table>
                                 <thead>
-                                    <th> Num </th>
                                     <th> Nombre </th>
-                                    <th> Email </th>
-                                    <th> Superuser </th>
-                                    <th> Staff </th>
-                                    <th> Active </th>
+                                    <th></th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
-                                    {% for usuario in users %}
+                                    <tr>
+                                      <form method="post" action="{% url 'create_group' %}">
+                                          {% csrf_token %}
+                                          <td><input type="text" name="name" placeholder="NUEVO"></td>
+                                          <td><button class="enviar">Create</button></td>
+                                      </form>
+                                      <td></td>
+                                    </tr>
+                                    {% for group in groups %}
                                         <tr>
-                                            <td>{{ usuario.id }}</td>
-                                            <td>{{ usuario.username }}</td>
-                                            <td>{{ usuario.email }}</td>
-                                            <td><input type="checkbox"></td>
-                                            <td><input type="checkbox"></td>
-                                            <td><input type="checkbox"></td>
+                                          <form method="post" action="{% url 'update_group' group.id %}">
+                                              {% csrf_token %}
+                                              <td><input type="text" name="name" value="{{ group.name }}"></td>
+                                              <td><button class="enviar">Edit</button></td>
+                                          </form>
+                                          <td><a href="{% url 'delete_group' group.id %}">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

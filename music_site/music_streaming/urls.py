@@ -14,7 +14,14 @@ urlpatterns = [
 
     path('home/search/', views.search, name='search'),
 
-    path('musicStreaming/admin/', views.admin, name='admin'),
+    path('musicStreaming/admin/users/', views.admin_users, name='admin'),
+
+    path('musicStreaming/admin/groups/', views.admin_groups, name='admin_groups'),
+    path('musicStreaming/admin/groups/create/new', views.admin_groups_create_new, name='create_group'),
+    path('musicStreaming/admin/groups/update/<int:id>/done', views.admin_groups_update_object, name='update_group'),
+    path('musicStreaming/admin/groups/delete/<int:id>/', views.admin_groups_delete, name='delete_group'),
+    
+    path('musicStreaming/admin/permissions/', views.admin_permissions, name='admin_permissions'),
 
     path('reports/', views.reports, name='reports'),
     
