@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 
 from playlists.models import Playlist
 # Create your views here.
@@ -20,6 +21,36 @@ def index(request):
 
 def detail(request, id):
     return HttpResponse("Hello World, You are at playlist {id}.".format(id=id))
+
+def search(request):
+    user = request.user
+    search = request.POST.get('search')
+    resultSearch = custom_sql_dictfetchall(
+        """
+        select *
+        from playlist
+        where LOWER(name) LIKE LOWER('%{search}%');
+        """.format(search=search)
+    )
+    return render(
+        request, 
+        'playlists.html',
+        {
+            'user': user,
+            'playlists': resultSearch
+        }
+    )
+
+def custom_sql_dictfetchall(query):
+    "Return all rows from a cursor as a dict"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        columns = [col[0] for col in cursor.description]
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]
+
 
 # @login_required
 # def create(request):
