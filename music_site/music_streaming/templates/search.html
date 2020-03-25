@@ -2,20 +2,20 @@
 <head>
     {% load static %}
     <title>Home</title>
-    <link href="{% static 'css/style_home.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style_search.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!---encabezado-->
     <div class='header'>
         <div class='conteiner'>
-            <img src="{% static 'logo.jpeg' %}" class="logo">
+            <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
         </div>
         <div class='conteiner'>
             <form method="post" action="{% url 'search' %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">
-                        <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                        <input type="text" class="buscar" name="search" placeholder="Buscar...">
                     </div>
                     <div class="button">
                         <button class="botonHome">Buscar</button>
@@ -24,9 +24,8 @@
             </form>
         </div>
         <div class='conteiner'>
-            <a href="{% url 'home' %}">HOME</a>
-            <a href="{% url 'reports' %}">REPORTES</a>
             <label class="usuario">{{user.username}}</label>
+            <a href="{% url 'logout' %}" class="logout">Log Out</a>
         </div>
     </div>
     <br>
