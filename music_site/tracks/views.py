@@ -81,6 +81,7 @@ def update_object(request, id):
         composer = request.POST.get('composer')
         milliseconds = request.POST.get('milliseconds')
         unitprice = 0.9
+        active = True if request.POST.get('active') else False
         album = Album.objects.get_or_create(title = albumTitle)
         genre = Genre.objects.get_or_create(name = genreName)
         track = Track.objects.filter(pk = id).update(
@@ -90,6 +91,7 @@ def update_object(request, id):
             composer = composer,
             milliseconds = milliseconds,
             unitprice = unitprice,
+            active = active
         )
     except Track.DoesNotExist:
         raise Http404("Track does not exist")
