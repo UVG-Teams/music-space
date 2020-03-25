@@ -8,7 +8,16 @@ from userGenres.models import UserGenre
 # Create your views here.
 
 def index(request):
-    return HttpResponse("Hello World, You are at genres index.")
+    user = request.user
+    genres = Genre.objects.all()
+    return render(
+        request,
+        'genres.html', 
+        {
+            'user': user,
+            'genres': genres
+        }
+    )
 
 def detail(request, id):
     return HttpResponse("Hello World, You are at genre {id}.".format(id=id))
