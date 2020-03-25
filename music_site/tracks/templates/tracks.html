@@ -21,10 +21,12 @@
                     <hr class="line">
                     {% if user.is_superuser %}
                         <a href="{% url 'admin' %}" class="options">Usuarios</a>
+                        <a href="{% url 'admin_groups' %}" class="options">Roles</a>
+                        <a href="{% url 'admin_permissions' %}" class="options">Permisos</a>
                     {% endif %}
                     <a href="{% url 'artists:index' %}" class="options">Artistas</a>
                     <a href="{% url 'albums:index' %}" class="options">Albums</a>
-                    <a href="{% url 'tracks:index' %}" class="options">Tracks</a>
+                    <a href="{% url 'tracks:index' %}" class="options">Canciones</a>
                     <a href="{% url 'playlists:index' %}" class="options">Playlists</a>
                 </div>
                 <!-- ---- -->
@@ -33,7 +35,7 @@
                         <div class="trackTitle">
                             <a href="{% url 'tracks:create' %}" class="createTrack">New Track</a>
                             <div class="usuarios_title">
-                                Tracks
+                                Canciones 
                             </div>
                         </div>
                         
