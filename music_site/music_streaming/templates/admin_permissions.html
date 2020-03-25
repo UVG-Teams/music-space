@@ -8,7 +8,7 @@
     <body>
         <div class="site">
             <div class="nav_bar">
-                <img src="{% static 'logobdclaro.png' %}" class="logo">
+                <a href="{% url 'home' %}" class="logoref"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
                 <div class="user">
                     {{ user.username }}
                     <i class="fas fa-angle-down"></i>

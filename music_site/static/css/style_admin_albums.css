@@ -136,3 +136,31 @@ th, td {
 .createAlbum{
     font-size: 20px;
 }
+
+.editar{
+    background: green;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.eliminar {
+    background: red;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.usuarios_content{
+    height: 800px;
+    overflow-y:scroll; 
+    overflow-x:hidden;
+}
+
+a, .logoref{
+    margin-left: 1.8%;
+}
