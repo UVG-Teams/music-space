@@ -15,6 +15,7 @@ urlpatterns = [
     path('home/search/', views.search, name='search'),
 
     path('musicStreaming/admin/users/', views.admin_users, name='admin'),
+    path('musicStreaming/admin/users/update/<int:id>/done', views.admin_users_update_object, name='update_user'),
 
     path('musicStreaming/admin/groups/', views.admin_groups, name='admin_groups'),
     path('musicStreaming/admin/groups/create/new', views.admin_groups_create_new, name='create_group'),
