@@ -21,6 +21,8 @@
                     <hr class="line">
                     {% if user.is_superuser %}
                         <a href="{% url 'admin' %}" class="options">Usuarios</a>
+                        <a href="{% url 'admin_groups' %}" class="options">Roles</a>
+                        <a href="{% url 'admin_permissions' %}" class="options">Permisos</a>
                     {% endif %}
                     <a href="{% url 'artists:index' %}" class="options">Artistas</a>
                     <a href="{% url 'albums:index' %}" class="options">Albums</a>
