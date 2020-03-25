@@ -52,7 +52,7 @@ def create_new(request):
     except Artist.DoesNotExist:
         raise Http404("Can't create an album i artist does not exist")
     # artist.save()
-    album = Album.objects.get_or_createa(title = title, artistid = artist[0], albumid = id)
+    album = Album.objects.get_or_create(title = title, artistid = artist[0], albumid = id)
     # album.save()
     userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
     userAlbum.save()
