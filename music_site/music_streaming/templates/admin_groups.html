@@ -8,10 +8,10 @@
     <body>
         <div class="site">
             <div class="nav_bar">
-                <img src="{% static 'logobdclaro.png' %}" class="logo">
-                <div class="user">
-                    {{ user.username }}
-                    <i class="fas fa-angle-down"></i>
+                <a href="{% url 'home' %}" class="logoref"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
+                <div class="userContainer">
+                    <label class="user">{{ user.username }}</label>
+                    <a href="{% url 'logout' %}" class="logout">Log Out</a>
                 </div>
             </div>
             <!-- ---- -->
@@ -38,7 +38,7 @@
                                 <tr>
                                     <form method="post" action="{% url 'create_group' %}">
                                         {% csrf_token %}
-                                        <td><input type="text" name="name" placeholder="NUEVO"></td>
+                                        <td><input type="text" name="name" placeholder="NUEVO" class="inputn"> </td>
                                         <td>C<input type="checkbox" name="createPermission"></td>
                                         <td>R<input type="checkbox" name="readPermission" checked></td>
                                         <td>U<input type="checkbox" name="updatePermission"></td>
@@ -63,7 +63,7 @@
                                         <tr>
                                             <form method="post" action="{% url 'update_group' group.id %}">
                                                 {% csrf_token %}
-                                                <td><input type="text" name="name" value="{{ group.name }}"></td>
+                                                <td><input type="text" name="name" value="{{ group.name }}" class="inputn"></td>
                                                 {% if createPermission in group.permissions.all %}
                                                     <td>C<input type="checkbox" name="createPermissions" checked></td>
                                                 {% else %}
@@ -89,10 +89,16 @@
                                                 {% endif %}
                                                 <td><button class="enviar">Edit</button></td>
                                             </form>
-                                            <td><a href="{% url 'delete_group' group.id %}">Delete</a></td>
+                                            <td><a href="{% url 'delete_group' group.id %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
-                                        <tr>No hay</tr>
+                                        <td>No hay</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     {% endfor %}
                                 </tbody>
                             </table>
