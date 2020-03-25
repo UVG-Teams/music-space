@@ -44,13 +44,17 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
+    id = (Album.objects.latest('albumid').albumid) + 1
     title = request.POST.get('title')
     artistName = request.POST.get('artistName')
-    artist = Artist.objects.get_or_create(name = artistName)
+    try:
+        artist = Artist.objects.get(name = artistName)
+    except Artist.DoesNotExist:
+        raise Http404("Can't create an album i artist does not exist")
     # artist.save()
-    album = Album.objects.get_or_create(title = title, artistid = artist[0])
-    album.save()
-    userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user[0])
+    album = Album.objects.get_or_createa(title = title, artistid = artist[0], albumid = id)
+    # album.save()
+    userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
     userAlbum.save()
     return redirect('artists:index')
 
