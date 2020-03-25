@@ -8,15 +8,15 @@
      <!---encabezado-->
      <div class='header'>
         <div class='conteiner'>
-            <img src="{% static 'logo.jpeg' %}" class="logo">
+            <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
         </div>
-        <div class='conteiner'>
-            <input type="text" class="buscar" placeholder="BUSCAR">
+        <div class='conteiner2'>
+            <input type="text" class="buscar" placeholder="Buscar...">
             <button class='botonHome'>Buscar</button>
         </div>
         <div class='conteiner'>
-            <a href="{% url 'home' %}">HOME</a>
             <label class="usuario">{{user.username}}</label>
+            <a href="{% url 'logout' %}" class="logout">Log Out</a>
         </div>
     </div>
     <br>
@@ -28,18 +28,20 @@
             <div class="g1">
                 <!-- la grafica -->
                 <table>
-                  <tr>
-                    <th>GENERO</th>
-                    <th>CANTIDAD ARTISTAS</th>
-                  </tr>
-                  {% for genero in generosMasArtistas %}
-                      <tr>
-                          <td>{{genero.genre}}</td>
-                          <td>{{genero.cantidadartistas}}</td>
-                      </div>
-                  {% empty %}
-                      <tr>No hay</tr>
-                  {% endfor %}
+                    <thead>
+                        <th>Género</th>
+                        <th>Cantidad Artistas</th>
+                    </thead>
+                    <tbody>
+                        {% for genero in generosMasArtistas %}
+                            <tr>
+                                <td>{{genero.genre}}</td>
+                                <td>{{genero.cantidadartistas}}</td>
+                            </div>
+                        {% empty %}
+                            <tr>No hay</tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -50,8 +52,8 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>GENERO</th>
-                    <th>CANTIDAD CANCIONES</th>
+                    <th>Género</th>
+                    <th>Cantidad Canciones</th>
                   </tr>
                   {% for genero in generosMasCanciones %}
                       <tr>
@@ -71,8 +73,8 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>ARTISTA</th>
-                    <th>CANTIDAD ALBUMES</th>
+                    <th>Artista</th>
+                    <th>Cantidad Albumes</th>
                   </tr>
                   {% for artista in artistasMasAlbumes %}
                       <tr>
@@ -92,8 +94,8 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>CANCION</th>
-                    <th>DURACION</th>
+                    <th>Canción</th>
+                    <th>Duración</th>
                   </tr>
                   {% for cancion in cancionesMasDuracion %}
                       <tr>
@@ -113,15 +115,18 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>USER</th>
-                    <th>CANTIDAD CANCIONES</th>
+                    <th>User</th>
+                    <th>Cantidad Canciones</th>
                   </tr>
                   {% for usuario in usuariosMasCanciones %}
                       <tr>
                           <td>{{usuario}}</td>
                       </div>
                   {% empty %}
-                      <tr>No hay</tr>
+                      <tr>
+                        <td>No hay</td>
+                        <td>No hay</td>
+                      </tr>
                   {% endfor %}
                 </table>
             </div>
@@ -133,8 +138,8 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>GENERO</th>
-                    <th>PROMEDIO DURACION DE CANCIONES</th>
+                    <th>Género</th>
+                    <th>Promedio Duración de Canciones</th>
                   </tr>
                   {% for genero in promedioCancionPorGenero %}
                       <tr>
@@ -154,12 +159,13 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>PLAYLIST</th>
-                    <th>DURACION</th>
+                    <th>Playlist</th>
+                    <th>Duración</th>
                   </tr>
                   {% for playlist in totalDuracionPlaylists %}
                       <tr>
-                          <td>{{playlist}}</td>
+                          <td>{{playlist.name}}</td>
+                          <td>{{playlist.sum}}</td>
                       </div>
                   {% empty %}
                       <tr>No hay</tr>
@@ -174,8 +180,8 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>ARTISTA</th>
-                    <th>CANTIDAD CANCIONES</th>
+                    <th>Artista</th>
+                    <th>Cantidad Canciones</th>
                   </tr>
                   {% for artista in artistasMasCanciones %}
                       <tr>
@@ -195,12 +201,13 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>PLAYLIST</th>
-                    <th>CANTIDAD ARTISTAS</th>
+                    <th>Playlist</th>
+                    <th>Cantidad Artistas</th>
                   </tr>
                   {% for playlist in cantidadArtistasPlaylists %}
                       <tr>
-                          <td>{{playlist}}</td>
+                          <td>{{playlist.plname}}</td>
+                          <td>{{playlist.count}}</td>
                       </div>
                   {% empty %}
                       <tr>No hay</tr>
@@ -215,12 +222,13 @@
                 <!-- la grafica -->
                 <table>
                   <tr>
-                    <th>ARTISTA</th>
-                    <th>CANTIDAD GENEROS</th>
+                    <th>Artista</th>
+                    <th>Cantidad Géneros</th>
                   </tr>
                   {% for artista in artistasDiversidadGenero %}
                       <tr>
-                          <td>{{artista}}</td>
+                          <td>{{artista.name}}</td>
+                          <td>{{artista.count}}</td>
                       </div>
                   {% empty %}
                       <tr>No hay</tr>
