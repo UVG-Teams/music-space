@@ -67,16 +67,46 @@ def search(request):
 
 @login_required
 def admin_users(request):
+    # my_group = Group.objects.get(name='Usuario1') 
+    # your_user = User.objects.get(username='willi')
+    # my_group.user_set.add(your_user)
     user = request.user
     users = User.objects.all()
+    groups = Group.objects.all()
+    userGroups = {}
+    for usuario in users:
+        if (len(usuario.groups.all()) > 0):
+            userGroups[usuario.username] = usuario.groups.all()[0].name
+
     return render(
         request,
         'admin_users.html',
         {
             'user': user,
-            'users': users
+            'users': users,
+            'groups': groups,
+            'userGroups': userGroups
         }
     )
+
+@login_required
+def admin_users_update_object(request, id):
+    try:
+        superuser = True if request.POST.get('superuser') else False
+        active = True if request.POST.get('active') else False
+        selectedGroup = request.POST.get('selectedGroup')
+        group = Group.objects.get(name = selectedGroup)
+        usuario = User.objects.get(pk = id)
+        usuario.is_superuser = superuser
+        usuario.is_active = active
+        usuario.save()
+        usuarioGroup = User.groups.through.objects.get(user=usuario)
+        usuarioGroup.group = group
+        usuarioGroup.save()
+
+    except User.DoesNotExist:
+        raise Http404("User does not exist")
+    return redirect('admin')
 
 @login_required
 def admin_groups(request):
