@@ -20,8 +20,9 @@ cursor.execute("DROP DATABASE IF EXISTS {dbname}".format(dbname=dbname))
 cursor.execute("CREATE DATABASE {dbname}".format(dbname=dbname))
 print('Reset database completed!')
 
+input("Press enter to load database...")
 # dbDump = input("Enter the name of the dump file with extension: \n\t- ")
-dbDump = "database.sql"
+dbDump = "databaseInit.sql"
 try:
   file = open(dbDump, "r")
   print("Restoring data...")
@@ -36,6 +37,7 @@ try:
     dump = dbDump
   ))
   print("~ " * 75)
+  input("Press enter to load migrations...")
   print('Loading data structure...')
   print("~ " * 75)
   os.system("python manage.py makemigrations")
