@@ -39,8 +39,12 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
+    id = (Track.objects.latest('trackid').trackid) + 1
     name = request.POST.get('name')
-    albumTitle = request.POST.get('albumTitle')
+    try:
+        albumTitle = request.POST.get('albumTitle')
+    except albumTitle.DoesNotExist:
+        raise Http404("Can't add a track without a registed album")
     genreName = request.POST.get('genreName')
     composer = request.POST.get('composer')
     milliseconds = request.POST.get('milliseconds')
@@ -54,8 +58,9 @@ def create_new(request):
         composer = composer,
         milliseconds = milliseconds,
         unitprice = unitprice,
+        trackid = id
     )
-    userTrack = UserTrack.objects.create(trackid = track[0], userid = user[0])
+    userTrack = UserTrack.objects.create(trackid = track[0], userid = user)
     return redirect('tracks:index')
 
 @login_required
