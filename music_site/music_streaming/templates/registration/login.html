@@ -23,20 +23,25 @@
         <div class="site">
             <div class="form_container">
                 <div class="signup">
-                    <div class="signup_title">
-                        Sign Up
-                    </div>
-                    <div class="name_inputs">
+                    <!-- <div class="name_inputs">
                         <input type="text" class="user_name" placeholder="First name *">
                         <input type="text" class="user_lastname" placeholder="Last name *">
-                    </div>
-                    <div class="email_pass_inputs">
-                        <input type="text" class="user_email" placeholder="Email Address *" name="email">
-                        <input type="password" class="user_password" placeholder="Password *" name="password">
-                    </div>
-                    <div class="buttonsu">
-                        <input type="submit" value="Register" class="signup_button">
-                    </div>
+                    </div> -->
+                    <form method="post" action="{% url 'signup' %}">
+                        {% csrf_token %}
+                        <div class="signup_title">
+                            Sign up
+                        </div>
+                        <div class="inputs">
+                            <input type="text" class="user" placeholder="Username *" name="username">
+                            <input type="text" class="user_email" placeholder="Email Address *" name="email">
+                            <input type="password" class="password" placeholder="Password *" name="password">
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Register" class="signup_button">
+                            <!-- <input type="hidden" name="next" value="{{ next }}"> -->
+                        </div>
+                    </form>
                 </div>
                 <!-- --------------------------------------------------------------------------- -->
                 <div class="login">
@@ -51,7 +56,7 @@
                         </div>
                         <div class="button">
                             <input type="submit" value="Log In" class="login_button" method="post" action="{% url 'login' %}">
-                            <input type="hidden" name="next" value="{{ next }}">
+                            <!-- <input type="hidden" name="next" value="{{ next }}"> -->
                         </div>
                     </form>
                 </div>

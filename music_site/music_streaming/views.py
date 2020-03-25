@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import connection
@@ -16,7 +16,25 @@ from django.contrib.auth.models import Permission
 # Create your views here.
 
 def index(request):
-    return redirect('accounts/login/')
+    return redirect('login')
+
+def createuser(request):
+    username = request.POST.get('username')
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+
+    try:
+        user = User.objects.create_user(
+            username = username,
+            email = email,
+            password = password
+        )
+        print("USER CREADO")
+    except:
+        print("ERROR")
+        raise Http404("ERROR WHILE CREATING USER")
+    return redirect('login')
+
 
 @login_required
 def home(request):
