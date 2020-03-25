@@ -1,4 +1,4 @@
-html{
+html {
     background: black;
 }
 
@@ -126,35 +126,17 @@ select {
     font-family: 'FontAwesome';
 }
 
-h1{
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #d3d3d3;
     color: white;
-}
-
-.usuario{
-    border-right: 10px;
-    font-size: 30px;
-    margin-right: 20px;
-    margin-left: 50px;
-}
-
-a, .usuario{
-    color: white;
-}
-
-.logout {
-    margin-top: 8px;
-}
-
-.form {
-    display: flex;
-    margin-top: 20px;
-}
-
-.reportes {
-    text-decoration: none;
-    background-color: #576CA8;
-    border-radius: 20px;
-    padding: 10px;
 }
 
 .buscar{
@@ -185,4 +167,23 @@ a, .usuario{
     color: white;
     border: none;
     padding: 5px;
+}
+
+.form {
+    display: flex;
+    margin-top: 20px;
+}
+
+a, .usuario{
+    color: white;
+}
+
+.usuario{
+    border-right: 10px;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.logout {
+    margin-top: 8px;
 }
