@@ -111,3 +111,8 @@ a, .usuario{
 .logout {
     margin-top: 8px;
 }
+
+.form {
+    display: flex;
+    margin-top: 20px;
+}
