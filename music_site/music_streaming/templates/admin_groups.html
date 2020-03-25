@@ -39,6 +39,10 @@
                                     <form method="post" action="{% url 'create_group' %}">
                                         {% csrf_token %}
                                         <td><input type="text" name="name" placeholder="NUEVO"></td>
+                                        <td>C<input type="checkbox" name="createPermission"></td>
+                                        <td>R<input type="checkbox" name="readPermission" checked></td>
+                                        <td>U<input type="checkbox" name="updatePermission"></td>
+                                        <td>D<input type="checkbox" name="deletePermission"></td>
                                         <td><button class="enviar">Create</button></td>
                                     </form>
                                     <td></td>
@@ -49,16 +53,43 @@
                                     <th> Nombre </th>
                                     <th></th>
                                     <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                     {% for group in groups %}
                                         <tr>
-                                          <form method="post" action="{% url 'update_group' group.id %}">
-                                              {% csrf_token %}
-                                              <td><input type="text" name="name" value="{{ group.name }}"></td>
-                                              <td><button class="enviar">Edit</button></td>
-                                          </form>
-                                          <td><a href="{% url 'delete_group' group.id %}">Delete</a></td>
+                                            <form method="post" action="{% url 'update_group' group.id %}">
+                                                {% csrf_token %}
+                                                <td><input type="text" name="name" value="{{ group.name }}"></td>
+                                                {% if createPermission in group.permissions.all %}
+                                                    <td>C<input type="checkbox" name="createPermissions" checked></td>
+                                                {% else %}
+                                                    <td>C<input type="checkbox" name="createPermissions"></td>
+                                                {% endif %}
+
+                                                {% if readPermission in group.permissions.all %}
+                                                    <td>R<input type="checkbox" name="readPermissions" checked></td>
+                                                {% else %}
+                                                    <td>R<input type="checkbox" name="readPermissions"></td>
+                                                {% endif %}
+
+                                                {% if updatePermission in group.permissions.all %}
+                                                    <td>U<input type="checkbox" name="updatePermissions" checked></td>
+                                                {% else %}
+                                                    <td>U<input type="checkbox" name="updatePermissions"></td>
+                                                {% endif %}
+
+                                                {% if deletePermission in group.permissions.all %}
+                                                    <td>D<input type="checkbox" name="deletePermissions" checked></td>
+                                                {% else %}
+                                                    <td>D<input type="checkbox" name="deletePermissions"></td>
+                                                {% endif %}
+                                                <td><button class="enviar">Edit</button></td>
+                                            </form>
+                                            <td><a href="{% url 'delete_group' group.id %}">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>
