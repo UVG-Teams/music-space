@@ -116,3 +116,7 @@ background: #d4d4d4;
     width: 100px;
     height: 100px;
 }
+
+select {
+    font-family: 'FontAwesome';
+}
