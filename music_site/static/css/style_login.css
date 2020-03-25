@@ -131,3 +131,8 @@ input:focus::-webkit-input-placeholder {
 .user_name, .user_lastname, .user_email, .user_password:focus {
     outline: none;
 }
+
+.errorme {
+    text-align: center;
+    color: red;
+}
