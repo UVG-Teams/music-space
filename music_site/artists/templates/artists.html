@@ -53,9 +53,9 @@
                                             <td>{{ artist.artistid }}</td>
                                             <td>{{ artist.name }}</td>
                                             <!-- <td><button type="submit" class="btnEdit">Edit</button></td> -->
-                                            <td><a href="{% url 'artists:update' artist.artistid %}" class="btnEditArtist" id = '{{artist.id}}'>Edit</a></td>
+                                            <td><a href="{% url 'artists:update' artist.artistid %}" class="editar" id = '{{artist.id}}'>Edit</a></td>
                                             <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
-                                            <td><a href="{% url 'artists:delete' artist.artistid %}">Delete</a></td>
+                                            <td><a href="{% url 'artists:delete' artist.artistid %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

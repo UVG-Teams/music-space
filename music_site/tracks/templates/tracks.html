@@ -8,7 +8,7 @@
     <body>
         <div class="site">
             <div class="nav_bar">
-                <img src="{% static 'logobdclaro.png' %}" class="logo">
+                <a href="{% url 'home' %}" class="logoref"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
                 <div class="userContainer">
                     <label class="user">{{ user.username }}</label>
                     <a href="{% url 'logout' %}" class="logout">Log Out</a>
@@ -61,8 +61,8 @@
                                             <td>{{ track.genreid }}</td>
                                             <td>{{ track.unitprice }}</td>
                                             <td>{{ track.active }}</td>
-                                            <td><a href="{% url 'tracks:update' track.trackid %}" class="btnEditTrack" id = '{{track.id}}'>Edit</a></td>
-                                            <td><a href="{% url 'tracks:delete' track.trackid %}">Delete</a></td>
+                                            <td><a href="{% url 'tracks:update' track.trackid %}" class="editar" id = '{{track.id}}'>Edit</a></td>
+                                            <td><a href="{% url 'tracks:delete' track.trackid %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>
