@@ -11,8 +11,17 @@
             <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
         </div>
         <div class='conteiner2'>
-            <input type="text" class="buscar" placeholder="Buscar...">
-            <button class='botonHome'>Buscar</button>
+            <form method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                    </div>
+                    <div class="button">
+                        <button class="botonHome">Buscar</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class='conteiner'>
             <label class="usuario">{{user.username}}</label>
