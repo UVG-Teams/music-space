@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">
-                        <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                        <input type="text" class="buscar" name="search" placeholder="Buscar...">
                     </div>
                     <div class="button">
                         <button class="botonHome">Buscar</button>
@@ -35,13 +35,13 @@
     <div class="centro">
         <div class="titGenero">
             <h1>Generos</h1>
-            <a href="{% url 'reports' %}" class="vtg">Ver todo</a>
+            <a href="{% url 'genres:index' %}" class="vtg">Ver todo</a>
         </div>
         <div class="musica">
             {% for genre in genres %}
                 <div class="tema">
                     <!-- <img src="" class="imagen"> -->
-                    <p>{{genre.name}}</p>
+                    <p class="generotext">{{genre.name}}</p>
                 </div>
             {% empty %}
                 <p>No hay generos</p>
@@ -53,9 +53,9 @@
         </div>
         <div class="musica">
             {% for artist in artists %}
-                <div class="tema">
+                <div class="tema2">
                     <!-- <img src="" class="imagen"> -->
-                    <p>{{artist.name}}</p>
+                    <p class="generotext">{{artist.name}}</p>
                 </div>
             {% empty %}
                 <p>No hay artistas</p>
@@ -69,8 +69,9 @@
             {% for track in tracks %}
                 <div class="cancion">
                     <!-- <img src="" class="imagen"> -->
-                    <p>{{track.name}}</p>
-                    <p>{{track.composer}}</p>
+                    <p class="generotext">{{track.name}}</p>
+                    <br>
+                    <p class="generotext"> {{track.composer}}</p>
                 </div>
             {% empty %}
                 <p>No hay canciones</p>
@@ -82,9 +83,9 @@
         </div>
         <div class="musica">
             {% for album in albums %}
-                <div class="tema">
+                <div class="tema3">
                     <!-- <img src="" class="imagen"> -->
-                    <p>{{album.title}}</p>
+                    <p class="generotext">{{album.title}}</p>
                 </div>
             {% empty %}
                 <p>No hay albumes</p>
@@ -96,9 +97,9 @@
         </div>
         <div class="musica">
             {% for playlist in playlists %}
-                <div class="tema">
+                <div class="tema4">
                     <!-- <img src="" class="imagen"> -->
-                    <p>{{playlist.name}}</p>
+                    <p class="generotext">{{playlist.name}}</p>
                 </div>
             {% empty %}
                 <p>No hay playlists</p>

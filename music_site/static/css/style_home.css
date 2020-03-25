@@ -8,6 +8,7 @@ html{
     grid-column-gap: 10px;
     grid-template-columns: 20% 50% auto;
     /*background-color: aqua;*/
+    border-bottom: 1px solid white;
 }
 
 .conteiner{
@@ -55,7 +56,7 @@ html{
     /*background-color: rgb(186, 118, 250);*/
     justify-content: center;
     align-items: center;
-    border-top: black 1px solid;
+    border-top: white 1px solid;
     overflow-y:hidden; 
     overflow-x:scroll;
 }
@@ -92,30 +93,50 @@ border-radius: 4px;
 background: #d4d4d4;
 }
   
-.tema {
+.tema, .tema2, .tema3, .tema4 {
     display: grid;
-    grid-template-rows: 80% 10%;
+    /* grid-template-rows: 80% 10%; */
     width: 200px;
     background-color: rgb(170, 170, 170);
     border-radius: 8px;
     height: 180px;
     margin-right: 8px;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    width: 400px;
+    text-align: center;
+    grid-template-columns: 1fr 50px;
+    grid-template-rows: 1fr 10px;
     /* word-wrap: break-word; */
+}
+
+.tema{
+    background: #576CA8;
+}
+
+.tema2{
+    background: #88D9E6;
+}
+
+.tema3{
+    background: #4DA167;
+}
+
+.tema4{
+    background: #C1EDCC ;
 }
 
 .cancion{
     display: grid;
-    grid-template-rows: 80% 5% 5%;
-    width: 200px;
+    /* grid-template-rows: 80% 5% 5%; */
+    /* width: 200px; */
     background-color: rgb(170, 170, 170);
     border-radius: 8px;
     height: 180px;
     margin-right: 8px;
-    justify-content: center;
+    /* justify-content: center; */
+    grid-template-columns: 1fr 80px;
     align-items: center;
+    background: #247BA0;
 }
 .imagen{
     width: 100px;
@@ -185,4 +206,10 @@ a, .usuario{
     color: white;
     border: none;
     padding: 5px;
+}
+
+
+.generotext{
+    margin-left: 20px;
+    font-size: 20px;
 }
