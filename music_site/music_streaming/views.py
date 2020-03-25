@@ -10,6 +10,8 @@ from tracks.models import Track
 from albums.models import Album
 from playlists.models import Playlist
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+from django.contrib.auth.models import Permission
 
 # Create your views here.
 
@@ -64,15 +66,67 @@ def search(request):
     )
 
 @login_required
-def admin(request):
+def admin_users(request):
     user = request.user
     users = User.objects.all()
     return render(
         request,
-        'admin.html', 
+        'admin_users.html',
         {
             'user': user,
             'users': users
+        }
+    )
+
+@login_required
+def admin_groups(request):
+    user = request.user
+    groups = Group.objects.all()
+    return render(
+        request,
+        'admin_groups.html', 
+        {
+            'user': user,
+            'groups': groups
+        }
+    )
+
+@login_required
+def admin_groups_create_new(request):
+    user = request.user
+    name = request.POST.get('name')
+    group = Group.objects.create(name = name)
+    group.save()
+    return redirect('admin_groups')
+
+@login_required
+def admin_groups_update_object(request, id):
+    try:
+        name = request.POST.get('name')
+        group = Group.objects.filter(pk = id).update(name = name)
+    except Group.DoesNotExist:
+        raise Http404("Group does not exist")
+    return redirect('admin_groups')
+
+@login_required
+def admin_groups_delete(request, id):
+    try:
+        group = Group.objects.get(pk = id)
+        group.delete()
+    except Group.DoesNotExist:
+        raise Http404("Group does not exist")
+    return redirect('admin_groups')
+
+@login_required
+def admin_permissions(request):
+    user = request.user
+    permissions = Permission.objects.all()
+    return render(
+        request,
+        'admin_permissions.html', 
+        {
+            'user': user,
+            'permissions': permissions
         }
     )
 
