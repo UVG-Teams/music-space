@@ -59,15 +59,22 @@
                                                 </td>
                                                 <td>
                                                     <select name="selectedGroup" id="">
-                                                        {% for group in groups %}
-                                                            {% for key, value in userGroups.items %}
-                                                                {% if value == group.name and key == usuario.username %}
-                                                                    <option value="{{ group }}" selected>{{ group.name }}</option>
-                                                                {% else %}
-                                                                    <option value="{{ group }}">{{ group.name }}</option>
-                                                                {% endif %}
+                                                        <option value="None">None</option>
+                                                        {% if userGroups|length > 0 %}
+                                                            {% for group in groups %}    
+                                                                {% for key, value in userGroups.items %}
+                                                                    {% if value == group.name and key == usuario.username %}
+                                                                        <option value="{{ group }}" selected>{{ group.name }}</option>
+                                                                    {% else %}
+                                                                        <option value="{{ group }}">{{ group.name }}</option>
+                                                                    {% endif %}
+                                                                {% endfor %}
                                                             {% endfor %}
-                                                        {% endfor %}
+                                                        {% else %}
+                                                            {% for group in groups %}
+                                                                <option value="{{ group }}">{{ group.name }}</option>
+                                                            {% endfor %}
+                                                        {% endif %}
                                                     </select>
                                                 </td>
                                                 <td>

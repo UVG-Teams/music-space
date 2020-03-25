@@ -2,7 +2,7 @@ from django.db import models
 
 # Artist
 class Artist(models.Model):
-    artistid = models.AutoField(primary_key=True, blank=False, null=False, )
+    artistid = models.IntegerField(primary_key=True, blank=False, null=False)
     name = models.CharField(max_length=100, blank=False, null=False)
 
     class Meta:
