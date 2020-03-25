@@ -51,7 +51,7 @@ def search(request):
             union
             select albumid as id, 'album' as tipo, title as name from album a
             union
-            select trackid as id, 'track' as tipo, name as name from track t
+            select trackid as id, 'track' as tipo, name as name from track t where t.active = TRUE
         ) as global
         where LOWER(name) LIKE LOWER('%{search}%');
         """.format(search=search)

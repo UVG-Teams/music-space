@@ -46,8 +46,8 @@
                                     <th> Name </th>
                                     <th> Album </th>
                                     <th> Genre </th>
-                                    <!-- <th> Composer </th> -->
                                     <th> Price </th>
+                                    <th> Active </th>
                                     <th></th>
                                     <th></th>
                                 </thead>
@@ -58,8 +58,8 @@
                                             <td>{{ track.name }}</td>
                                             <td>{{ track.albumid }}</td>
                                             <td>{{ track.genreid }}</td>
-                                            <!-- <td>{{ track.composer }}</td> -->
                                             <td>{{ track.unitprice }}</td>
+                                            <td>{{ track.active }}</td>
                                             <td><a href="{% url 'tracks:update' track.trackid %}" class="btnEditTrack" id = '{{track.id}}'>Edit</a></td>
                                             <td><a href="{% url 'tracks:delete' track.trackid %}">Delete</a></td>
                                         </tr>
