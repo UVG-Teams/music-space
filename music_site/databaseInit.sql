@@ -1748,13 +1748,13 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$180000$JARsA7P2A1in$0+odQwsltUPaEhHUMAr+rLFoNNv5OWwMu2v2xfTsOjA=	\N	t	admin			admin@admin.com	t	t	2020-03-25 14:37:30.775669-06
 2	pbkdf2_sha256$180000$rcNy6aYZyLc0$4s8R224EXHCB2s+hFAwglfmoanlfG2fT1E+PYuGZlWI=	2020-03-25 14:46:56.471543-06	t	williadmin			willi@admin.com	t	t	2020-03-25 14:37:57.425718-06
-3	pbkdf2_sha256$180000$hqgCGhUJLpW8$mvwSW3h5AaBiKJ3LNC3Lr3Ve+fZjN+He132rCeO2Iu8=	2020-03-25 14:40:09.309128-06	t	lucaadmin			luca@admin.com	t	t	2020-03-25 14:39:23.963692-06
-4	pbkdf2_sha256$180000$FTxagLql58Wh$QVfObYXvcXel4A03o+eH4axvpv72Qu250OKH0q/oo9M=	\N	t	abriladmin			abril@admin.com	t	t	2020-03-25 14:39:46.700542-06
-5	pbkdf2_sha256$180000$Yms2fzHLcrXG$LdK89AHtBMcspoTwfh8BrOF5lNatKolssX5LeCur0EQ=	2020-03-25 14:44:32.815888-06	f	willi			willi@willi.com	f	t	2020-03-25 14:43:06.083781-06
 6	pbkdf2_sha256$180000$zk993fr8qgaK$jKLAAERM3OjubVy4S3zpIcjznuzHCH7vFAkTUhrjB7A=	\N	f	luca			luca@luca.com	f	t	2020-03-25 14:43:27.603852-06
-7	pbkdf2_sha256$180000$PcR6hNEMfcrR$3JGbKmWk8iuVpswBTVOXXq4VDYkcpdCMHDofNJzoBs4=	\N	f	abril			abril@abril.com	f	t	2020-03-25 14:43:43.200692-06
+5	pbkdf2_sha256$180000$Yms2fzHLcrXG$LdK89AHtBMcspoTwfh8BrOF5lNatKolssX5LeCur0EQ=	2020-03-25 17:44:56.606227-06	f	willi			willi@willi.com	f	t	2020-03-25 14:43:06.083781-06
+7	pbkdf2_sha256$180000$PcR6hNEMfcrR$3JGbKmWk8iuVpswBTVOXXq4VDYkcpdCMHDofNJzoBs4=	2020-03-25 17:45:50.065372-06	f	abril			abril@abril.com	f	t	2020-03-25 14:43:43.200692-06
+3	pbkdf2_sha256$180000$hqgCGhUJLpW8$mvwSW3h5AaBiKJ3LNC3Lr3Ve+fZjN+He132rCeO2Iu8=	2020-03-25 17:46:55.63935-06	t	lucaadmin			luca@admin.com	t	t	2020-03-25 14:39:23.963692-06
+4	pbkdf2_sha256$180000$FTxagLql58Wh$QVfObYXvcXel4A03o+eH4axvpv72Qu250OKH0q/oo9M=	2020-03-25 17:49:29.791368-06	t	abriladmin			abril@admin.com	t	t	2020-03-25 14:39:46.700542-06
+1	pbkdf2_sha256$180000$JARsA7P2A1in$0+odQwsltUPaEhHUMAr+rLFoNNv5OWwMu2v2xfTsOjA=	2020-03-25 17:50:54.390972-06	t	admin			admin@admin.com	t	t	2020-03-25 14:37:30.775669-06
 \.
 
 
@@ -16936,6 +16936,16 @@ COPY public.track (trackid, name, albumid, mediatypeid, genreid, composer, milli
 3501	L'orfeo, Act 3, Sinfonia (Orchestra)	345	2	24	Claudio Monteverdi	66639	1189062	0.99	t
 3502	Quintet for Horn, Violin, 2 Violas, and Cello in E Flat Major, K. 407/386c: III. Allegro	346	2	24	Wolfgang Amadeus Mozart	221331	3665114	0.99	t
 3503	Koyaanisqatsi	347	2	10	Philip Glass	206005	3305164	0.99	t
+3504	Cancion1	2	\N	1	AC/DC	101010	\N	0.90	t
+3505	Cancion2	2	\N	1	AC/DC	101010	\N	0.90	t
+3506	Cancion3	2	\N	1	AC/DC	101010	\N	0.90	t
+3507	Cancion4	2	\N	1	AC/DC	101010	\N	0.90	t
+3508	Cancion5	2	\N	1	AC/DC	101010	\N	0.90	t
+3509	Cancion6	2	\N	1	AC/DC	101010	\N	0.90	t
+3510	Cancion7	2	\N	1	AC/DC	101010	\N	0.90	t
+3511	Cancion8	2	\N	1	AC/DC	101010	\N	0.90	t
+3512	Cancion9	2	\N	1	AC/DC	101010	\N	0.90	t
+3513	Cancion 10	2	\N	1	AC/DC	101010	\N	0.90	t
 \.
 
 
@@ -16976,6 +16986,16 @@ COPY public.userplaylist (id, playlistid, userid) FROM stdin;
 --
 
 COPY public.usertrack (id, trackid, userid) FROM stdin;
+1	3504	1
+2	3505	1
+3	3506	1
+4	3507	1
+5	3508	1
+6	3509	3
+7	3510	3
+8	3511	3
+9	3512	4
+10	3513	4
 \.
 
 
@@ -17074,7 +17094,7 @@ SELECT pg_catalog.setval('public.userplaylist_id_seq', 1, false);
 -- Name: usertrack_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usertrack_id_seq', 1, false);
+SELECT pg_catalog.setval('public.usertrack_id_seq', 10, true);
 
 
 --
