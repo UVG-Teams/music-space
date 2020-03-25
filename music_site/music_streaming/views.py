@@ -181,10 +181,10 @@ def reports(request):
     
     totalDuracionPlaylists = custom_sql_dictfetchall(
         """
-        SELECT playlist.name, SUM(track.milliseconds) FROM playlist
+        SELECT playlist.name, SUM(track.milliseconds) as Tiempo FROM playlist
         JOIN playlisttrack on playlist.playlistid = playlisttrack.playlistid
         JOIN track  on playlisttrack.trackid = track.trackid 
-        GROUP BY playlist.name 
+        GROUP BY playlist.name ORDER BY Tiempo DESC
         """
     )
 
@@ -197,7 +197,13 @@ def reports(request):
         """
     )
 
-    usuariosMasCanciones = {}
+    usuariosMasCanciones = custom_sql_dictfetchall(
+        """
+        SELECT username, COUNT(*) as Cantidad 
+        FROM usertrack JOIN auth_user ON usertrack.userid = auth_user.id
+        GROUP BY username ORDER BY Cantidad DESC LIMIT 5
+        """
+    )
 
     promedioCancionPorGenero = custom_sql_dictfetchall(
         """
@@ -216,18 +222,18 @@ def reports(request):
                 JOIN album ON track.albumid = album.albumid 
                 JOIN artist ON album .artistid  = artist.artistid) as results 
         GROUP BY plname 
-        ORDER BY COUNT(artist)
+        ORDER BY COUNT(artist) DESC
         """
     )
 
     # REVISAR
     artistasDiversidadGenero = custom_sql_dictfetchall(
         """
-        SELECT DISTINCT artist.name, count(DISTINCT genre.genreid) FROM artist
+        SELECT DISTINCT artist.name, count(DISTINCT genre.genreid) as Cantidad FROM artist
         JOIN album on artist.artistid = album.artistid 
         JOIN track on album.albumid = track.trackid 
         JOIN genre on track.genreid = genre.genreid
-        GROUP BY artist.name
+        GROUP BY artist.name ORDER BY Cantidad DESC LIMIT 5
         """
     )
 
