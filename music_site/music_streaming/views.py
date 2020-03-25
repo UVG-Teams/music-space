@@ -139,7 +139,7 @@ def reports(request):
     # REVISAR
     artistasDiversidadGenero = custom_sql_dictfetchall(
         """
-        SELECT DISTINCT artist.name, count(genre.genreid) FROM artist
+        SELECT DISTINCT artist.name, count(DISTINCT genre.genreid) FROM artist
         JOIN album on artist.artistid = album.artistid 
         JOIN track on album.albumid = track.trackid 
         JOIN genre on track.genreid = genre.genreid
