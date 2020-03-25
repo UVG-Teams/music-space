@@ -7,18 +7,7 @@
     
     <body>
 
-        {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
         
-        {% if next %}
-            {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
-            {% else %}
-            <p>Please login to see this page.</p>
-            {% endif %}
-        {% endif %}
 
         <div class="site">
             <div class="form_container">
@@ -54,6 +43,18 @@
                             <input type="text" class="user" placeholder="Username *" name="username">
                             <input type="password" class="password" placeholder="Password *" name="password">
                         </div>
+                        {% if form.errors %}
+                        <p class="errorme">Your username and password didn't match. Please try again.</p>
+                        {% endif %}
+                        
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                            <p>Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                            {% else %}
+                            <p>Please login to see this page.</p>
+                            {% endif %}
+                        {% endif %}
                         <div class="button">
                             <input type="submit" value="Log In" class="login_button" method="post" action="{% url 'login' %}">
                             <!-- <input type="hidden" name="next" value="{{ next }}"> -->
