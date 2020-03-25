@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 
 from tracks.models import Track
@@ -41,26 +41,33 @@ def create_new(request):
     user = request.user
     id = (Track.objects.latest('trackid').trackid) + 1
     name = request.POST.get('name')
-    try:
-        albumTitle = request.POST.get('albumTitle')
-    except albumTitle.DoesNotExist:
-        raise Http404("Can't add a track without a registed album")
+    albumTitle = request.POST.get('albumTitle')
     genreName = request.POST.get('genreName')
     composer = request.POST.get('composer')
     milliseconds = request.POST.get('milliseconds')
     unitprice = 0.9
-    album = Album.objects.get_or_create(title = albumTitle)
-    genre = Genre.objects.get_or_create(name = genreName)
-    track = Track.objects.get_or_create(
-        name = name,
-        albumid = album[0],
-        genreid = genre[0],
-        composer = composer,
-        milliseconds = milliseconds,
-        unitprice = unitprice,
-        trackid = id
-    )
-    userTrack = UserTrack.objects.create(trackid = track[0], userid = user)
+    
+    try:
+        album = Album.objects.get(title = albumTitle)
+        try:
+            genre = Genre.objects.get(name = genreName)
+            try:
+                track = Track.objects.get(name = name)
+            except Track.DoesNotExist:
+                track = Track.objects.get_or_create(
+                    name = name,
+                    albumid = album,
+                    genreid = genre,
+                    composer = composer,
+                    milliseconds = milliseconds,
+                    unitprice = unitprice,
+                    trackid = id
+                )
+                userTrack = UserTrack.objects.create(trackid = track[0], userid = user)
+        except Genre.DoesNotExist:
+            raise Http404("Can't add a track without a registred genre")    
+    except Album.DoesNotExist:
+        raise Http404("Can't add a track without a registred album")
     return redirect('tracks:index')
 
 @login_required
