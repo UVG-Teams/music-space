@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.http import Http404
+from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 
 from albums.models import Album
@@ -49,14 +48,14 @@ def create_new(request):
     artistName = request.POST.get('artistName')
     try:
         artist = Artist.objects.get(name = artistName)
+        try:
+            album = Album.objects.get(title = title)
+        except Album.DoesNotExist:
+            album = Album.objects.get_or_create(title = title, artistid = artist, albumid = id)
+            userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
     except Artist.DoesNotExist:
-        raise Http404("Can't create an album i artist does not exist")
-    # artist.save()
-    album = Album.objects.get_or_createa(title = title, artistid = artist[0], albumid = id)
-    # album.save()
-    userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
-    userAlbum.save()
-    return redirect('artists:index')
+        raise Http404("Can't create an album if artist does not exist")
+    return redirect('albums:index')
 
 @login_required
 def update(request, id):
