@@ -99,6 +99,8 @@ background: #d4d4d4;
     margin-right: 8px;
     justify-content: center;
     align-items: center;
+    width: 400px;
+    /* word-wrap: break-word; */
 }
 
 .cancion{

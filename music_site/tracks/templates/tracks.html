@@ -9,9 +9,9 @@
         <div class="site">
             <div class="nav_bar">
                 <img src="{% static 'logobdclaro.png' %}" class="logo">
-                <div class="user">
-                    {{ user.username }}
-                    <i class="fas fa-angle-down"></i>
+                <div class="userContainer">
+                    <label class="user">{{ user.username }}</label>
+                    <a href="{% url 'logout' %}" class="logout">Log Out</a>
                 </div>
             </div>
             <!-- ---- -->
@@ -24,15 +24,19 @@
                     {% endif %}
                     <a href="{% url 'artists:index' %}" class="options">Artistas</a>
                     <a href="{% url 'albums:index' %}" class="options">Albums</a>
-                    <a href="{% url 'tracks:index' %}" class="options">Canciones</a>
+                    <a href="{% url 'tracks:index' %}" class="options">Tracks</a>
                     <a href="{% url 'playlists:index' %}" class="options">Playlists</a>
                 </div>
                 <!-- ---- -->
                 <div class="content">
                     <div class="usuarios">
-                        <div class="usuarios_title">
-                            Canciones
+                        <div class="trackTitle">
+                            <a href="{% url 'tracks:create' %}" class="createTrack">New Track</a>
+                            <div class="usuarios_title">
+                                Tracks
+                            </div>
                         </div>
+                        
                         <div class="usuarios_content">
                             <table>
                                 <thead>
