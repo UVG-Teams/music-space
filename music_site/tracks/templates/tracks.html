@@ -34,8 +34,11 @@
                 <div class="content">
                     <div class="usuarios">
                         <div class="trackTitle">
-                            <a href="{% url 'tracks:create' %}" class="createTrack">New Track</a>
-                            <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                            <form method="post" action="{% url 'tracks:search' %}">
+                                {% csrf_token %}
+                                <a href="{% url 'tracks:create' %}" class="createTrack">New Track</a>
+                                <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                            </form>
                             <button>buscar</button>
                             <div class="usuarios_title">
                                 Canciones 

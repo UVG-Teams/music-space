@@ -35,8 +35,11 @@
                     <div class="usuarios">
                         <div class="albumTitle">
                             <a href="{% url 'albums:create' %}" class="createAlbum">New Album</a>
-                            <input type="text" class="buscar" name="search" placeholder="BUSCAR">
-                            <button>buscar</button>
+                            <form method="post" action="{% url 'albums:search' %}">
+                                {% csrf_token %}
+                                <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                                <button>buscar</button>
+                            </form>
                             <div class="usuarios_title">
                                 <label class="albumTitle">Albums</labbel>
                             </div>

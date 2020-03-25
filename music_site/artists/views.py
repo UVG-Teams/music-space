@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 
 from artists.models import Artist
 from userArtists.models import UserArtist
@@ -82,3 +83,32 @@ def delete(request, id):
     except Artist.DoesNotExist:
         raise Http404("Artist does not exist")
     return redirect('artists:index')
+
+def search(request):
+    user = request.user
+    search = request.POST.get('search')
+    resultSearch = custom_sql_dictfetchall(
+        """
+        select *
+        from artist
+        where LOWER(name) LIKE LOWER('%{search}%');
+        """.format(search=search)
+    )
+    return render(
+        request, 
+        'artists.html',
+        {
+            'user': user,
+            'artists': resultSearch
+        }
+    )
+
+def custom_sql_dictfetchall(query):
+    "Return all rows from a cursor as a dict"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        columns = [col[0] for col in cursor.description]
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]

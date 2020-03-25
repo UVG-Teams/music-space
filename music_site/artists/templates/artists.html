@@ -35,8 +35,11 @@
                     <div class="usuarios">
                         <div class="artistTitle">
                             <a href="{% url 'artists:create' %}" class="createArtist">New Artist</a>
-                            <input type="text" class="buscar" name="search" placeholder="BUSCAR">
-                            <button>buscar</button>
+                            <form method="post" action="{% url 'artists:search' %}">
+                                {% csrf_token %}
+                                <input type="text" class="buscar" name="search" placeholder="BUSCAR">
+                                <button>buscar</button>
+                            </form>
                             <div class="usuarios_title">
                                 Artistas
                             </div>

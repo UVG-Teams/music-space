@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 
 from tracks.models import Track
 from genres.models import Genre
@@ -117,3 +118,33 @@ def delete(request, id):
     except Track.DoesNotExist:
         raise Http404("Track does not exist")
     return redirect('tracks:index')
+
+def search(request):
+    user = request.user
+    search = request.POST.get('search')
+    resultSearch = custom_sql_dictfetchall(
+        """
+        select *
+        from track
+        where LOWER(name) LIKE LOWER('%{search}%');
+        """.format(search=search)
+    )
+    return render(
+        request, 
+        'tracks.html',
+        {
+            'user': user,
+            'tracks': resultSearch
+        }
+    )
+
+def custom_sql_dictfetchall(query):
+    "Return all rows from a cursor as a dict"
+    with connection.cursor() as cursor:
+        cursor.execute(query)
+        columns = [col[0] for col in cursor.description]
+        return [
+            dict(zip(columns, row))
+            for row in cursor.fetchall()
+        ]
+
