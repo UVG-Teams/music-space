@@ -176,3 +176,21 @@ a, .logoref{
     overflow-y:scroll; 
     overflow-x:hidden;
 }
+
+.searchinp{
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 20px;
+    width: 300px;
+}
+
+.inputbuscar{
+    display: flex;
+    justify-content: center;
+}
+
+.buscarbuttoninp {
+    border-radius: 10px;
+    margin-left: 5px;
+    font-size: 20px;
+}
