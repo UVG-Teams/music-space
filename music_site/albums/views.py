@@ -52,8 +52,11 @@ def create_new(request):
         try:
             album = Album.objects.get(title = title)
         except Album.DoesNotExist:
-            album = Album.objects.get_or_create(title = title, artistid = artist, albumid = id)
-            userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
+            if (user.has_perm('album.add_album')):
+                album = Album.objects.get_or_create(title = title, artistid = artist, albumid = id)
+                userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
+            else:
+                raise Http404('No tiene permiso')
     except Artist.DoesNotExist:
         raise Http404("Can't create an album if artist does not exist")
     return redirect('albums:index')
@@ -74,20 +77,28 @@ def update(request, id):
 
 @login_required
 def update_object(request, id):
+    user = request.user
     try:
-        title = request.POST.get('title')
-        artistName = request.POST.get('artistName')
-        artist = Artist.objects.get_or_create(name = artistName)
-        album = Album.objects.filter(pk = id).update(title = title, artistid = artist[0])
+        if (user.has_perm('album.change_album')):
+            title = request.POST.get('title')
+            artistName = request.POST.get('artistName')
+            artist = Artist.objects.get_or_create(name = artistName)
+            album = Album.objects.filter(pk = id).update(title = title, artistid = artist[0])
+        else:
+            raise Http404('No tiene permiso')
     except Album.DoesNotExist:
         raise Http404("Album does not exist")
     return redirect('albums:index')
 
 @login_required
 def delete(request, id):
+    user = request.user
     try:
-        album = Album.objects.get(pk = id)
-        album.delete()
+        if (user.has_perm('album.delete_album')):
+            album = Album.objects.get(pk = id)
+            album.delete()
+        else:
+            raise Http404('No tiene permiso')
     except Album.DoesNotExist:
         raise Http404("Album does not exist")
     return redirect('albums:index')

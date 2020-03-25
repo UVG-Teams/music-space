@@ -55,15 +55,18 @@ def create_new(request):
             try:
                 track = Track.objects.get(name = name)
             except Track.DoesNotExist:
-                track = Track.objects.get_or_create(
-                    name = name,
-                    albumid = album,
-                    genreid = genre,
-                    composer = composer,
-                    milliseconds = milliseconds,
-                    unitprice = unitprice,
-                    trackid = id
-                )
+                if (user.has_perm('track.add_track')):
+                    track = Track.objects.get_or_create(
+                        name = name,
+                        albumid = album,
+                        genreid = genre,
+                        composer = composer,
+                        milliseconds = milliseconds,
+                        unitprice = unitprice,
+                        trackid = id
+                    )
+                else:
+                    raise Http404('No tiene permiso')
                 userTrack = UserTrack.objects.create(trackid = track[0], userid = user)
         except Genre.DoesNotExist:
             raise Http404("Can't add a track without a registred genre")    
@@ -87,6 +90,7 @@ def update(request, id):
 
 @login_required
 def update_object(request, id):
+    user = request.user
     try:
         name = request.POST.get('name')
         albumTitle = request.POST.get('albumTitle')
@@ -97,24 +101,31 @@ def update_object(request, id):
         active = True if request.POST.get('active') else False
         album = Album.objects.get_or_create(title = albumTitle)
         genre = Genre.objects.get_or_create(name = genreName)
-        track = Track.objects.filter(pk = id).update(
-            name = name,
-            albumid = album[0],
-            genreid = genre[0],
-            composer = composer,
-            milliseconds = milliseconds,
-            unitprice = unitprice,
-            active = active
-        )
+        if (user.has_perm('track.change_track')):
+            track = Track.objects.filter(pk = id).update(
+                name = name,
+                albumid = album[0],
+                genreid = genre[0],
+                composer = composer,
+                milliseconds = milliseconds,
+                unitprice = unitprice,
+                active = active
+            )       
+        else:
+            raise Http404('No tiene permiso')
     except Track.DoesNotExist:
         raise Http404("Track does not exist")
     return redirect('tracks:index')
 
 @login_required
 def delete(request, id):
+    user = request.user
     try:
-        track = Track.objects.get(pk = id)
-        track.delete()
+        if (user.has_perm('track.delete_track')):
+            track = Track.objects.get(pk = id)
+            track.delete()
+        else:
+            raise Http404('No tiene permiso')
     except Track.DoesNotExist:
         raise Http404("Track does not exist")
     return redirect('tracks:index')
