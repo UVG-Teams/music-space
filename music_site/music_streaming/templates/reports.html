@@ -129,7 +129,8 @@
                   </tr>
                   {% for usuario in usuariosMasCanciones %}
                       <tr>
-                          <td>{{usuario}}</td>
+                          <td>{{usuario.username}}</td>
+                          <td>{{usuario.cantidad}}</td>
                       </div>
                   {% empty %}
                       <tr>
