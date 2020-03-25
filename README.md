@@ -57,8 +57,6 @@
 * Cargar data
     ```shell
     $ python load_data.py
-    $ python manage.py makemigrations
-    $ python manage.py migrate
     ```
 
 * Run Server
