@@ -18,19 +18,14 @@
     $ source venv/bin/activate
     $ deactivate
     ```
-* [Instalar Django](https://docs.djangoproject.com/en/3.0/topics/install/)
+* Instalar dependencias
     ```shell
-    $ python -m pip install Django
+    $ pip install -r requirements.txt
     ```
-* [Instalar psycopg2](https://www.psycopg.org/)
-    * Instalar y comprobar instalación
+* [psycopg2](https://www.psycopg.org/)
+    * Comprobar instalación
     ```shell
-    $ pip install psycopg2
     $ python -c "import psycopg2" --verbose
-    ```
-* Instalar ipython 
-    ```shell
-    $ pip install ipython
     ```
 
 ## Configuración de Base de Datos
