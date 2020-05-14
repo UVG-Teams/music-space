@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Reportes</title>
+    {% load static %}
+    <link href="{% static 'css/style_reports.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+     <!---encabezado-->
+     <div class='header'>
+        <div class='conteiner'>
+            <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
+        </div>
+        <div class='conteiner2'>
+            <form method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <input type="text" class="buscar" name="search" placeholder="Buscar...">
+                    </div>
+                    <div class="button">
+                        <button class="botonHome">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='conteiner'>
+            <label class="usuario">{{user.username}}</label>
+            <a href="{% url 'logout' %}" class="logout">Log Out</a>
+        </div>
+    </div>
+    <br>
+    <!--centro-->
+    <div class="centro">
+        <!--1-->
+        <div class="grafica">
+            <h3>Todos los reportes</h3>
+            <a href="{% url 'reports:all' %}">
+                <div class="g1"></div>
+            </a>
+        </div>
+        <!--2-->
+        <div class="grafica">
+            <h3>Reporte de mongo</h3>
+            <div class="g1">
+                <form method="post" action="{% url 'reports:sales' %}">
+                    {% csrf_token %}
+                    <p>Ingrese una fecha</p>
+                    <input type="text" name="date">
+                    <div class="button">
+                        <button class="boton">Generar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+</body>
+</html>

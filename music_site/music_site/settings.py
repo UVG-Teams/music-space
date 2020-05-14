@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'music_streaming.apps.MusicStreamingConfig',
+    'recommendations.apps.RecommendationsConfig',
+    'reports.apps.ReportsConfig',
     
     'albums.apps.AlbumsConfig',
     'artists.apps.ArtistsConfig',

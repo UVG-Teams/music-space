@@ -25,7 +25,7 @@ urlpatterns = [
     
     path('musicStreaming/admin/permissions/', views.admin_permissions, name='admin_permissions'),
 
-    path('reports/', views.reports, name='reports'),
+    path('reports/', include('reports.urls', namespace='reports')),
     
     path('albums/', include('albums.urls', namespace='albums')),
 

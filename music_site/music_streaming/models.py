@@ -1,18 +1,5 @@
 from django.db import models
 
-# Artist
-# Album
-# Employee
-# Customer
-# Genre
-# Invoice
-# MediaType
-# Track
-# InvoiceLine
-# Playlist
-# PlaylistTrack
-
-
 # /*******************************************************************************
 #    Create Primary Key Unique Indexes
 # ********************************************************************************/

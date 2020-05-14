@@ -25,7 +25,7 @@
             </form>
         </div>
         <div class='conteiner'>
-            <a href="{% url 'reports' %}" class="reportes">Reportes</a>
+            <a href="{% url 'reports:all' %}" class="reportes">Reportes</a>
             <label class="usuario">{{user.username}}</label>
             <a href="{% url 'logout' %}" class="logout">Log Out</a>
         </div>
