@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from datetime import datetime
 
-from db_connections.services import get_sales_on
+from reports.views import get_sales_on
 
 # client = MongoClient('localhost', 27017)
 now = datetime.utcnow()
@@ -18,9 +18,11 @@ def print_collection(collection):
 	for x in db[collection].find():
 		print(x)
 
-print_collection('compras_clientes')
-print_collection('recommendations')
-
 def sales_on(date):
     sales = get_sales_on(date)
     print(sales)
+
+print_collection('compras_clientes')
+print_collection('recommendations')
+
+sales_on('2009-05-05')
