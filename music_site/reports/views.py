@@ -3,6 +3,8 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 
+from mongoServices.services import save_sales_on_mongo
+
 # Create your views here.
 
 @login_required
@@ -158,6 +160,17 @@ def get_sales_on(request):
     data = {
         'status': 'ok',
         'date': date,
-        'sales': custom_sql_dictfetchall("SELECT * FROM invoice WHERE invoicedate = '{date}'".format(date=date))
+        'sales': custom_sql_dictfetchall(
+            """
+            SELECT invoicedate, total, firstname, lastname, phone, email, country, address FROM invoice JOIN customer
+                on invoice.customerid = customer.customerid
+            WHERE invoicedate = '{date}'
+            """.format(
+                date = date
+                )
+            )
     }
+
+    collection = 'compras_clientes'
+    save_sales_on_mongo(collection, data)
     return JsonResponse(data)
