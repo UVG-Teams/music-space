@@ -10,7 +10,7 @@ def print_collection(collection):
     print("/" * 75)
 
 def save_sales_on_mongo(collection, data):
-    print_collection(collection)
-    print(data)
-    # db[collection].insert_one({ data['date'] : data['sales'] })
-    print_collection(collection)
+    for i in range(len(data['sales'])):
+        data['sales'][i]['total'] = float(data['sales'][i]['total']) 
+    # db[collection].insert_one({ 'sales': data['sales'] })
+    db[collection].insert_many( data['sales'] )

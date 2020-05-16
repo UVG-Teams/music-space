@@ -173,4 +173,5 @@ def get_sales_on(request):
 
     collection = 'compras_clientes'
     save_sales_on_mongo(collection, data)
-    return JsonResponse(data)
+    # return JsonResponse(data)
+    return redirect('reports:index')
