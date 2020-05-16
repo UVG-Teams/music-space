@@ -34,17 +34,28 @@
                 <div class="content">
                     <div class="usuarios">
                         <div class="usuarios_title">
-                            Permisos
+                            Audits
                         </div>
                         <div class="usuarios_content">
                             <table>
                                 <thead>
+                                    <th> Date </th>
+                                    <th> Time </th>
+                                    <th> Accion </th>
+                                    <th> Entidad </th>
                                     <th> Nombre </th>
+                                    <th> Email </th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
-                                    {% for permission in permissions %}
+                                    {% for audit in audits %}
                                         <tr>
-                                            <td>{{ permission.name }}</td>
+                                            <td>{{ audit.date }}</td>
+                                            <td>{{ audit.time }}</td>
+                                            <td>{{ audit.action }}</td>
+                                            <td>{{ audit.entity }}</td>
+                                            <td>{{ audit.username }}</td>
+                                            <td>{{ audit.email }}</td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>
@@ -53,9 +64,6 @@
                             </table>
                         </div>
                     </div>
-                    <div class="artistas"></div>
-                    <div class="albums"></div>
-                    <div class="canciones"></div>
                 </div>
             </div>
         </div>

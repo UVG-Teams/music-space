@@ -39,4 +39,6 @@ urlpatterns = [
 
     path('tracks/', include('tracks.urls', namespace='tracks')),
 
+    path('audits/', include('audits.urls', namespace='audits')),
+
 ]
