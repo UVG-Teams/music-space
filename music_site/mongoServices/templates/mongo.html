@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Reportes</title>
+    <title>Mongo</title>
     {% load static %}
     <link href="{% static 'css/style_reports.css' %}" rel="stylesheet" type="text/css">
 </head>
@@ -24,7 +24,7 @@
             </form>
         </div>
         <div class='conteiner'>
-            <a href="{% url 'mongo:index' %}" class="mongo">Mongo</a>
+            <a href="{% url 'reports:index' %}" class="reportes">Reportes</a>
             <label class="usuario">{{user.username}}</label>
             <a href="{% url 'logout' %}" class="logout">Log Out</a>
         </div>
@@ -34,21 +34,28 @@
     <div class="centro">
         <!--1-->
         <div class="grafica">
-            <h3>Todos los reportes</h3>
-            <a href="{% url 'reports:all' %}">
-                <div class="g1"></div>
-            </a>
+            <h3>Mostrar collection</h3>
+            <div class="g1">
+                <form method="post" action="{% url 'mongo:print' %}">
+                    {% csrf_token %}
+                    <p>Ingrese el nombre de una collection</p>
+                    <input type="text" name="collection">
+                    <div class="button">
+                        <button class="boton">Mostrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <!--2-->
         <div class="grafica">
-            <h3>Guardar en mongo</h3>
+            <h3>Vaciar collection</h3>
             <div class="g1">
-                <form method="post" action="{% url 'reports:sales' %}">
+                <form method="post" action="{% url 'mongo:empty' %}">
                     {% csrf_token %}
-                    <p>Ingrese una fecha</p>
-                    <input type="text" name="date">
+                    <p>Ingrese el nombre de una collection</p>
+                    <input type="text" name="collection">
                     <div class="button">
-                        <button class="boton">Generar</button>
+                        <button class="boton">Vaciar</button>
                     </div>
                 </form>
             </div>

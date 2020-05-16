@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'music_streaming.apps.MusicStreamingConfig',
     'recommendations.apps.RecommendationsConfig',
     'reports.apps.ReportsConfig',
+    'mongoServices.apps.MongoservicesConfig',
     
     'albums.apps.AlbumsConfig',
     'artists.apps.ArtistsConfig',

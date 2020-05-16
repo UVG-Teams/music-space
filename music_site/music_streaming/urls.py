@@ -26,6 +26,8 @@ urlpatterns = [
     path('musicStreaming/admin/permissions/', views.admin_permissions, name='admin_permissions'),
 
     path('reports/', include('reports.urls', namespace='reports')),
+
+    path('mongo/', include('mongoServices.urls', namespace='mongo')),
     
     path('albums/', include('albums.urls', namespace='albums')),
 
