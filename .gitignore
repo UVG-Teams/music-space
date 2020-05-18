@@ -137,4 +137,4 @@ dmypy.json
 .pyre/
 
 # csv files
-.csv
+*.csv
