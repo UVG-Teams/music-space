@@ -66,11 +66,18 @@ html {
 
 .botonArchivo {
     background-color: green;
+    
     border-radius: 5px;
     padding: 5px;
     color: white;
     font-size: 15px;
     text-decoration: none;
+}
+
+.descargar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .usuario{
@@ -93,6 +100,11 @@ html {
     border-radius: 8px;
     overflow-y:scroll; 
     overflow-x:hidden;
+}
+
+.grafica {
+    justify-content: center;
+    align-items: center;
 }
 
 table {
