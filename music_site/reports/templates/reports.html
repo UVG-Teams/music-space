@@ -7,10 +7,10 @@
 <body>
      <!---encabezado-->
      <div class='header'>
-        <div class='conteiner'>
+        <div class='container'>
             <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
         </div>
-        <div class='conteiner2'>
+        <div class='container2'>
             <form method="post" action="{% url 'search' %}">
                 {% csrf_token %}
                 <div class="form">
@@ -23,7 +23,7 @@
                 </div>
             </form>
         </div>
-        <div class='conteiner'>
+        <div class='container'>
             <a href="{% url 'mongo:index' %}" class="mongo">Mongo</a>
             <label class="usuario">{{user.username}}</label>
             <a href="{% url 'logout' %}" class="logout">Log Out</a>

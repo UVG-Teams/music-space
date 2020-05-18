@@ -11,7 +11,7 @@ html {
    /*background-color: aqua;*/
 }
 
-.conteiner{
+.container{
     display: flex;
     margin: 8px;
     /*background-color: blueviolet;*/
@@ -19,7 +19,7 @@ html {
     align-items: center;
 }
 
-.conteiner2{
+.container2{
     display: flex;
     margin: 8px;
     justify-content: center;
@@ -64,6 +64,22 @@ html {
     padding: 5px;
 }
 
+.botonArchivo {
+    background-color: green;
+    
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.descargar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .usuario{
     border-right: 10px;
     font-size: 30px;
@@ -84,6 +100,11 @@ html {
     border-radius: 8px;
     overflow-y:scroll; 
     overflow-x:hidden;
+}
+
+.grafica {
+    justify-content: center;
+    align-items: center;
 }
 
 table {
