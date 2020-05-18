@@ -1,0 +1,215 @@
+html{
+    background: black;
+}
+
+.header{
+    display: flex;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 20% 50% auto;
+    /*background-color: aqua;*/
+    border-bottom: 1px solid white;
+}
+
+.container{
+    display: flex;
+    margin: 8px;
+    /*background-color: blueviolet;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    width: 190px;
+    height: 80px;
+}
+
+.buscar{
+    display: flex;
+    width: 200px;
+}
+
+.usuario{
+    border-right: 10px;
+}
+
+.centro{
+    display: flex;
+    display: grid;
+    grid-row-gap: 5px;
+    grid-template-rows: 50px 200px 50px 200px 50px 200px 50px 200px 50px 200px;
+    /*background-color: palevioletred;*/
+}
+
+.titGenero, .titCanciones, .titAlbumes, .titPlaylist, .titArtista{
+    display: flex;
+    justify-content: space-between;
+}
+
+.vtg {
+    margin-top: 36px;
+}
+
+.musica{
+    display: flex;
+    /*background-color: rgb(186, 118, 250);*/
+    justify-content: center;
+    align-items: center;
+    border-top: white 1px solid;
+    overflow-y:hidden; 
+    overflow-x:scroll;
+}
+
+/* Tamaño del scroll */
+.musica::-webkit-scrollbar {
+width: 8px;
+height: 8px;
+}
+
+/* Estilos barra (thumb) de scroll */
+.musica::-webkit-scrollbar-thumb {
+background: #ccc;
+border-radius: 4px;
+}
+
+.musica::-webkit-scrollbar-thumb:active {
+background-color: #999999;
+}
+
+.musica::-webkit-scrollbar-thumb:hover {
+background: #b3b3b3;
+box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos track de scroll */
+.musica::-webkit-scrollbar-track {
+background: #e1e1e1;
+border-radius: 4px;
+}
+
+.musica::-webkit-scrollbar-track:hover, 
+.musica::-webkit-scrollbar-track:active {
+background: #d4d4d4;
+}
+  
+.tema, .tema2, .tema3, .tema4 {
+    display: grid;
+    /* grid-template-rows: 80% 10%; */
+    width: 200px;
+    background-color: rgb(170, 170, 170);
+    border-radius: 8px;
+    height: 180px;
+    margin-right: 8px;
+    /* justify-content: center; */
+    align-items: center;
+    text-align: center;
+    grid-template-columns: 1fr 50px;
+    grid-template-rows: 1fr 10px;
+    /* word-wrap: break-word; */
+}
+
+.tema{
+    background: #576CA8;
+}
+
+.tema2{
+    background: #88D9E6;
+}
+
+.tema3{
+    background: #4DA167;
+}
+
+.tema4{
+    background: #C1EDCC ;
+}
+
+.cancion{
+    display: grid;
+    /* grid-template-rows: 80% 5% 5%; */
+    /* width: 200px; */
+    background-color: rgb(170, 170, 170);
+    border-radius: 8px;
+    height: 180px;
+    margin-right: 8px;
+    /* justify-content: center; */
+    grid-template-columns: 1fr 80px;
+    align-items: center;
+    background: #247BA0;
+}
+.imagen{
+    width: 100px;
+    height: 100px;
+}
+
+select {
+    font-family: 'FontAwesome';
+}
+
+h1{
+    color: white;
+}
+
+.usuario{
+    border-right: 10px;
+    font-size: 30px;
+    margin-right: 20px;
+    margin-left: 50px;
+}
+
+a, .usuario{
+    color: white;
+}
+
+.logout {
+    margin-top: 8px;
+}
+
+.form {
+    display: flex;
+    margin-top: 20px;
+}
+
+.reportes {
+    text-decoration: none;
+    background-color: #576CA8;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.buscar{
+    display: flex;
+    width: 600px;
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    background: #576066;
+    color: white;
+}
+
+::placeholder { 
+    color: white;
+    opacity: 1; 
+  }
+
+.buscar:focus{
+    outline: none;
+}
+
+.botonHome {
+    border-radius: 50px;
+    font-size: 20px;
+    margin-left: 10px;
+    background: #576066;
+    color: white;
+    border: none;
+    padding: 5px;
+}
+
+
+.generotext{
+    margin-left: 20px;
+    font-size: 20px;
+}

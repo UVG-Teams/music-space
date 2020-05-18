@@ -7,10 +7,10 @@
 <body>
      <!---encabezado-->
      <div class='header'>
-        <div class='conteiner'>
+        <div class='container'>
             <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
         </div>
-        <div class='conteiner2'>
+        <div class='container2'>
             <form method="post" action="{% url 'search' %}">
                 {% csrf_token %}
                 <div class="form">
@@ -23,7 +23,7 @@
                 </div>
             </form>
         </div>
-        <div class='conteiner'>
+        <div class='container'>
             <label class="usuario">{{user.username}}</label>
             <a href="{% url 'logout' %}" class="logout">Log Out</a>
         </div>
@@ -52,8 +52,9 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:generosMasArtistas' %}">
-                    <button class="descargar" name="GeneroConMasArtistas">Descagar</button>
+                    <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
                 </form>
             </div>
         </div>
@@ -76,8 +77,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:generosMasCanciones' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>
@@ -100,8 +102,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:artistasMasAlbumes' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>
@@ -124,8 +127,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:cancionesMasDuracion' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>
@@ -151,8 +155,9 @@
                       </tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:usuariosMasCanciones' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>
@@ -175,8 +180,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:promedioCancionPorGenero' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>
@@ -199,8 +205,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:totalDuracionPlaylists' %}">
-                    <button class="descargar" name="artistasConMasCanciones">Descagar</button>
+                    <button class="botonArchivo" name="artistasConMasCanciones">Descagar</button>
                 </form>
             </div>
         </div>
@@ -223,8 +230,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:artistasMasCanciones' %}">
-                    <button class="descargar" name="artistasConMasCanciones">Descagar</button>
+                    <button class="botonArchivo" name="artistasConMasCanciones">Descagar</button>
                 </form>
             </div>
         </div>
@@ -247,8 +255,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:cantidadArtistasPlaylists' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>
@@ -271,8 +280,9 @@
                       <tr>No hay</tr>
                   {% endfor %}
                 </table>
+                <br>
                 <form method="GET" action="{% url 'reports:artistasDiversidadGenero' %}">
-                    <button class="descargar" name="">Descagar</button>
+                    <button class="botonArchivo" name="">Descagar</button>
                 </form>
             </div>
         </div>

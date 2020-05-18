@@ -156,7 +156,7 @@ def archivo_csv_cancionesMasDuracion(request):
     with open('static/canciones_Mas_Duracion.csv', 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         # header del archivo
-        wr.writerow(["artistas", "Cantidad de albumes"])
+        wr.writerow(["Track", "Duracion"])
         # obtener la info
         for item in cancionesMasDuracion:
             item['name']
@@ -186,7 +186,7 @@ def archivo_csv_usuariosMasCanciones(request):
     with open('static/usuarios_Mas_Canciones.csv', 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         # header del archivo
-        wr.writerow(["artistas", "Cantidad de albumes"])
+        wr.writerow(["Usuario", "Cantidad"])
         # obtener la info
         for item in usuariosMasCanciones:
             item['username']
@@ -215,7 +215,7 @@ def archivo_csv_promedioCancionPorGenero(request):
     with open('static/promedio_Cancion_Por_Genero.csv', 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         # header del archivo
-        wr.writerow(["artistas", "Cantidad de albumes"])
+        wr.writerow(["Genero", "Tiempo"])
         # obtener la info
         for item in promedioCancionPorGenero:
             item['name']
@@ -251,7 +251,7 @@ def archivo_csv_cantidadArtistasPlaylists(request):
     with open('static/cantidad_Artistas_Playlists.csv', 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         # header del archivo
-        wr.writerow(["artistas", "Cantidad de albumes"])
+        wr.writerow(["artistas", "Cantidad"])
         # obtener la info
         for item in cantidadArtistasPlaylists:
             item['name']
@@ -283,7 +283,7 @@ def archivo_csv_artistasDiversidadGenero(request):
     with open('static/artistas_Diversidad_Genero.csv', 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         # header del archivo
-        wr.writerow(["artistas", "Cantidad de albumes"])
+        wr.writerow(["artistas", "Cantidad"])
         # obtener la info
         for item in artistasDiversidadGenero:
             item['name']
@@ -347,7 +347,7 @@ def archivo_csv_generosMasArtistas(request):
     with open('static/generos_Mas_Artistas.csv', 'w', newline='') as myfile:
         wr = csv.writer(myfile)
         # header del archivo
-        wr.writerow(["artistas", "Cantidad de albumes"])
+        wr.writerow(["Genero", "Cantidad"])
         # obtener la info
         for item in generosMasArtistas:
             item['genre']
