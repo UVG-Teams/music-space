@@ -17844,17 +17844,17 @@ AS $function$
 begin
 	
 	if (TG_OP = 'DELETE') then
-	    insert into audit(datetime, "actionType", entity, entityid, user_id, payload)
+	    insert into audit(datetime, "actiontype", entity, entityid, user_id, payload)
 	   		values(now(), 'DELETE', TG_TABLE_NAME, old.id, user, old);
     	return old;
 	   
 	elsif(TG_OP = 'UPDATE') then
-	    insert into audit(datetime, "actionType" , entity, entityid, user_id, payload)
+	    insert into audit(datetime, "actiontype" , entity, entityid, user_id, payload)
 			values(now(), 'PUT', TG_TABLE_NAME, new.id, user, new);
 		return new;
 	
 	elsif (TG_OP = 'INSERT') then
-	   insert into audit(datetime, "actionType", entity, entityid, user_id, payload)
+	   insert into audit(datetime, "actiontype", entity, entityid, user_id, payload)
 			values(now(), 'POST', TG_TABLE_NAME, new.id, user, new);
 		return new;
 	
