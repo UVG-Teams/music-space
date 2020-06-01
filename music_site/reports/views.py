@@ -380,7 +380,7 @@ def get_sales_on(request):
         'sales': custom_sql_dictfetchall(
             """
             SELECT invoicedate, total, firstname, lastname, phone, email, country, address FROM invoice JOIN customer
-                on invoice.customerid = customer.customerid
+                on invoice.customerid = customer.id
             WHERE invoicedate = '{date}'
             """.format(
                 date = date
