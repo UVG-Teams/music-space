@@ -10,7 +10,6 @@
             <div class="nav_bar">
                 <a href="{% url 'home' %}" class="logoref"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
                 <div class="userContainer">
-                    <a href="{% url 'shoppingcarts:index' %}" class="createTrack">Shopping Cart</a>
                     <label class="user">{{ user.username }}</label>
                     <a href="{% url 'logout' %}" class="logout">Log Out</a>
                 </div>
@@ -35,54 +34,45 @@
                 <div class="content">
                     <div class="usuarios">
                         <div class="trackTitle">
-                            <form method="post" action="{% url 'tracks:search' %}">
-                                {% csrf_token %}
-                                <a href="{% url 'tracks:create' %}" class="createTrack">New Track</a>
-                                <div class="inputbuscar">
-                                    <input type="text" class="searchinp" name="search" placeholder="Buscar...">
-                                    <button class="buscarbuttoninp">Buscar</button>
-                                </div>
-                            </form>
                             <div class="usuarios_title">
-                                Canciones 
+                                Shopping Cart
                             </div>
                         </div>
                         
                         <div class="usuarios_content">
                             <table>
                                 <thead>
-                                    <th> Num </th>
                                     <th> Name </th>
-                                    <th> Album </th>
-                                    <th> Genre </th>
+                                    <th> Composer </th>
+                                    <th> Duracion </th>
                                     <th> Price </th>
-                                    <th> Active </th>
-                                    <th></th>
                                     <th></th>
                                 </thead>
                                 <tbody>
                                     {% for track in tracks %}
                                         <tr>
-                                            <td>{{ track.id }}</td>
                                             <td>{{ track.name }}</td>
-                                            <td>{{ track.albumid }}</td>
-                                            <td>{{ track.genreid }}</td>
+                                            <td>{{ track.composer }}</td>
+                                            <td>{{ track.duracion }} min</td>
                                             <td>{{ track.unitprice }}</td>
-                                            <td>{{ track.active }}</td>
-                                            <td><a href="{% url 'tracks:buy' track.id %}" class="editar" id = '{{track.id}}'>Buy</a></td>
-                                            <td><a href="{% url 'tracks:update' track.id %}" class="editar" id = '{{track.id}}'>Edit</a></td>
-                                            <td><a href="{% url 'tracks:delete' track.id %}" class="eliminar">Delete</a></td>
+                                            <td><a href="{% url 'shoppingcarts:delete' track.id %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>
                                     {% endfor %}
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <a href="{% url 'shoppingcarts:buy' %}" class="editar">Confirmar</a>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="artistas"></div>
-                    <div class="albums"></div>
-                    <div class="canciones"></div>
                 </div>
             </div>
         </div>

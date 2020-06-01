@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'reports.apps.ReportsConfig',
     'mongoServices.apps.MongoservicesConfig',
     'audits.apps.AuditsConfig',
+    'shoppingcarts.apps.ShoppingcartsConfig',
     
     'albums.apps.AlbumsConfig',
     'artists.apps.ArtistsConfig',

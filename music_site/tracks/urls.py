@@ -17,4 +17,6 @@ urlpatterns = [
     path('update/<int:id>/done', views.update_object, name='update_object'),
 
     path('delete/<int:id>/', views.delete, name='delete'),
+    
+    path('buy/<int:id>/', views.buy, name='buy'),
 ]
