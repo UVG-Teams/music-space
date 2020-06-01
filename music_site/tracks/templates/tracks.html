@@ -62,14 +62,14 @@
                                 <tbody>
                                     {% for track in tracks %}
                                         <tr>
-                                            <td>{{ track.trackid }}</td>
+                                            <td>{{ track.id }}</td>
                                             <td>{{ track.name }}</td>
                                             <td>{{ track.albumid }}</td>
                                             <td>{{ track.genreid }}</td>
                                             <td>{{ track.unitprice }}</td>
                                             <td>{{ track.active }}</td>
-                                            <td><a href="{% url 'tracks:update' track.trackid %}" class="editar" id = '{{track.id}}'>Edit</a></td>
-                                            <td><a href="{% url 'tracks:delete' track.trackid %}" class="eliminar">Delete</a></td>
+                                            <td><a href="{% url 'tracks:update' track.id %}" class="editar" id = '{{track.id}}'>Edit</a></td>
+                                            <td><a href="{% url 'tracks:delete' track.id %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

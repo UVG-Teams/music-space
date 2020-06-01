@@ -12,7 +12,7 @@
                 <h1>Edit Album</h1>
             </div>
             <!-- --------------------------------- -->
-            <form method="post" action="{% url 'albums:update_object' album.albumid %}">
+            <form method="post" action="{% url 'albums:update_object' album.id %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">

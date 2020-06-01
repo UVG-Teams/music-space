@@ -17836,3 +17836,59 @@ ALTER TABLE ONLY public.usertrack
 -- PostgreSQL database dump complete
 --
 
+
+CREATE OR REPLACE FUNCTION public.log_cruds()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+begin
+	
+	if (TG_OP = 'DELETE') then
+	    insert into audit(datetime, "actionType", entity, entityid, user_id, payload)
+	   		values(now(), 'DELETE', TG_TABLE_NAME, old.id, user, old);
+    	return old;
+	   
+	elsif(TG_OP = 'UPDATE') then
+	    insert into audit(datetime, "actionType" , entity, entityid, user_id, payload)
+			values(now(), 'PUT', TG_TABLE_NAME, new.id, user, new);
+		return new;
+	
+	elsif (TG_OP = 'INSERT') then
+	   insert into audit(datetime, "actionType", entity, entityid, user_id, payload)
+			values(now(), 'POST', TG_TABLE_NAME, new.id, user, new);
+		return new;
+	
+	end if;
+
+	return null;
+end;
+$function$
+;
+
+
+create trigger log_audit_artist
+	after insert or update or delete
+	on public.artist
+	for each row
+	execute procedure public.log_cruds();
+
+create trigger log_audit_album
+	after insert or update or delete
+	on public.album
+	for each row
+	execute procedure public.log_cruds();
+
+create trigger log_audit_playlist
+	after insert or update or delete
+	on public.playlist
+	for each row
+	execute procedure public.log_cruds();
+
+create trigger log_audit_track
+	after insert or update or delete
+	on public.track
+	for each row
+	execute procedure public.log_cruds();
+
+
+

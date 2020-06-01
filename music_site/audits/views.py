@@ -10,8 +10,7 @@ def index(request):
     user = request.user
     audits = custom_sql_dictfetchall(
         """
-            SELECT date, time, action, entity, entityid, username, email FROM audit JOIN auth_user
-                ON audit.user_id = auth_user.id
+            SELECT datetime, actiontype, entity, entityid, user_id, payload FROM audit
         """
     )
 

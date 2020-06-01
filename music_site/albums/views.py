@@ -44,7 +44,7 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
-    id = (Album.objects.latest('albumid').albumid) + 1
+    id = (Album.objects.latest('id').id) + 1
     title = request.POST.get('title')
     artistName = request.POST.get('artistName')
     try:
@@ -53,7 +53,7 @@ def create_new(request):
             album = Album.objects.get(title = title)
         except Album.DoesNotExist:
             if (user.has_perm('album.add_album')):
-                album = Album.objects.get_or_create(title = title, artistid = artist, albumid = id)
+                album = Album.objects.get_or_create(title = title, artistid = artist, id = id)
                 userAlbum = UserAlbum.objects.create(albumid = album[0], userid = user)
             else:
                 raise Http404('No tiene permiso')

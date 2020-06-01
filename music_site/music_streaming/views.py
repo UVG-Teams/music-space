@@ -63,13 +63,13 @@ def search(request):
     resultSearch = custom_sql_dictfetchall(
         """
         select id, tipo, name from (
-            select artistid as id, 'artist' as tipo, name as name from artist a
+            select id as id, 'artist' as tipo, name as name from artist a
             union
             select genreid as id, 'genre' as tipo, name as name from genre g
             union
-            select albumid as id, 'album' as tipo, title as name from album a
+            select id as id, 'album' as tipo, title as name from album a
             union
-            select trackid as id, 'track' as tipo, name as name from track t where t.active = TRUE
+            select id as id, 'track' as tipo, name as name from track t where t.active = TRUE
         ) as global
         where LOWER(name) LIKE LOWER('%{search}%');
         """.format(search=search)
