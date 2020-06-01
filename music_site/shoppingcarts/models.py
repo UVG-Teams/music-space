@@ -4,8 +4,8 @@ from tracks.models import Track
 # Shopping Cart
 class ShoppingCart(models.Model):
     datetime = models.DateTimeField(auto_now_add=True)
-    customerid = models.ForeignKey("customers.Customer", on_delete=models.CASCADE, null=False)
-    total = models.DecimalField(decimal_places=2)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE, null=False)
+    total = models.DecimalField(decimal_places=2, max_digits=5)
 
     class Meta:
         db_table = 'shoppingcart'

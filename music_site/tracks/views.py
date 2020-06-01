@@ -7,6 +7,7 @@ from tracks.models import Track
 from genres.models import Genre
 from albums.models import Album
 from userTracks.models import UserTrack
+from shoppingcarts.models import ShoppingCart, CartItem
 
 # Create your views here.
 
@@ -126,6 +127,29 @@ def delete(request, id):
             track.delete()
         else:
             raise Http404('No tiene permiso')
+    except Track.DoesNotExist:
+        raise Http404("Track does not exist")
+    return redirect('tracks:index')
+
+@login_required
+def buy(request, id):
+    user = request.user
+    try:
+        track = Track.objects.get(pk = id)
+        shoppingCart = ShoppingCart.objects.filter(user = user.id).first()
+        if not shoppingCart:
+            shoppingCart = ShoppingCart.objects.create(
+                user = user,
+                total = 0
+            )
+        
+        if (track not in [cartitem.item for cartitem in shoppingCart.cartitem_set.all()]):
+            shoppingCart.total += track.unitprice
+            shoppingCart.save()
+            cartItem = CartItem.objects.create(
+                cart = shoppingCart,
+                item = track
+            )
     except Track.DoesNotExist:
         raise Http404("Track does not exist")
     return redirect('tracks:index')
