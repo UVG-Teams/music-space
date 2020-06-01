@@ -12,7 +12,7 @@
                 <h1>Edit Track</h1>
             </div>
             <!-- --------------------------------- -->
-            <form method="post" action="{% url 'tracks:update_object' track.trackid %}">
+            <form method="post" action="{% url 'tracks:update_object' track.id %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">

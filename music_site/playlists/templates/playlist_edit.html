@@ -12,7 +12,7 @@
                 <h1>Edit Playlist</h1>
             </div>
             <!-- --------------------------------- -->
-            <form method="post" action="{% url 'playlists:update_object' playlist.playlistid %}">
+            <form method="post" action="{% url 'playlists:update_object' playlist.id %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">

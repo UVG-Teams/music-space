@@ -40,7 +40,7 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
-    id = (Track.objects.latest('trackid').trackid) + 1
+    id = (Track.objects.latest('id').id) + 1
     name = request.POST.get('name')
     albumTitle = request.POST.get('albumTitle')
     genreName = request.POST.get('genreName')
@@ -63,7 +63,7 @@ def create_new(request):
                         composer = composer,
                         milliseconds = milliseconds,
                         unitprice = unitprice,
-                        trackid = id
+                        id = id
                     )
                 else:
                     raise Http404('No tiene permiso')

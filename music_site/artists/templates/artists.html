@@ -57,12 +57,12 @@
                                 <tbody>
                                     {% for artist in artists %}
                                         <tr>
-                                            <td>{{ artist.artistid }}</td>
+                                            <td>{{ artist.id }}</td>
                                             <td>{{ artist.name }}</td>
                                             <!-- <td><button type="submit" class="btnEdit">Edit</button></td> -->
-                                            <td><a href="{% url 'artists:update' artist.artistid %}" class="editar" id = '{{artist.id}}'>Edit</a></td>
+                                            <td><a href="{% url 'artists:update' artist.id %}" class="editar" id = '{{artist.id}}'>Edit</a></td>
                                             <!-- <td><button type="button" class="btnDelete">Delete</button></td> -->
-                                            <td><a href="{% url 'artists:delete' artist.artistid %}" class="eliminar">Delete</a></td>
+                                            <td><a href="{% url 'artists:delete' artist.id %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

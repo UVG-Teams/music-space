@@ -53,7 +53,7 @@ def reports(request):
 def artistas_Mas_Albumes():
     artistasMasAlbumes = custom_sql_dictfetchall(
         """
-        SELECT artist.name, COUNT(*) as Cantidad FROM artist JOIN album ON artist.artistid = album.artistid
+        SELECT artist.name, COUNT(*) as Cantidad FROM artist JOIN album ON artist.id = album.artistid
         GROUP BY artist.name ORDER BY Cantidad DESC LIMIT 5
         """
     )
@@ -112,8 +112,8 @@ def total_Duracion_Playlists():
     totalDuracionPlaylists = custom_sql_dictfetchall(
         """
         SELECT playlist.name, SUM(track.milliseconds) as Tiempo FROM playlist
-        JOIN playlisttrack on playlist.playlistid = playlisttrack.playlistid
-        JOIN track  on playlisttrack.trackid = track.trackid 
+        JOIN playlisttrack on playlist.id = playlisttrack.playlistid
+        JOIN track  on playlisttrack.trackid = track.id 
         GROUP BY playlist.name ORDER BY Tiempo DESC
         """
     )
@@ -143,8 +143,8 @@ def canciones_Mas_Duracion():
     cancionesMasDuracion = custom_sql_dictfetchall(
         """
         SELECT track.name, track.milliseconds as Duracion, albumArtist.name FROM track JOIN (
-            SELECT album.albumid, artist.name FROM artist JOIN album ON artist.artistid = album.artistid
-        ) as albumArtist ON track.albumid = albumArtist.albumid
+            SELECT album.id, artist.name FROM artist JOIN album ON artist.id = album.artistid
+        ) as albumArtist ON track.albumid = albumArtist.id
         ORDER BY Duracion DESC LIMIT 5
         """
     )
@@ -235,10 +235,10 @@ def cantidad_Artistas_Playlists():
         SELECT results.plname as name, COUNT(results.artist) as cantidad
         FROM (SELECT DISTINCT playlist.name as plname, artist.name as artist 
                 FROM playlist 
-                JOIN playlisttrack ON playlist.playlistid = playlisttrack.playlistid
-                JOIN track ON playlisttrack.trackid = track.trackid 
-                JOIN album ON track.albumid = album.albumid 
-                JOIN artist ON album .artistid  = artist.artistid) as results 
+                JOIN playlisttrack ON playlist.id = playlisttrack.playlistid
+                JOIN track ON playlisttrack.trackid = track.id 
+                JOIN album ON track.albumid = album.id 
+                JOIN artist ON album .artistid  = artist.id) as results 
         GROUP BY name
         ORDER BY cantidad DESC
         """
@@ -269,8 +269,8 @@ def artistas_Diversidad_Genero():
     artistasDiversidadGenero = custom_sql_dictfetchall(
         """
         SELECT DISTINCT artist.name, count(DISTINCT genre.genreid) as Cantidad FROM artist
-        JOIN album on artist.artistid = album.artistid 
-        JOIN track on album.albumid = track.trackid 
+        JOIN album on artist.id = album.artistid 
+        JOIN track on album.id = track.id 
         JOIN genre on track.genreid = genre.genreid
         GROUP BY artist.name ORDER BY Cantidad DESC LIMIT 5
         """
@@ -301,8 +301,8 @@ def artistas_Mas_Canciones():
     artistasMasCanciones = custom_sql_dictfetchall(
         """
         SELECT artist.name, COUNT(*) as Cantidad FROM artist JOIN (
-            SELECT album.artistid, track.name FROM album JOIN track ON album.albumid = track.albumid
-        ) as albumTrack ON artist.artistid = albumTrack.artistid
+            SELECT album.artistid, track.name FROM album JOIN track ON album.id = track.albumid
+        ) as albumTrack ON artist.id = albumTrack.artistid
         GROUP BY artist.name ORDER BY Cantidad DESC LIMIT 5
         """
     )
@@ -333,8 +333,8 @@ def generos_Mas_Artistas():
         """
         SELECT genre.name as Genre, COUNT(artistAlbumTrack.name) as CantidadArtistas FROM genre JOIN (
             SELECT DISTINCT artistAlbum.name, track.genreid FROM track JOIN (
-                SELECT artist.name, album.albumid FROM album JOIN artist ON artist.artistid = album.artistid
-            ) as artistAlbum ON track.albumid = artistAlbum.albumid
+                SELECT artist.name, album.id FROM album JOIN artist ON artist.id = album.artistid
+            ) as artistAlbum ON track.albumid = artistAlbum.id
         ) as artistAlbumTrack ON genre.genreid = artistAlbumTrack.genreid
         GROUP BY Genre ORDER BY CantidadArtistas DESC LIMIT 5
         """

@@ -2,7 +2,7 @@ from django.db import models
 
 #Track
 class Track(models.Model):
-    trackid = models.IntegerField(primary_key=True, blank=False, null=False)
+    id = models.IntegerField(primary_key=True, blank=False, null=False)
     name = models.CharField(max_length=200, blank=False, null=False)
     composer = models.CharField(max_length=220, blank=True, null=True)
     milliseconds = models.IntegerField(blank=False, null=False)
@@ -18,6 +18,6 @@ class Track(models.Model):
 
     def __str__(self):
         return "{id} - {name}".format(
-            id = self.trackid,
+            id = self.id,
             name = self.name
         )

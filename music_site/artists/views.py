@@ -43,13 +43,13 @@ def create(request):
 @login_required
 def create_new(request):
     user = request.user
-    id = (Artist.objects.latest('artistid').artistid) + 1
+    id = (Artist.objects.latest('id').id) + 1
     name = request.POST.get('name')
     try:
         artist = Artist.objects.get(name = name)
     except Artist.DoesNotExist:
         if (user.has_perm('artist.add_artist')):
-            artist = Artist.objects.get_or_create(name = name, artistid = id)
+            artist = Artist.objects.get_or_create(name = name, id = id)
             userArtist = UserArtist.objects.create(artistid = artist[0], userid = user)
         else:
             raise Http404('No tiene permiso')

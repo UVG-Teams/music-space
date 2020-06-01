@@ -40,24 +40,22 @@
                             <table>
                                 <thead>
                                     <th> Date </th>
-                                    <th> Time </th>
                                     <th> Accion </th>
                                     <th> Entidad </th>
                                     <th> Id </th>
-                                    <th> Nombre </th>
-                                    <th> Email </th>
+                                    <th> User </th>
+                                    <th> Payload </th>
                                     <th></th>
                                 </thead>
                                 <tbody>
                                     {% for audit in audits %}
                                         <tr>
-                                            <td>{{ audit.date }}</td>
-                                            <td>{{ audit.time }}</td>
-                                            <td>{{ audit.action }}</td>
+                                            <td>{{ audit.datetime }}</td>
+                                            <td>{{ audit.actiontype }}</td>
                                             <td>{{ audit.entity }}</td>
                                             <td>{{ audit.entityid }}</td>
-                                            <td>{{ audit.username }}</td>
-                                            <td>{{ audit.email }}</td>
+                                            <td>{{ audit.user_id }}</td>
+                                            <td>{{ audit.payload }}</td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

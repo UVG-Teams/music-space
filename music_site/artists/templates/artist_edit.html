@@ -11,7 +11,7 @@
                 <h1>Edit Artist</h1>
             </div>
             <!-- --------------------------------- -->
-            <form method="post" action="{% url 'artists:update_object' artist.artistid %}">
+            <form method="post" action="{% url 'artists:update_object' artist.id %}">
                 {% csrf_token %}
                 <div class="form">
                     <div class="inputs">
