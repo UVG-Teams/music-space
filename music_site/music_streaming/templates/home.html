@@ -33,6 +33,21 @@
     <br>
     <!--centro-->
     <div class="centro">
+        <div class="misCanciones-titulo">
+            <h1>Mis Canciones</h1>
+        </div>
+        <div class="musica">
+            {% for miCancion in misCanciones %}
+                <div class="tema-canciones">
+                    <!-- <img src="" class="imagen"> -->
+                    <p class="generotext">{{miCancion.name}}</p>
+                    <!-- <label>Cancion</label> -->
+                    <a href="{% url 'userTrack:play' miCancion.id %}" class="" >Reproducir</a>
+                </div>
+            {% empty %}
+                <p>No tienes canciones</p>
+            {% endfor %}
+        </div>
         <div class="titGenero">
             <h1>Generos</h1>
             <a href="{% url 'genres:index' %}" class="vtg">Ver todo</a>

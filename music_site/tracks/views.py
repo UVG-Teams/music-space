@@ -48,6 +48,7 @@ def create_new(request):
     composer = request.POST.get('composer')
     milliseconds = request.POST.get('milliseconds')
     unitprice = 0.9
+    url = "https://www.youtube.com/results?search_query=" + name
     
     try:
         album = Album.objects.get(title = albumTitle)
@@ -64,7 +65,8 @@ def create_new(request):
                         composer = composer,
                         milliseconds = milliseconds,
                         unitprice = unitprice,
-                        id = id
+                        id = id,
+                        url = url
                     )
                 else:
                     raise Http404('No tiene permiso')

@@ -44,6 +44,24 @@ def home(request):
     tracks = Track.objects.all()
     albums = Album.objects.all()
     playlists = Playlist.objects.all()
+    misCanciones = custom_sql_dictfetchall(
+        """
+        SELECT DISTINCT track.*
+        FROM userTrack
+	        JOIN track on userTrack.trackid = track.id
+        WHERE usertrack.userid = {id}
+
+        UNION 
+
+        SELECT track.*
+        FROM customer
+            JOIN auth_user on customer.user_id = auth_user.id
+            JOIN invoice on invoice.customerid  = customer.id
+            JOIN invoiceline on invoice.id = invoiceline.invoiceid
+            JOIN track on invoiceline.trackid = track.id 
+        WHERE auth_user.id = {id}
+        """.format(id=user.id)
+    )
     return render(
         request, 
         'home.html', 
@@ -53,7 +71,8 @@ def home(request):
             'artists': artists,
             'tracks': tracks,
             'albums': albums,
-            "playlists": playlists
+            "playlists": playlists,
+            "misCanciones": misCanciones
         }
     )
 
