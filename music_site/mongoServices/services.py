@@ -15,3 +15,7 @@ def save_sales_on_mongo(collection, data):
     # db[collection].insert_one({ 'sales': data['sales'] })
     if data['sales'] != []:
         db[collection].insert_many( data['sales'] )
+
+
+def save_recommendations_on_mongo(collection, data):
+    db[collection].insert_one({ 'rec': data })
