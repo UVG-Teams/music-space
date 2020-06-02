@@ -11,6 +11,7 @@ def index(request):
     audits = custom_sql_dictfetchall(
         """
             SELECT datetime, actiontype, entity, entityid, user_id, payload FROM audit
+            ORDER BY datetime DESC
         """
     )
 

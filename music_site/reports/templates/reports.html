@@ -53,6 +53,24 @@
                 </form>
             </div>
         </div>
+        <!--3-->
+        <div class="grafica">
+            <h3>Simulacion compras y reproducciones</h3>
+            <div class="g1">
+                <form method="post" action="{% url 'reports:simulacion' %}">
+                    {% csrf_token %}
+                    <p>Ingrese una fecha</p>
+                    <input type="text" name="date">
+                    <p>Ingrese cantidad de compras</p>
+                    <input type="text" name="cantidad_compras">
+                    <p>Ingrese cantidad de reproducciones</p>
+                    <input type="text" name="cantidad_reproducciones">
+                    <div class="button">
+                        <button class="boton">Generar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         
       </div>
     </div>

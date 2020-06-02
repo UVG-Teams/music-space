@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('print-collection/', views.print_collection, name='print'),
     path('empty-collection/', views.empty_collection, name='empty'),
+    path('recomendacion/', views.recomendacion, name='recomendacion'),
 ]

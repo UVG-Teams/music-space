@@ -4,8 +4,16 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection
 import csv
 import json
+import random
+from django.utils.dateparse import parse_datetime
 
 from mongoServices.services import save_sales_on_mongo
+from django.contrib.auth.models import User
+from customers.models import Customer
+from tracks.models import Track
+from tracks.views import add_to_cart
+from shoppingcarts.views import confirm_shopping_cart
+from userTracks.views import play
 
 # Create your views here.
 
@@ -19,6 +27,55 @@ def index(request):
             'user': user,
         }
     )
+
+@login_required
+def simulacion(request):
+    date = request.POST.get('date')
+    cantidad_compras = request.POST.get('cantidad_compras')
+    cantidad_reproducciones = request.POST.get('cantidad_reproducciones')
+
+    users = User.objects.all()
+    tracks = Track.objects.all()
+
+    random_users = random.sample(list(users), int(cantidad_compras))
+    for user in random_users:
+        random_tracks = random.sample(list(tracks), random.randint(1, 4))
+        for track in random_tracks:
+            add_to_cart(user, track)
+    
+    for user in random_users:
+        confirm_shopping_cart(
+            user,
+            parse_datetime(date)
+        )
+
+    random_users = random.sample(list(users), int(cantidad_reproducciones))
+    for user in random_users:
+        misCanciones = custom_sql_dictfetchall(
+            """
+            SELECT DISTINCT track.*
+            FROM userTrack
+                JOIN track on userTrack.trackid = track.id
+            WHERE usertrack.userid = {id}
+
+            UNION 
+
+            SELECT track.*
+            FROM customer
+                JOIN auth_user on customer.user_id = auth_user.id
+                JOIN invoice on invoice.customerid  = customer.id
+                JOIN invoiceline on invoice.id = invoiceline.invoiceid
+                JOIN track on invoiceline.trackid = track.id 
+            WHERE auth_user.id = {id}
+            """.format(id=user.id)
+        )
+
+        random_tracks = random.sample([Track.objects.get(pk = track['id']) for track in misCanciones], 1)
+        for track in random_tracks:
+            play(user, track)
+
+    return redirect('reports:index')
+
 
 @login_required
 def reports(request):
@@ -519,7 +576,7 @@ def get_sales_on(request):
         'sales': custom_sql_dictfetchall(
             """
             SELECT invoicedate, total, firstname, lastname, phone, email, country, address FROM invoice JOIN customer
-                on invoice.customerid = customer.customerid
+                on invoice.customerid = customer.id
             WHERE invoicedate = '{date}'
             """.format(
                 date = date

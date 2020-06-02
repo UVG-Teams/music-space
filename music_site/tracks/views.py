@@ -7,6 +7,7 @@ from tracks.models import Track
 from genres.models import Genre
 from albums.models import Album
 from userTracks.models import UserTrack
+from shoppingcarts.models import ShoppingCart, CartItem
 
 # Create your views here.
 
@@ -47,6 +48,7 @@ def create_new(request):
     composer = request.POST.get('composer')
     milliseconds = request.POST.get('milliseconds')
     unitprice = 0.9
+    url = "https://www.youtube.com/results?search_query=" + name
     
     try:
         album = Album.objects.get(title = albumTitle)
@@ -63,7 +65,8 @@ def create_new(request):
                         composer = composer,
                         milliseconds = milliseconds,
                         unitprice = unitprice,
-                        id = id
+                        id = id,
+                        url = url
                     )
                 else:
                     raise Http404('No tiene permiso')
@@ -129,6 +132,33 @@ def delete(request, id):
     except Track.DoesNotExist:
         raise Http404("Track does not exist")
     return redirect('tracks:index')
+
+@login_required
+def buy(request, id):
+    user = request.user
+    try:
+        track = Track.objects.get(pk = id)
+        add_to_cart(user, track)
+    except Track.DoesNotExist:
+        raise Http404("Track does not exist")
+    return redirect('tracks:index')
+
+def add_to_cart(user, track):
+    shoppingCart = ShoppingCart.objects.filter(user = user.id).first()
+    if not shoppingCart:
+        shoppingCart = ShoppingCart.objects.create(
+            user = user,
+            total = 0
+        )
+    
+    if (track not in [cartitem.item for cartitem in shoppingCart.cartitem_set.all()]):
+        shoppingCart.total += track.unitprice
+        shoppingCart.save()
+        cartItem = CartItem.objects.create(
+            cart = shoppingCart,
+            item = track
+        )
+
 
 def search(request):
     user = request.user

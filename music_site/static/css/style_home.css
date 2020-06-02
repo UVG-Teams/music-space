@@ -93,7 +93,7 @@ border-radius: 4px;
 background: #d4d4d4;
 }
   
-.tema, .tema2, .tema3, .tema4 {
+.tema, .tema2, .tema3, .tema4, .tema-canciones {
     display: grid;
     /* grid-template-rows: 80% 10%; */
     width: 200px;
@@ -123,6 +123,22 @@ background: #d4d4d4;
 
 .tema4{
     background: #C1EDCC ;
+}
+
+.tema-canciones{
+    padding: 0rem 2rem 0rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    background-color: cornflowerblue;
+}
+
+.btn-misCanciones {
+    border-radius: 20px;
+    padding: 0.5rem;
+    font-size: 15px;
+    border: 1px solid black;
 }
 
 .cancion{

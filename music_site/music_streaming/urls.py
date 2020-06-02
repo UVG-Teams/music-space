@@ -41,4 +41,8 @@ urlpatterns = [
 
     path('audits/', include('audits.urls', namespace='audits')),
 
+    path('shopping-cart/', include('shoppingcarts.urls', namespace='shoppingcarts')),
+
+    path('user-track/', include('userTracks.urls', namespace='userTrack')),
+
 ]
