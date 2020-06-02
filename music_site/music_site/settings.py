@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'music_streaming.apps.MusicStreamingConfig',
-    'recommendations.apps.RecommendationsConfig',
     'reports.apps.ReportsConfig',
     'mongoServices.apps.MongoservicesConfig',
     'audits.apps.AuditsConfig',
