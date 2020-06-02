@@ -306,7 +306,73 @@
                 </div>
             </div>
         </div>
-        
+        <!-- REPORTERIA -->
+        <!-- 11 -->
+        <div class="grafica">
+            <h3>Total de ventas por semana</h3>
+            <div class="g1">
+                <!-- datos -->
+            
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:ventasPorSemana' %}">
+                        {% csrf_token %}
+                        <input type='text' name="fecha_inicio_a" id="fecha_inicio_a">
+                        <br>
+                        <input type='text' name="fecha_fin_a" id="fecha_fin_a">
+                        <button class="botonArchivo" name="">Generar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 12 -->
+        <div class="grafica">
+            <h3>Artistas con las mayores ventas</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:artistasMayoresVentas' %}">
+                        {% csrf_token %}
+                        <input type='text' name="fecha_inicio" id="fecha_inicio">
+                        <br>
+                        <input type='text' name="fecha_fin" id="fecha_fin">
+                        <input type='text' name="limit" id="limit">
+                        <button class="botonArchivo" name="">Generar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 13 -->
+        <div class="grafica">
+            <h3>Total de ventas por género</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:ventasPorGenero' %}">
+                        {% csrf_token %}
+                        <input type='text' name="fecha_inicio_g" id="fecha_inicio_g">
+                        <br>
+                        <input type='text' name="fecha_fin_g" id="fecha_fin_g">
+                        <button class="botonArchivo" name="">Generar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 14 -->
+        <div class="grafica">
+            <h3>Canciones con más reproducciones</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:cancionesMasReproducciones' %}">
+                        {% csrf_token %}
+                        <input type='text' name="artista" id="artista">
+                        <br>
+                        <input type='text' name="numero" id="numero">
+                        <button class="botonArchivo" name="">Generar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
 </body>
