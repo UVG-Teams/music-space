@@ -22,7 +22,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return "{id} - {firstname} {lastname}".format(
-            id = self.customerid,
+            id = self.id,
             firstname = self.firstname,
             lastname = self.lastname
         )

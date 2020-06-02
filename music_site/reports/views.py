@@ -3,6 +3,13 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 import csv
+import random
+from django.contrib.auth.models import User
+from customers.models import Customer
+from tracks.models import Track
+from tracks.views import add_to_cart
+from shoppingcarts.views import confirm_shopping_cart
+from django.utils.dateparse import parse_datetime
 
 from mongoServices.services import save_sales_on_mongo
 
@@ -18,6 +25,34 @@ def index(request):
             'user': user,
         }
     )
+
+@login_required
+def simulacion(request):
+    date = request.POST.get('date')
+    cantidad_compras = request.POST.get('cantidad_compras')
+
+    users = User.objects.all()
+    tracks = Track.objects.all()
+
+    random_users = random.sample(list(users), int(cantidad_compras))
+    for user in random_users:
+        random_tracks = random.sample(list(tracks), random.randint(1, 4))
+        for track in random_tracks:
+            add_to_cart(user, track)
+    
+    for user in random_users:
+        confirm_shopping_cart(
+            user,
+            parse_datetime(date)
+        )
+
+    
+    cantidad_reproducciones = request.POST.get('cantidad_reproducciones')
+
+    
+
+    return redirect('reports:index')
+
 
 @login_required
 def reports(request):

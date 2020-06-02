@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('all/', views.reports, name='all'),
     path('sales/', views.get_sales_on, name='sales'),
+    path('simulacion/', views.simulacion, name='simulacion'),
     path('generosMasArtistas/', views.archivo_csv_generosMasArtistas, name='generosMasArtistas'),
     path('artistasMasCanciones/', views.archivo_csv_artistasMasCanciones, name='artistasMasCanciones'),
     path('artistasDiversidadGenero/', views.archivo_csv_artistasDiversidadGenero, name='artistasDiversidadGenero'),
