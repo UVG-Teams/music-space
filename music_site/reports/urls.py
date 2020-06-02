@@ -17,4 +17,8 @@ urlpatterns = [
     path('totalDuracionPlaylists/', views.archivo_csv_totalDuracionPlaylists, name='totalDuracionPlaylists'),
     path('generosMasCanciones/', views.archivo_csv_generosMasCanciones, name='generosMasCanciones'),
     path('artistasMasAlbumes/', views.archivo_csv_artistasMasAlbumes, name='artistasMasAlbumes'),
+    path('ventasPorSemana/', views.ventas_por_semana, name='ventasPorSemana'),
+    path('ArtistasMayoresVentas/', views.Artistas_mayores_ventas, name='ArtistasMayoresVentas'),
+    path('ventasPorGenero/', views.ventas_Por_Genero, name='ventasPorGenero'),
+    path('CancionesMasReproducciones/', views.Canciones_Mas_Reproducciones, name='CancionesMasReproducciones'),
 ]

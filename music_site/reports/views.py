@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 import csv
+import json
 
 from mongoServices.services import save_sales_on_mongo
 
@@ -307,6 +308,58 @@ def artistas_Mas_Canciones():
         """
     )
     return(artistasMasCanciones)
+
+def ventas_por_semana(request):
+    Inicio= request.GET.get('Fecha_inicio')
+    Inicio += ' 00:00:00'
+    Fin = request.GET.get('Fecha_fin')
+    Fin += ' 00:00:00'
+    queryd = "SELECT * FROM ventas_semana('{0}', '{1}')".format(Inicio, Fin)
+    print(queryd)
+    VentasPorSemana = custom_sql_dictfetchall(queryd)
+    print(type(VentasPorSemana))
+    context = {
+        "object_list": VentasPorSemana
+    }
+    return render(request, 'allreports.html', context)
+
+def Artistas_mayores_ventas(request):
+    Inicio= request.GET.get('Fecha_inicio')
+    Inicio += ' 00:00:00'
+    Fin = request.GET.get('Fecha_fin')
+    Fin += ' 00:00:00'
+    n = request.GET.get('limit')
+    queryd = "SELECT * FROM artistas_mayores_ventas('{0}', '{1}', {2})".format(Inicio, Fin, n)
+    print(queryd)
+    ArtistasMayoresVentas = custom_sql_dictfetchall(queryd)
+    context = {
+        "object_list1": ArtistasMayoresVentas
+    }
+    return render(request, 'allreports.html', context)
+
+def ventas_Por_Genero(request):
+    Inicio= request.GET.get('Fecha_inicio_g')
+    Inicio += ' 00:00:00'
+    Fin = request.GET.get('Fecha_fin_g')
+    Fin += ' 00:00:00'
+    queryd = "SELECT * FROM ventas_por_genero('{0}', '{1}')".format(Inicio, Fin)
+    print(queryd)
+    ventasPorGenero = custom_sql_dictfetchall(queryd)
+    context = {
+        "object_list2": ventasPorGenero
+    }
+    return render(request, 'allreports.html', context)
+
+def Canciones_Mas_Reproducciones(request):
+    artista = request.GET.get('artista')
+    numero = request.GET.get('numero')
+    querye = "SELECT * FROM canciones_con_mas_reproducciones('{0}', {1})".format(artista, numero)
+    CancionesMasReproducciones = custom_sql_dictfetchall(querye)
+    context = {
+        "object_list3": CancionesMasReproducciones
+    }
+    return render(request, 'allreports.html', context)
+
 
 def archivo_csv_artistasMasCanciones(request):
     artistasMasCanciones = artistas_Mas_Canciones()

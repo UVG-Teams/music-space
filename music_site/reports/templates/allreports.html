@@ -290,7 +290,7 @@
                     <th>Cantidad Géneros</th>
                   </tr>
                   {% for artista in artistasDiversidadGenero %}
-                      <tr>
+                      <tr>ventasPorSemana
                           <td>{{artista.name}}</td>
                           <td>{{artista.cantidad}}</td>
                       </div>
@@ -306,7 +306,130 @@
                 </div>
             </div>
         </div>
-        
+        <!-- REPORTERIA -->
+        <!-- 11 -->
+        <div class="grafica">
+            <h3>Total de ventas por semana</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:ventasPorSemana' %}">
+                        {% csrf_token %}
+                        <input type='text' name="Fecha_inicio" id="Fecha_inicio" value='2009-01-01'>
+                        <br>
+                        <input type='text' name="Fecha_fin" id="Fecha_fin" value='2009-01-01'>
+                        <button class="botonArchivo" name="">ffff</button>
+                    </form>
+                </div>
+                
+                <table>
+                  <tr>
+                    <th>Semana</th>
+                    <th>Total</th>
+                </tr>
+                {% for instance in object_list %}
+                <tr>
+                    <td>{{ instance.weeknumber }}</td>
+                    <td>{{ instance.total_semana }}</td>
+                </div>
+                {% empty %}
+                    <tr>No hay</tr>
+                {% endfor %}
+
+                </table>
+            </div>
+        </div>
+        <!-- 12 -->
+        <div class="grafica">
+            <h3>Artistas con las mayores ventas</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:ArtistasMayoresVentas' %}">
+                        {% csrf_token %}
+                        <input type='text' name="Fecha_inicio" id="Fecha_inicio" value='2009-01-01'>
+                        <br>
+                        <input type='text' name="Fecha_fin" id="Fecha_fin" value='2009-01-01'>
+                        <input type='text' name="limit" id="limit">
+                        <button class="botonArchivo" name="">ffff</button>
+                    </form>
+                </div>
+                <table>
+                  <tr>
+                    <th>Nombre artista</th>
+                    <th>Total</th>
+                </tr>
+                {% for instance in object_list1 %}
+                <tr>
+                    <td>{{ instance.artist_name }}</td>
+                    <td>{{ instance.total }}</td>
+                </div>
+                {% empty %}
+                    <tr>No hay</tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!-- 13 -->
+        <div class="grafica">
+            <h3>Total de ventas por género</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:ventasPorGenero' %}">
+                        {% csrf_token %}
+                        <input type='text' name="Fecha_inicio_g" id="Fecha_inicio_g" value='2009-01-01'>
+                        <br>
+                        <input type='text' name="Fecha_fin_g" id="Fecha_fin_g" value='2009-01-01'>
+                        <button class="botonArchivo" name="">Generar</button>
+                    </form>
+                </div>
+                <table>
+                  <tr>
+                    <th>Genero</th>
+                    <th>Total</th>
+                </tr>
+                {% for instance in object_list2 %}
+                <tr>
+                    <td>{{ instance.genero }}</td>
+                    <td>{{ instance.total }}</td>
+                </div>
+                {% empty %}
+                    <tr>No hay</tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+        <!-- 14 -->
+        <div class="grafica">
+            <h3>Canciones con más reproducciones</h3>
+            <div class="g1">
+                <!-- datos -->
+                <div class="fechas">
+                    <form method="get" action="{% url 'reports:CancionesMasReproducciones' %}">
+                        {% csrf_token %}
+                        <input type='text' name="artista" id="artista">
+                        <br>
+                        <input type='text' name="numero" id="numero">
+                        <button class="botonArchivo" name="">Generar</button>
+                    </form>
+                </div>
+                <table>
+                  <tr>
+                    <th>Cancion</th>
+                    <th>Total</th>
+                </tr>
+                {% for instance in object_list3 %}
+                <tr>
+                    <td>{{ instance.cancion }}</td>
+                    <td>{{ instance.total }}</td>
+                </div>
+                {% empty %}
+                    <tr>No hay</tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
       </div>
     </div>
 </body>
