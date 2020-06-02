@@ -309,19 +309,41 @@ def artistas_Mas_Canciones():
     )
     return(artistasMasCanciones)
 
+@login_required
 def ventas_por_semana(request):
     Inicio= request.GET.get('Fecha_inicio')
     Inicio += ' 00:00:00'
     Fin = request.GET.get('Fecha_fin')
     Fin += ' 00:00:00'
-    queryd = "SELECT * FROM ventas_semana('{0}', '{1}')".format(Inicio, Fin)
-    print(queryd)
+    queryd = "SELECT weeknumber as col1, total_semana as col2 FROM ventas_semana('{0}', '{1}')".format(Inicio, Fin)
     VentasPorSemana = custom_sql_dictfetchall(queryd)
-    print(type(VentasPorSemana))
+    titulo="Total de ventas por semana"
+    columna1="Semana"
+    columna2="Total"
+    what_cvs_is = "a"
     context = {
-        "object_list": VentasPorSemana
+        "object_list": VentasPorSemana,
+        "titulo": titulo,
+        "columna1": columna1,
+        "columna2": columna2
     }
-    return render(request, 'allreports.html', context)
+    # Generar y guardar la info del query "generosmas artistas" en archivo CSV
+    with open('static/ventas_por_semana.csv', 'w', newline='') as myfile:
+        wr = csv.writer(myfile)
+        # header del archivo
+        wr.writerow(["Semana", "Total"])
+        # obtener la info
+        for item in VentasPorSemana:
+            wr.writerow([item['col1'], item['col2']])
+    return render(request, 'reporteria.html',context)
+
+def csv_ventas_por_semana(request):
+    #leer el archivo y descargarlo
+    with open('static/ventas_por_semana.csv', 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="text/csv")
+        response['status_code'] = 200
+        response['Content-Disposition'] = 'attachment; filename="ventas_por_semana.csv"'
+    return response
 
 def Artistas_mayores_ventas(request):
     Inicio= request.GET.get('Fecha_inicio')
@@ -329,37 +351,101 @@ def Artistas_mayores_ventas(request):
     Fin = request.GET.get('Fecha_fin')
     Fin += ' 00:00:00'
     n = request.GET.get('limit')
-    queryd = "SELECT * FROM artistas_mayores_ventas('{0}', '{1}', {2})".format(Inicio, Fin, n)
-    print(queryd)
+    queryd = "SELECT artist_name as col1, total as col2 FROM artistas_mayores_ventas('{0}', '{1}', {2})".format(Inicio, Fin, n)
+    titulo="Artistas con mayores ventas"
+    columna1="Artista"
+    columna2="Total"
     ArtistasMayoresVentas = custom_sql_dictfetchall(queryd)
     context = {
-        "object_list1": ArtistasMayoresVentas
+        "object_list": ArtistasMayoresVentas,
+        "titulo": titulo,
+        "columna1": columna1,
+        "columna2": columna2
     }
-    return render(request, 'allreports.html', context)
+     # Generar y guardar la info del query "generosmas artistas" en archivo CSV
+    with open('static/Artistas_mayores_ventas.csv', 'w', newline='') as myfile:
+        wr = csv.writer(myfile)
+        # header del archivo
+        wr.writerow(["Artista", "Total"])
+        # obtener la info
+        for item in ArtistasMayoresVentas:
+            wr.writerow([item['col1'], item['col2']])
+    return render(request, 'reporteria.html', context)
+
+def csv_Artistas_mayores_ventas(request):
+    #leer el archivo y descargarlo
+    with open('static/Artistas_mayores_ventas.csv', 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="text/csv")
+        response['status_code'] = 200
+        response['Content-Disposition'] = 'attachment; filename="Artistas_mayores_ventas.csv"'
+    return response
+
 
 def ventas_Por_Genero(request):
     Inicio= request.GET.get('Fecha_inicio_g')
     Inicio += ' 00:00:00'
     Fin = request.GET.get('Fecha_fin_g')
     Fin += ' 00:00:00'
-    queryd = "SELECT * FROM ventas_por_genero('{0}', '{1}')".format(Inicio, Fin)
-    print(queryd)
+    queryd = "SELECT genero as col1, total as col2 FROM ventas_por_genero('{0}', '{1}')".format(Inicio, Fin)
+    titulo="Ventas por genero"
+    columna1="Genero"
+    columna2="Total"
     ventasPorGenero = custom_sql_dictfetchall(queryd)
     context = {
-        "object_list2": ventasPorGenero
+        "object_list": ventasPorGenero,
+        "titulo": titulo,
+        "columna1": columna1,
+        "columna2": columna2
     }
-    return render(request, 'allreports.html', context)
+    # Generar y guardar la info del query "generosmas artistas" en archivo CSV
+    with open('static/ventas_Por_Genero.csv', 'w', newline='') as myfile:
+        wr = csv.writer(myfile)
+        # header del archivo
+        wr.writerow(["Genero", "Total"])
+        # obtener la info
+        for item in ventasPorGenero:
+            wr.writerow([item['col1'], item['col2']])
+    return render(request, 'reporteria.html', context)
+
+def csv_ventas_Por_Genero(request):
+    #leer el archivo y descargarlo
+    with open('static/ventas_Por_Genero.csv', 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="text/csv")
+        response['status_code'] = 200
+        response['Content-Disposition'] = 'attachment; filename="ventas_Por_Genero.csv"'
+    return response
 
 def Canciones_Mas_Reproducciones(request):
     artista = request.GET.get('artista')
     numero = request.GET.get('numero')
-    querye = "SELECT * FROM canciones_con_mas_reproducciones('{0}', {1})".format(artista, numero)
+    querye = "SELECT cancion as col1, total as col2 FROM canciones_con_mas_reproducciones('{0}', {1})".format(artista, numero)
+    titulo="Canciones mas reproducidas"
+    columna1="Cancion"
+    columna2="Total"
     CancionesMasReproducciones = custom_sql_dictfetchall(querye)
     context = {
-        "object_list3": CancionesMasReproducciones
+        "object_list": CancionesMasReproducciones,
+        "titulo": titulo,
+        "columna1": columna1,
+        "columna2": columna2
     }
-    return render(request, 'allreports.html', context)
+    # Generar y guardar la info del query "generosmas artistas" en archivo CSV
+    with open('static/Canciones_Mas_Reproducciones.csv', 'w', newline='') as myfile:
+        wr = csv.writer(myfile)
+        # header del archivo
+        wr.writerow(["Cancion", "Total"])
+        # obtener la info
+        for item in CancionesMasReproducciones:
+            wr.writerow([item['col1'], item['col2']])
+    return render(request, 'reporteria.html', context)
 
+def csv_Canciones_Mas_Reproducciones(request):
+    #leer el archivo y descargarlo
+    with open('static/Canciones_Mas_Reproducciones.csv', 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="text/csv")
+        response['status_code'] = 200
+        response['Content-Disposition'] = 'attachment; filename="Canciones_Mas_Reproducciones.csv"'
+    return response
 
 def archivo_csv_artistasMasCanciones(request):
     artistasMasCanciones = artistas_Mas_Canciones()

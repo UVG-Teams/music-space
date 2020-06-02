@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>Reportes</title>
+    {% load static %}
+    <link href="{% static 'css/style_reports.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+     <!---encabezado-->
+     <div class='header'>
+        <div class='container'>
+            <a href="{% url 'home' %}"><img src="{% static 'logobdclaro.png' %}" class="logo"></a>
+        </div>
+        <div class='container2'>
+            <form method="post" action="{% url 'search' %}">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="inputs">
+                        <input type="text" class="buscar" name="search" placeholder="Buscar...">
+                    </div>
+                    <div class="button">
+                        <button class="botonHome">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='container'>
+            <label class="usuario">{{user.username}}</label>
+            <a href="{% url 'logout' %}" class="logout">Log Out</a>
+        </div>
+    </div>
+    <br>
+    <!--centro-->
+    <div class="centro">
+        <!--1-->
+        <div class="grafica">
+            <h3>{{titulo}}</h3>
+            <div class="g1">
+                <!-- la grafica -->
+                <table>
+                    <thead>
+                        <th>{{columna1}}</th>
+                        <th>{{columna2}}</th>
+                    </thead>    
+                    <tbody>
+                        {% for instance in object_list %}
+                            <tr>
+                                <td>{{instance.col1}}</td>
+                                <td>{{instance.col2}}</td>
+                            </div>
+                        {% empty %}
+                            <tr>No hay</tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                <div class="descargar">
+                    {% if titulo == "Total de ventas por semana" %}
+                        <form method="GET" action="{% url 'reports:ventasPorSemana_csv' %}">
+                                <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
+                        </form> 
+                    {% endif %}
+                   
+                    {% if titulo == "Artistas con mayores ventas" %}
+                        <form method="GET" action="{% url 'reports:ArtistasMayoresVentas_csv' %}">
+                                <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
+                        </form> 
+                    {% endif %}
+
+                    {% if titulo == "Ventas por genero" %}
+                        <form method="GET" action="{% url 'reports:ventasPorGenero_csv' %}">
+                                <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
+                        </form> 
+                    {% endif %}
+
+                    {% if titulo == "Canciones mas reproducidas" %}
+                        <form method="GET" action="{% url 'reports:CancionesMasReproducciones_csv' %}">
+                                <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
+                        </form> 
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

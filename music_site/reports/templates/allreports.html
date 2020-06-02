@@ -312,31 +312,16 @@
             <h3>Total de ventas por semana</h3>
             <div class="g1">
                 <!-- datos -->
+            
                 <div class="fechas">
                     <form method="get" action="{% url 'reports:ventasPorSemana' %}">
                         {% csrf_token %}
                         <input type='text' name="Fecha_inicio" id="Fecha_inicio" value='2009-01-01'>
                         <br>
                         <input type='text' name="Fecha_fin" id="Fecha_fin" value='2009-01-01'>
-                        <button class="botonArchivo" name="">ffff</button>
+                        <button class="botonArchivo" name="">Generar</button>
                     </form>
                 </div>
-                
-                <table>
-                  <tr>
-                    <th>Semana</th>
-                    <th>Total</th>
-                </tr>
-                {% for instance in object_list %}
-                <tr>
-                    <td>{{ instance.weeknumber }}</td>
-                    <td>{{ instance.total_semana }}</td>
-                </div>
-                {% empty %}
-                    <tr>No hay</tr>
-                {% endfor %}
-
-                </table>
             </div>
         </div>
         <!-- 12 -->
@@ -351,23 +336,9 @@
                         <br>
                         <input type='text' name="Fecha_fin" id="Fecha_fin" value='2009-01-01'>
                         <input type='text' name="limit" id="limit">
-                        <button class="botonArchivo" name="">ffff</button>
+                        <button class="botonArchivo" name="">Generar</button>
                     </form>
                 </div>
-                <table>
-                  <tr>
-                    <th>Nombre artista</th>
-                    <th>Total</th>
-                </tr>
-                {% for instance in object_list1 %}
-                <tr>
-                    <td>{{ instance.artist_name }}</td>
-                    <td>{{ instance.total }}</td>
-                </div>
-                {% empty %}
-                    <tr>No hay</tr>
-                {% endfor %}
-                </table>
             </div>
         </div>
         <!-- 13 -->

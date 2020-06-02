@@ -21,4 +21,8 @@ urlpatterns = [
     path('ArtistasMayoresVentas/', views.Artistas_mayores_ventas, name='ArtistasMayoresVentas'),
     path('ventasPorGenero/', views.ventas_Por_Genero, name='ventasPorGenero'),
     path('CancionesMasReproducciones/', views.Canciones_Mas_Reproducciones, name='CancionesMasReproducciones'),
+    path('ventasPorSemana_csv', views.csv_ventas_por_semana, name='ventasPorSemana_csv'),
+    path('ArtistasMayoresVentas_csv/', views.csv_Artistas_mayores_ventas, name='ArtistasMayoresVentas_csv'),
+    path('ventasPorGenero_csv/', views.csv_ventas_Por_Genero, name='ventasPorGenero_csv'),
+    path('CancionesMasReproducciones_csv/', views.csv_Canciones_Mas_Reproducciones, name='CancionesMasReproducciones_csv'),
 ]
