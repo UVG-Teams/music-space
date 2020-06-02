@@ -290,7 +290,7 @@
                     <th>Cantidad Géneros</th>
                   </tr>
                   {% for artista in artistasDiversidadGenero %}
-                      <tr>ventasPorSemana
+                      <tr>
                           <td>{{artista.name}}</td>
                           <td>{{artista.cantidad}}</td>
                       </div>
@@ -355,20 +355,6 @@
                         <button class="botonArchivo" name="">Generar</button>
                     </form>
                 </div>
-                <table>
-                  <tr>
-                    <th>Genero</th>
-                    <th>Total</th>
-                </tr>
-                {% for instance in object_list2 %}
-                <tr>
-                    <td>{{ instance.genero }}</td>
-                    <td>{{ instance.total }}</td>
-                </div>
-                {% empty %}
-                    <tr>No hay</tr>
-                {% endfor %}
-                </table>
             </div>
         </div>
         <!-- 14 -->
@@ -385,20 +371,6 @@
                         <button class="botonArchivo" name="">Generar</button>
                     </form>
                 </div>
-                <table>
-                  <tr>
-                    <th>Cancion</th>
-                    <th>Total</th>
-                </tr>
-                {% for instance in object_list3 %}
-                <tr>
-                    <td>{{ instance.cancion }}</td>
-                    <td>{{ instance.total }}</td>
-                </div>
-                {% empty %}
-                    <tr>No hay</tr>
-                {% endfor %}
-                </table>
             </div>
         </div>
       </div>
