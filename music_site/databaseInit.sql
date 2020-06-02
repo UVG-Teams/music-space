@@ -17890,5 +17890,67 @@ create trigger log_audit_track
 	for each row
 	execute procedure public.log_cruds();
 
+CREATE OR REPLACE FUNCTION public.ventas_semana(fecha_inicio timestamp without time zone, fecha_fin timestamp without time zone)
+ RETURNS TABLE(weeknumber DOUBLE PRECISION, total_semana numeric)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	RETURN QUERY select
+	EXTRACT (WEEK FROM invoicedate) as WeekNumber, sum(total) as total_semana from invoice where invoicedate
+	between fecha_inicio and fecha_fin group by weeknumber order by weeknumber;
+end; 
+$function$
+;
 
+CREATE OR REPLACE FUNCTION public.artistas_mayores_ventas(fecha_inicio timestamp without time zone, fecha_fin timestamp without time zone, n int)
+ RETURNS TABLE(Artist_name varchar, total numeric)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	RETURN QUERY select art.name as Artist_name, sum(i.total) as total
+	from invoice i
+		join invoiceline il on i.invoiceid = il.invoiceid 
+		join track t on il.trackid = t.id 
+		join album a on t.albumid = a.id 
+		join artist art on a.artistid = art.id 
+	where i.invoicedate between fecha_inicio and fecha_fin
+	group by Artist_name
+	order by total desc 
+	limit n;
+end;
+$function$
+;
 
+CREATE OR REPLACE function public.canciones_con_mas_reproducciones(nombre varchar, n int)
+ RETURNS TABLE(cancion varchar, total bigint)
+ LANGUAGE plpgsql
+AS $function$
+begin 
+	RETURN QUERY select t.name as cancion, COUNT(t.name) as total
+	from usertrack u2 
+		join track t on u2.trackid = t.id 
+		join album a on t.albumid = a.id 
+		join artist art on a.artistid = art.id 
+	where u2.relation='played' and art.name = nombre 
+	group by cancion
+	order by total desc 
+	limit n;
+end;
+$function$;
+
+CREATE OR REPLACE FUNCTION public.ventas_por_genero(fecha_inicio timestamp without time zone, fecha_fin timestamp without time zone)
+ RETURNS TABLE(genero character varying, total numeric)
+ LANGUAGE plpgsql
+AS $function$
+begin
+	RETURN QUERY select g.name as genero, sum(i.total) as total
+	from invoice i
+		join invoiceline il on i.invoiceid = il.invoiceid 
+		join track t on il.trackid = t.id 
+		join genre g on t.genreid = g.genreid 
+	where i.invoicedate between fecha_inicio and fecha_fin
+	group by genero
+	order by total desc;
+end;
+$function$
+;
