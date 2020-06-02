@@ -12,14 +12,15 @@ from tracks.models import Track
 def play_song(request, id):
     user = request.user
     track = Track.objects.get(pk = id)
+    play(user, track)
+    return redirect(track.url)
+
+def play(user, track):
     UserTrack.objects.create(
         trackid = track,
         userid = user,
         relation = "played"
     )
-
-    return redirect(track.url)
-
 
 def load_song(request):
     tracks = Track.objects.all()
