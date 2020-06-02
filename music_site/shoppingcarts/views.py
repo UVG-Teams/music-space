@@ -57,34 +57,39 @@ def delete(request, id):
 def buy(request):
     user = request.user
     try:
-        shoppingCart = ShoppingCart.objects.filter(user = user.id).first()
-        customer = Customer.objects.filter(user = user).first()
-        if (not customer):
-            customer = Customer.objects.create(
-                id = Customer.objects.all().last().id + 1,
-                user = user,
-                firstname = user.username
-            )
-        invoice = Invoice.objects.create(
-            id = Invoice.objects.all().last().id + 1,
-            total = shoppingCart.total,
-            customer = customer
-        )
-        cartItems = shoppingCart.cartitem_set.all()
-        for cartitem in cartItems:
-            track = cartitem.item
-            InvoiceLine.objects.create(
-                id = InvoiceLine.objects.all().last().id + 1,
-                unitprice = track.unitprice,
-                quantity = 1,
-                invoice = invoice,
-                track = track
-            )
-
-        shoppingCart.delete()
+        confirm_shopping_cart(user, None)
     except ShoppingCart.DoesNotExist:
         raise Http404("Shopping does not exist")
     return redirect('shoppingcarts:index')
+
+def confirm_shopping_cart(user, date):
+    shoppingCart = ShoppingCart.objects.filter(user = user.id).first()
+    customer = Customer.objects.filter(user = user).first()
+    if (not customer):
+        customer = Customer.objects.create(
+            id = Customer.objects.all().last().id + 1,
+            user = user,
+            firstname = user.username
+        )
+    invoice = Invoice.objects.create(
+        id = Invoice.objects.all().last().id + 1,
+        total = shoppingCart.total,
+        customer = customer,
+        invoicedate = date
+    )
+    cartItems = shoppingCart.cartitem_set.all()
+    for cartitem in cartItems:
+        track = cartitem.item
+        InvoiceLine.objects.create(
+            id = InvoiceLine.objects.all().last().id + 1,
+            unitprice = track.unitprice,
+            quantity = 1,
+            invoice = invoice,
+            track = track
+        )
+
+    shoppingCart.delete()
+
 
 def custom_sql_dictfetchall(query):
     "Return all rows from a cursor as a dict"
