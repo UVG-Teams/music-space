@@ -12,6 +12,7 @@ class Track(models.Model):
     albumid = models.ForeignKey("albums.Album", on_delete=models.SET_NULL, blank=True, null=True, db_column="albumid") #albumid = models.IntegerField()
     genreid = models.ForeignKey("genres.Genre", on_delete=models.SET_NULL, blank=True, null=True, db_column="genreid") #genreid = models.IntegerField()
     mediatypeid = models.ForeignKey("mediaTypes.MediaType", on_delete=models.SET_NULL, blank=True, null=True, db_column="mediatypeid") #mediatypeid = models.IntegerField(blank=False, null=False)
+    url = models.URLField(null=True)
 
     class Meta:
         db_table = 'track'
