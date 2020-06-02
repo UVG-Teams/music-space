@@ -61,7 +61,7 @@
                     {% endif %}
                    
                     {% if titulo == "Artistas con mayores ventas" %}
-                        <form method="GET" action="{% url 'reports:ArtistasMayoresVentas_csv' %}">
+                        <form method="GET" action="{% url 'reports:artistasMayoresVentas_csv' %}">
                                 <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
                         </form> 
                     {% endif %}
@@ -73,7 +73,7 @@
                     {% endif %}
 
                     {% if titulo == "Canciones mas reproducidas" %}
-                        <form method="GET" action="{% url 'reports:CancionesMasReproducciones_csv' %}">
+                        <form method="GET" action="{% url 'reports:cancionesMasReproducciones_csv' %}">
                                 <button name="GeneroConMasArtistas" class="botonArchivo">Descagar</button>
                         </form> 
                     {% endif %}

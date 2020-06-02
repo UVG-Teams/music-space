@@ -311,18 +311,18 @@ def artistas_Mas_Canciones():
 
 @login_required
 def ventas_por_semana(request):
-    Inicio= request.GET.get('Fecha_inicio')
-    Inicio += ' 00:00:00'
-    Fin = request.GET.get('Fecha_fin')
-    Fin += ' 00:00:00'
-    queryd = "SELECT weeknumber as col1, total_semana as col2 FROM ventas_semana('{0}', '{1}')".format(Inicio, Fin)
-    VentasPorSemana = custom_sql_dictfetchall(queryd)
+    inicio= request.GET.get('fecha_inicio_a')
+    inicio += ' 00:00:00'
+    fin = request.GET.get('fecha_fin_a')
+    fin += ' 00:00:00'
+    queryd = "SELECT weeknumber as col1, total_semana as col2 FROM ventas_semana('{0}', '{1}')".format(inicio, fin)
+    ventasPorSemana = custom_sql_dictfetchall(queryd)
     titulo="Total de ventas por semana"
     columna1="Semana"
     columna2="Total"
     what_cvs_is = "a"
     context = {
-        "object_list": VentasPorSemana,
+        "object_list": ventasPorSemana,
         "titulo": titulo,
         "columna1": columna1,
         "columna2": columna2
@@ -333,7 +333,7 @@ def ventas_por_semana(request):
         # header del archivo
         wr.writerow(["Semana", "Total"])
         # obtener la info
-        for item in VentasPorSemana:
+        for item in ventasPorSemana:
             wr.writerow([item['col1'], item['col2']])
     return render(request, 'reporteria.html',context)
 
@@ -345,19 +345,19 @@ def csv_ventas_por_semana(request):
         response['Content-Disposition'] = 'attachment; filename="ventas_por_semana.csv"'
     return response
 
-def Artistas_mayores_ventas(request):
-    Inicio= request.GET.get('Fecha_inicio')
-    Inicio += ' 00:00:00'
-    Fin = request.GET.get('Fecha_fin')
-    Fin += ' 00:00:00'
+def artistas_mayores_ventas(request):
+    inicio= request.GET.get('fecha_inicio')
+    inicio += ' 00:00:00'
+    fin = request.GET.get('fecha_fin')
+    fin += ' 00:00:00'
     n = request.GET.get('limit')
-    queryd = "SELECT artist_name as col1, total as col2 FROM artistas_mayores_ventas('{0}', '{1}', {2})".format(Inicio, Fin, n)
+    queryd = "SELECT artist_name as col1, total as col2 FROM artistas_mayores_ventas('{0}', '{1}', {2})".format(inicio, fin, n)
     titulo="Artistas con mayores ventas"
     columna1="Artista"
     columna2="Total"
-    ArtistasMayoresVentas = custom_sql_dictfetchall(queryd)
+    artistasMayoresVentas = custom_sql_dictfetchall(queryd)
     context = {
-        "object_list": ArtistasMayoresVentas,
+        "object_list": artistasMayoresVentas,
         "titulo": titulo,
         "columna1": columna1,
         "columna2": columna2
@@ -368,7 +368,7 @@ def Artistas_mayores_ventas(request):
         # header del archivo
         wr.writerow(["Artista", "Total"])
         # obtener la info
-        for item in ArtistasMayoresVentas:
+        for item in artistasMayoresVentas:
             wr.writerow([item['col1'], item['col2']])
     return render(request, 'reporteria.html', context)
 
@@ -382,11 +382,11 @@ def csv_Artistas_mayores_ventas(request):
 
 
 def ventas_Por_Genero(request):
-    Inicio= request.GET.get('Fecha_inicio_g')
-    Inicio += ' 00:00:00'
-    Fin = request.GET.get('Fecha_fin_g')
-    Fin += ' 00:00:00'
-    queryd = "SELECT genero as col1, total as col2 FROM ventas_por_genero('{0}', '{1}')".format(Inicio, Fin)
+    inicio= request.GET.get('fecha_inicio_g')
+    inicio += ' 00:00:00'
+    fin = request.GET.get('fecha_fin_g')
+    fin += ' 00:00:00'
+    queryd = "SELECT genero as col1, total as col2 FROM ventas_por_genero('{0}', '{1}')".format(inicio, fin)
     titulo="Ventas por genero"
     columna1="Genero"
     columna2="Total"
@@ -415,16 +415,16 @@ def csv_ventas_Por_Genero(request):
         response['Content-Disposition'] = 'attachment; filename="ventas_Por_Genero.csv"'
     return response
 
-def Canciones_Mas_Reproducciones(request):
+def canciones_Mas_Reproducciones(request):
     artista = request.GET.get('artista')
     numero = request.GET.get('numero')
     querye = "SELECT cancion as col1, total as col2 FROM canciones_con_mas_reproducciones('{0}', {1})".format(artista, numero)
     titulo="Canciones mas reproducidas"
     columna1="Cancion"
     columna2="Total"
-    CancionesMasReproducciones = custom_sql_dictfetchall(querye)
+    cancionesMasReproducciones = custom_sql_dictfetchall(querye)
     context = {
-        "object_list": CancionesMasReproducciones,
+        "object_list": cancionesMasReproducciones,
         "titulo": titulo,
         "columna1": columna1,
         "columna2": columna2
@@ -435,7 +435,7 @@ def Canciones_Mas_Reproducciones(request):
         # header del archivo
         wr.writerow(["Cancion", "Total"])
         # obtener la info
-        for item in CancionesMasReproducciones:
+        for item in cancionesMasReproducciones:
             wr.writerow([item['col1'], item['col2']])
     return render(request, 'reporteria.html', context)
 
