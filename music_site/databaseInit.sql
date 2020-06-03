@@ -17909,7 +17909,7 @@ AS $function$
 begin
 	RETURN QUERY select art.name as Artist_name, sum(i.total) as total
 	from invoice i
-		join invoiceline il on i.invoiceid = il.invoiceid 
+		join invoiceline il on i.id = il.invoiceid 
 		join track t on il.trackid = t.id 
 		join album a on t.albumid = a.id 
 		join artist art on a.artistid = art.id 
@@ -17945,7 +17945,7 @@ AS $function$
 begin
 	RETURN QUERY select g.name as genero, sum(i.total) as total
 	from invoice i
-		join invoiceline il on i.invoiceid = il.invoiceid 
+		join invoiceline il on i.id = il.invoiceid 
 		join track t on il.trackid = t.id 
 		join genre g on t.genreid = g.genreid 
 	where i.invoicedate between fecha_inicio and fecha_fin
