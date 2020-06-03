@@ -33,6 +33,7 @@
                 <!-- ---- -->
                 <div class="content">
                     <div class="usuarios">
+                        <a href="{% url 'playlists:create' %}" class="new">New Playlist</a>
                         <form method="post" action="{% url 'playlists:search' %}">
                             {% csrf_token %}
                             <div class="inputbuscar">
@@ -54,6 +55,8 @@
                                         <tr>
                                             <td>{{ playlist.id }}</td>
                                             <td>{{ playlist.name }}</td>
+                                            <td><a href="{% url 'playlists:update' playlist.id %}" class="editar" id = '{{playlist.id}}'>Edit</a></td>
+                                            <td><a href="{% url 'playlists:delete' playlist.id %}" class="eliminar">Delete</a></td>
                                         </tr>
                                     {% empty %}
                                         <tr>No hay</tr>

@@ -10,11 +10,11 @@ urlpatterns = [
 
     path('<int:id>/', views.detail, name='detail'),
 
-    # path('create/', views.create, name='create'),
-    # path('create/new', views.create_new, name='create_new'),
+    path('create/', views.create, name='create'),
+    path('create/new', views.create_new, name='create_new'),
 
-    # path('update/<int:id>/', views.update, name='update'),
-    # path('update/<int:id>/done', views.update_object, name='update_object'),
+    path('update/<int:id>/', views.update, name='update'),
+    path('update/<int:id>/done', views.update_object, name='update_object'),
 
-    # path('delete/<int:id>/', views.delete, name='delete'),
+    path('delete/<int:id>/', views.delete, name='delete'),
 ]

@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 
 from playlists.models import Playlist
+from userPlaylists.models import UserPlaylist
 # Create your views here.
 
 @login_required
@@ -52,54 +53,70 @@ def custom_sql_dictfetchall(query):
         ]
 
 
-# @login_required
-# def create(request):
-#     user = request.user
-#     return render(
-#         request,
-#         'playlist_create.html',
-#         {
-#             'user' : user
-#         }
-#     )
+@login_required
+def create(request):
+    user = request.user
+    return render(
+        request,
+        'playlist_create.html',
+        {
+        'user' : user
+        }
+    )
 
 
-# @login_required
-# def create_new(request):
-#     user = request.user
-#     name = request.POST.get('name')
-#     playlist = Playlist.objects.get_or_create(name = name)
-#     userArtist = UserArtist.objects.create(playlistid = playlist[0], userid = user[0])
-#     return redirect('playlists:index')    
+@login_required
+def create_new(request):
+    user = request.user
+    id = (Playlist.objects.latest('id').id) + 1
+    name = request.POST.get('name')
+    try:
+        playlist = Playlist.objects.get(name = name)
+    except Playlist.DoesNotExist:
+        if (user.has_perm('playlist.add_playlist')):
+            playlist = Playlist.objects.get_or_create(name = name, id = id)
+            userPlaylist = UserPlaylist.objects.create(playlistid = playlist[0], userid = user)
+        else:
+            raise Http404('No tiene permiso')
+    return redirect('playlists:index')
 
-# @login_required
-# def update(request, id):
-#     try:
-#         artist = Artist.objects.get(pk = id)
-#     except Artist.DoesNotExist:
-#         raise Http404("Artist does not exist")
-#     return render(
-#         request,
-#         'artist_edit.html',
-#         {
-#             'artist' : artist
-#         }
-#     )
+@login_required
+def update(request, id):
+    try:
+        playlist = Playlist.objects.get(pk = id)
+    except Playlist.DoesNotExist:
+        raise Http404("Playlist does not exist")
+    return render(
+        request,
+        'playlist_edit.html',
+        {
+            'playlist' : playlist
+        }
+    )
 
-# @login_required
-# def update_object(request, id):
-#     try:
-#         name = request.POST.get('name')
-#         artist = Artist.objects.filter(pk = id).update(name = name)
-#     except Artist.DoesNotExist:
-#         raise Http404("Artist does not exist")
-#     return redirect('artists:index')
+@login_required
+def update_object(request, id):
+    user = request.user
+    try:
+        if (user.has_perm('playlist.change_playlist')):
+            name = request.POST.get('name')
+            playlist = Playlist.objects.filter(pk = id).update(name = name)
+        else:
+            raise Http404('No tiene permiso')
+    except Playlist.DoesNotExist:
+        raise Http404("Playlist does not exist")
+    return redirect('playlists:index')
 
-# @login_required
-# def delete(request, id):
-#     try:
-#         artist = Artist.objects.get(pk = id)
-#         artist.delete()
-#     except Artist.DoesNotExist:
-#         raise Http404("Artist does not exist")
-#     return redirect('artists:index')
+
+@login_required
+def delete(request, id):
+    user = request.user
+    try:
+        if (user.has_perm('playlist.delete_playlist')):
+            playlist = Playlist.objects.get(pk = id)
+            playlist.delete()
+        else:
+            raise Http404('No tiene permiso')
+    except Playlist.DoesNotExist:
+        raise Http404("Playlist does not exist")
+    return redirect('playlists:index')

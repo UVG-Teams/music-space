@@ -148,6 +148,15 @@ th, td {
     text-decoration: none;
 }
 
+.new {
+    margin-left: 1%;
+    background: green;
+    border-radius: 10px;
+    padding: 8px;
+    text-decoration: none;
+    color: white;
+}
+
 .eliminar {
     background: red;
     border-radius: 5px;
