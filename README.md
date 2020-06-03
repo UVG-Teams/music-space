@@ -60,14 +60,17 @@
     ```
 
 
-## Desarrollo
+## Para ejecucion
 
-* Crear app
-    ```shell
-    $ django-admin startproject my_site
-    $ python manage.py startapp myapp
-    ```
-* Abrir shell
-    ```shell
-    $ python manage.py shell
-    ```
+* Clonar repo
+* Configurar entorno (instalar dependencias de requirements.txt)
+    * Borrar pkg-resources==0.0.0 y psycopg si es necesario e instalarlo manualmente (Cambia por SO)
+* Configuracion de DB y credenciales
+* python load_data.py
+    * Sirve para resetear la db si se necesita, cargar la db inicial y migraciones de Django
+    * Con seleccionar la opcion 2 del menu y marcar si a todo es suficiente
+* python manage.py runserver
+* Para cargar urls de reproduccion ir a la ruta: /user-track/load/
+    * Tarda un par de minutos, luego redirecciona a home
+    * Tomar en cuenta que sin este paso no se podra "reproducir" las canciones
+* Listo!

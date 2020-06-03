@@ -38,7 +38,7 @@ def load_data():
       reset_DB()
   
   input("Press enter to load initial database...")
-  dbDump = "databaseInit.sql"
+  dbDump = "init.sql"
 
   try:
       file = open(dbDump, "r")

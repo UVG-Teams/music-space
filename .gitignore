@@ -10,6 +10,7 @@ credentials.py
 *.sql
 *.tar
 !databaseInit.sql
+!init.sql
 
 # C extensions
 *.so
