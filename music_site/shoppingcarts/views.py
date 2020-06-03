@@ -10,6 +10,9 @@ from customers.models import Customer
 from invoiceLines.models import InvoiceLine
 from invoices.models import Invoice
 
+from reportlab.pdfgen import canvas
+from io import BytesIO
+
 # Create your views here.
 
 @login_required
@@ -57,10 +60,30 @@ def delete(request, id):
 def buy(request):
     user = request.user
     try:
-        confirm_shopping_cart(user, None)
+        cart = confirm_shopping_cart(user, None)
+        response=HttpResponse(content_type='application/pdf')
+        response['status_code'] = 200
+        response['Content-Disposition'] = 'attachment; filename=Factura.pdf'
+        buffer = BytesIO()
+        c = canvas.Canvas(buffer)
+        contador = 600
+        for cartitem in cart:
+            track = cartitem.item
+            c.drawString(200, 770, "FACTURA")
+            c.drawString(100, 700, "Canciones" )
+            c.drawString(340, 700, "Precio" )
+            c.drawString(50, contador, str(track))
+            c.drawString(350, contador, str(track.unitprice))
+            contador -= 20
+           # c.drawString(50,450,"hola")
+        c.showPage()
+        c.save()
+        pdf = buffer.getvalue()
+        buffer.close()
+        response.write(pdf)
     except ShoppingCart.DoesNotExist:
         raise Http404("Shopping does not exist")
-    return redirect('shoppingcarts:index')
+    return response
 
 def confirm_shopping_cart(user, date):
     shoppingCart = ShoppingCart.objects.filter(user = user.id).first()
@@ -78,8 +101,10 @@ def confirm_shopping_cart(user, date):
         invoicedate = date
     )
     cartItems = shoppingCart.cartitem_set.all()
+        
     for cartitem in cartItems:
         track = cartitem.item
+        print(track)
         InvoiceLine.objects.create(
             id = InvoiceLine.objects.all().last().id + 1,
             unitprice = track.unitprice,
@@ -87,9 +112,8 @@ def confirm_shopping_cart(user, date):
             invoice = invoice,
             track = track
         )
-
     shoppingCart.delete()
-
+    return cartItems
 
 def custom_sql_dictfetchall(query):
     "Return all rows from a cursor as a dict"
